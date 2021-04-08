@@ -1,0 +1,53 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.dukesdesigns.maganin",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.10.5",
+    "applicationType": "monolith",
+    "baseName": "dukesdesigns",
+    "packageName": "com.dukesdesigns.maganin",
+    "packageFolder": "com/dukesdesigns/maganin",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "caffeine",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "messageBroker": false,
+    "buildTool": "maven",
+    "jwtSecretKey": "ZmRlOTQ3MDMyZGQ5NmU0NmY4NDczMTNmZDRiM2E1MmM1MmYwOWViYTRiMjIxZGM2NTUwNzAzN2FhZDk0Y2I4YzgyOGI3OGQ5ODRkYzQzMzUzZmNkOGI0YzBiNmMwYmU0NDk5ZmEzOGZkOTM5OGNjZmU5ZmY0M2M2M2Q1ZDI4ZmE=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "cyborg",
+    "clientThemeVariant": "dark",
+    "creationTimestamp": 1616217261922,
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-quarkus",
+        "version": "1.1.1"
+      }
+    ],
+    "enableTranslation": true,
+    "nativeLanguage": "ar-EG",
+    "languages": ["ar-ly"],
+    "blueprints": [
+      {
+        "name": "generator-jhipster-quarkus",
+        "version": "1.1.1"
+      }
+    ],
+    "skipServer": true,
+    "herokuAppName": "maganin",
+    "herokuDeployType": "jar",
+    "herokuJavaVersion": "11"
+  }
+}

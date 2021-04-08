@@ -1,0 +1,194 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-content-heading" jhiTranslate="dukesdesignsApp.content.home.createOrEditLabel">Create or edit a Content</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.userId" for="field_userId">User Id</label>
+                    <input type="number" class="form-control" name="userId" id="field_userId"
+                           formControlName="userId"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.contentTypeID" for="field_contentTypeID">Content Type ID</label>
+                    <input type="number" class="form-control" name="contentTypeID" id="field_contentTypeID"
+                           formControlName="contentTypeID"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.title" for="field_title">Title</label>
+                    <input type="text" class="form-control" name="title" id="field_title"
+                           formControlName="title"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.author" for="field_author">Author</label>
+                    <input type="text" class="form-control" name="author" id="field_author"
+                           formControlName="author"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.relatedURL" for="field_relatedURL">Related URL</label>
+                    <input type="text" class="form-control" name="relatedURL" id="field_relatedURL"
+                           formControlName="relatedURL"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.dateAdded" for="field_dateAdded">Date Added</label>
+                    <div class="input-group">
+                        <input id="field_dateAdded" type="text" class="form-control" name="dateAdded" ngbDatepicker #dateAddedDp="ngbDatepicker" formControlName="dateAdded"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateAddedDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.shortDesc" for="field_shortDesc">Short Desc</label>
+                    <input type="text" class="form-control" name="shortDesc" id="field_shortDesc"
+                           formControlName="shortDesc"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.longDesc" for="field_longDesc">Long Desc</label>
+                    <input type="text" class="form-control" name="longDesc" id="field_longDesc"
+                           formControlName="longDesc"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.display" for="field_display">Display</label>
+                    <input type="text" class="form-control" name="display" id="field_display"
+                           formControlName="display"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.accessLevel" for="field_accessLevel">Access Level</label>
+                    <input type="number" class="form-control" name="accessLevel" id="field_accessLevel"
+                           formControlName="accessLevel"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.expire" for="field_expire">Expire</label>
+                    <div class="input-group">
+                        <input id="field_expire" type="text" class="form-control" name="expire" ngbDatepicker #expireDp="ngbDatepicker" formControlName="expire"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="expireDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.priority" for="field_priority">Priority</label>
+                    <input type="number" class="form-control" name="priority" id="field_priority"
+                           formControlName="priority"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.impressions" for="field_impressions">Impressions</label>
+                    <input type="number" class="form-control" name="impressions" id="field_impressions"
+                           formControlName="impressions"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.clickThrus" for="field_clickThrus">Click Thrus</label>
+                    <input type="number" class="form-control" name="clickThrus" id="field_clickThrus"
+                           formControlName="clickThrus"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.avgRating" for="field_avgRating">Avg Rating</label>
+                    <input type="number" class="form-control" name="avgRating" id="field_avgRating"
+                           formControlName="avgRating"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.ratings" for="field_ratings">Ratings</label>
+                    <input type="number" class="form-control" name="ratings" id="field_ratings"
+                           formControlName="ratings"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.thumbnail" for="field_thumbnail">Thumbnail</label>
+                    <input type="text" class="form-control" name="thumbnail" id="field_thumbnail"
+                           formControlName="thumbnail"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.image1" for="field_image1">Image 1</label>
+                    <input type="text" class="form-control" name="image1" id="field_image1"
+                           formControlName="image1"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.dateEnd" for="field_dateEnd">Date End</label>
+                    <div class="input-group">
+                        <input id="field_dateEnd" type="text" class="form-control" name="dateEnd" ngbDatepicker #dateEndDp="ngbDatepicker" formControlName="dateEnd"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateEndDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.keywords" for="field_keywords">Keywords</label>
+                    <input type="text" class="form-control" name="keywords" id="field_keywords"
+                           formControlName="keywords"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.creationsType" for="field_creationsType">Creations Type</label>
+                    <input type="text" class="form-control" name="creationsType" id="field_creationsType"
+                           formControlName="creationsType"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.wazn" for="field_wazn">Wazn</label>
+                    <input type="text" class="form-control" name="wazn" id="field_wazn"
+                           formControlName="wazn"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.country" for="field_country">Country</label>
+                    <input type="text" class="form-control" name="country" id="field_country"
+                           formControlName="country"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.dateLastMod" for="field_dateLastMod">Date Last Mod</label>
+                    <div class="input-group">
+                        <input id="field_dateLastMod" type="text" class="form-control" name="dateLastMod" ngbDatepicker #dateLastModDp="ngbDatepicker" formControlName="dateLastMod"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateLastModDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dukesdesignsApp.content.categoryID" for="field_categoryID">Category ID</label>
+                    <select class="form-control" id="field_categoryID" name="categoryID" formControlName="categoryID">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="categoryOption.id === editForm.get('categoryID')!.value?.id ? editForm.get('categoryID')!.value : categoryOption" *ngFor="let categoryOption of categories; trackBy: trackById">{{ categoryOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

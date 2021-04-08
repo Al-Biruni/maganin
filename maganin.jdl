@@ -1,0 +1,29 @@
+
+entity Consultancy {
+	userId Integer,
+    name String,
+    date LocalDate,
+    age String,
+    gender String,
+    religion String,
+    rel2 String,
+    edu String,
+    social String,
+    econ String,
+    hop String,
+    job String,
+    country String,
+    origin String,
+    email String,
+    consultTypeId Integer,
+    title String,
+    question String,
+    answer String,
+    doctor String,
+    consultantId Integer,
+    show Boolean,
+    paid Boolean,
+    impressions Integer
+}
+
+

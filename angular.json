@@ -1,0 +1,40 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "dukesdesigns": {
+      "root": "",
+      "sourceRoot": "src/main/webapp",
+      "projectType": "application",
+      "i18n": {
+        "sourceLocale": "ar-EG"
+      },
+
+      "schematics": {
+        "@schematics/angular:component": {
+          "skipTests": true,
+          "style": "scss"
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
+      "prefix": "jhi",
+      "architect": {}
+    }
+  },
+  "defaultProject": "dukesdesigns",
+  "cli": {
+    "packageManager": "npm"
+  }
+}

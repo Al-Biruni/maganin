@@ -1,0 +1,67 @@
+
+
+<div class="row" >
+    <ngb-carousel *ngIf="topArticles">
+        <ng-template *ngFor="let article of topArticles"  ngbSlide>
+            <div class="article-img-div" >
+                <img class="carousel-img " src="{{article.thumbnail}}" alt="{{article.articleCategory}}">
+            </div>
+
+          <div class="carousel-caption d-flex justify-content-center">
+                <mat-card class="article-summary col-md-8 col-sm-11 ">
+                    <div class="row card-body">
+                        <!--- CARD AUTHOR AVATAR AND AUTHOR NAME -->
+                        <div class="col-12">
+                            <mat-card-title>{{article.title}}</mat-card-title>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class ="row">
+                                <div class = "col-12">
+                                    <img mat-card-avatar class="author-card-photo" src="{{article.writerImageURL}}"/>
+                                    <span class ="author-name">{{article.author}}</span>
+                                </div>
+                            </div>
+                            <mat-card-content>
+                                <p [innerHTML] = "article.shortDesc"></p>
+                            </mat-card-content>
+                        </div>
+
+                    </div>
+
+
+                    <hr style="background-color: #02598C; margin: 0">
+                    <mat-card-footer>
+                        <div class="card-footer-date" style="direction: rtl">
+                            <span>{{article.dateLastMod  | date : "dd-MMMM-yyyy":"" : "ar-EG" | arNumber}}</span>
+                        </div>
+
+                        <div class ="card-footer-category-bubble">
+                            <span>
+                                {{article.articleCategory}}
+                            </span>
+                        </div>
+
+                        <div class="card-footer-impressions">
+                            <fa-icon icon="eye"></fa-icon>
+                            <span>{{article.impressions| arNumber}}</span>
+
+                        </div>
+                    </mat-card-footer>
+
+                </mat-card>
+
+            </div>
+
+        </ng-template>
+
+    </ngb-carousel>
+</div>
+
+
+
+
+<div class ="row">
+    <jhi-article-summery-list [articles]="latestArticles" [listTitle]="latestArticlesArWord">
+
+    </jhi-article-summery-list>
+</div>

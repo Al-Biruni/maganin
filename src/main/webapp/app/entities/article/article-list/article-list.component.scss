@@ -1,0 +1,61 @@
+.carousel-img {
+  height: 500px;
+  width: 100%;
+  z-index: -1;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+}
+
+mat-card {
+  position: relative;
+  background-color: #ffffff;
+  color: #404040;
+  letter-spacing: 0px;
+  font-size: 12px;
+  padding: 0;
+  border-radius: 25px;
+  margin-top: 25px;
+}
+.card-body {
+  font-size: 1.2em;
+}
+mat-card-content {
+  margin-top: 10px;
+  line-height: 1.5em;
+}
+.custom.mat-card-image {
+  width: 100%;
+  margin: 0px;
+}
+
+mat-card-footer {
+  margin: 5px 25px;
+  font-size: 1.1em;
+}
+.card-footer-impressions {
+  width: fit-content;
+  float: left;
+  color: #02598c;
+  text-align: end;
+  padding-right: 0;
+}
+.card-footer-category-bubble {
+  width: fit-content;
+  padding: 5px 10px;
+  height: 25px;
+  background-color: #f0f0f0;
+  border-radius: 25px;
+  color: #02598c;
+  margin-right: 0.2em;
+  display: initial;
+}
+.card-footer-date {
+  width: fit-content;
+  float: right;
+  text-align: start;
+  padding-left: 0;
+}
