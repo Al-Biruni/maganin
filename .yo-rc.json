@@ -1,0 +1,49 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.digitalraider.maganin",
+      "nativeLanguage": "ar-ly"
+    },
+    "jhipsterVersion": "6.10.5",
+    "applicationType": "monolith",
+    "baseName": "maganin",
+    "packageName": "com.digitalraider.maganin",
+    "packageFolder": "com/digitalraider/maganin",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "caffeine",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "messageBroker": false,
+    "buildTool": "maven",
+    "jwtSecretKey": "NWYwMGM3NzU0OWZiOWZhZTI2NjgwNGMyYmE4OTViMGYzYWI0NmNlYjY3NzA0YmY0MjI1ZDg5Mzc4ODgxOTFhMTIwYWIyZWVlOTNjOGY2YmE1MGM4OWZiNjg1NmQ1NjY0Yzk5ZDUwNGUwYmVlY2RhNTg1OWUxYWVkYjg4ZjA4YzI=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1618091448596,
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-quarkus",
+        "version": "1.1.1"
+      }
+    ],
+    "enableTranslation": true,
+    "nativeLanguage": "ar-ly",
+    "languages": ["ar-ly", "en"],
+    "blueprints": [
+      {
+        "name": "generator-jhipster-quarkus",
+        "version": "1.1.1"
+      }
+    ]
+  }
+}
