@@ -117,7 +117,6 @@ public class ArticleResourceTest {
      */
     public static Article createEntity() {
         var article = new Article();
-        article.userId = DEFAULT_USER_ID;
         article.title = DEFAULT_TITLE;
         article.author = DEFAULT_AUTHOR;
         article.relatedURL = DEFAULT_RELATED_URL;
@@ -130,7 +129,6 @@ public class ArticleResourceTest {
         article.avgRating = DEFAULT_AVG_RATING;
         article.thumbnail = DEFAULT_THUMBNAIL;
         article.keywords = DEFAULT_KEYWORDS;
-        article.country = DEFAULT_COUNTRY;
         article.dateLastMod = DEFAULT_DATE_LAST_MOD;
         return article;
     }
@@ -184,7 +182,6 @@ public class ArticleResourceTest {
 
         assertThat(articleList).hasSize(databaseSizeBeforeCreate + 1);
         var testArticle = articleList.stream().filter(it -> article.id.equals(it.id)).findFirst().get();
-        assertThat(testArticle.userId).isEqualTo(DEFAULT_USER_ID);
         assertThat(testArticle.title).isEqualTo(DEFAULT_TITLE);
         assertThat(testArticle.author).isEqualTo(DEFAULT_AUTHOR);
         assertThat(testArticle.relatedURL).isEqualTo(DEFAULT_RELATED_URL);
@@ -197,7 +194,6 @@ public class ArticleResourceTest {
         assertThat(testArticle.avgRating).isEqualTo(DEFAULT_AVG_RATING);
         assertThat(testArticle.thumbnail).isEqualTo(DEFAULT_THUMBNAIL);
         assertThat(testArticle.keywords).isEqualTo(DEFAULT_KEYWORDS);
-        assertThat(testArticle.country).isEqualTo(DEFAULT_COUNTRY);
         assertThat(testArticle.dateLastMod).isEqualTo(DEFAULT_DATE_LAST_MOD);
     }
 
@@ -292,7 +288,6 @@ public class ArticleResourceTest {
             .extract().body().as(ENTITY_TYPE);
 
         // Update the article
-        updatedArticle.userId = UPDATED_USER_ID;
         updatedArticle.title = UPDATED_TITLE;
         updatedArticle.author = UPDATED_AUTHOR;
         updatedArticle.relatedURL = UPDATED_RELATED_URL;
@@ -305,7 +300,6 @@ public class ArticleResourceTest {
         updatedArticle.avgRating = UPDATED_AVG_RATING;
         updatedArticle.thumbnail = UPDATED_THUMBNAIL;
         updatedArticle.keywords = UPDATED_KEYWORDS;
-        updatedArticle.country = UPDATED_COUNTRY;
         updatedArticle.dateLastMod = UPDATED_DATE_LAST_MOD;
 
         given()
@@ -335,7 +329,6 @@ public class ArticleResourceTest {
 
         assertThat(articleList).hasSize(databaseSizeBeforeUpdate);
         var testArticle = articleList.stream().filter(it -> updatedArticle.id.equals(it.id)).findFirst().get();
-        assertThat(testArticle.userId).isEqualTo(UPDATED_USER_ID);
         assertThat(testArticle.title).isEqualTo(UPDATED_TITLE);
         assertThat(testArticle.author).isEqualTo(UPDATED_AUTHOR);
         assertThat(testArticle.relatedURL).isEqualTo(UPDATED_RELATED_URL);
@@ -348,7 +341,6 @@ public class ArticleResourceTest {
         assertThat(testArticle.avgRating).isEqualTo(UPDATED_AVG_RATING);
         assertThat(testArticle.thumbnail).isEqualTo(UPDATED_THUMBNAIL);
         assertThat(testArticle.keywords).isEqualTo(UPDATED_KEYWORDS);
-        assertThat(testArticle.country).isEqualTo(UPDATED_COUNTRY);
         assertThat(testArticle.dateLastMod).isEqualTo(UPDATED_DATE_LAST_MOD);
     }
 
@@ -524,7 +516,7 @@ public class ArticleResourceTest {
             .statusCode(OK.getStatusCode())
             .contentType(APPLICATION_JSON)
             .body("id", is(article.id.intValue()))
-            
+
                 .body("userId", is(DEFAULT_USER_ID.intValue()))
                 .body("title", is(DEFAULT_TITLE))
                 .body("author", is(DEFAULT_AUTHOR))

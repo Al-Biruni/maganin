@@ -157,7 +157,6 @@ public class ContentResourceTest {
         content.avgRating = DEFAULT_AVG_RATING;
         content.ratings = DEFAULT_RATINGS;
         content.thumbnail = DEFAULT_THUMBNAIL;
-        content.image1 = DEFAULT_IMAGE_1;
         content.dateEnd = DEFAULT_DATE_END;
         content.keywords = DEFAULT_KEYWORDS;
         content.creationsType = DEFAULT_CREATIONS_TYPE;
@@ -232,7 +231,6 @@ public class ContentResourceTest {
         assertThat(testContent.avgRating).isEqualTo(DEFAULT_AVG_RATING);
         assertThat(testContent.ratings).isEqualTo(DEFAULT_RATINGS);
         assertThat(testContent.thumbnail).isEqualTo(DEFAULT_THUMBNAIL);
-        assertThat(testContent.image1).isEqualTo(DEFAULT_IMAGE_1);
         assertThat(testContent.dateEnd).isEqualTo(DEFAULT_DATE_END);
         assertThat(testContent.keywords).isEqualTo(DEFAULT_KEYWORDS);
         assertThat(testContent.creationsType).isEqualTo(DEFAULT_CREATIONS_TYPE);
@@ -348,7 +346,6 @@ public class ContentResourceTest {
         updatedContent.avgRating = UPDATED_AVG_RATING;
         updatedContent.ratings = UPDATED_RATINGS;
         updatedContent.thumbnail = UPDATED_THUMBNAIL;
-        updatedContent.image1 = UPDATED_IMAGE_1;
         updatedContent.dateEnd = UPDATED_DATE_END;
         updatedContent.keywords = UPDATED_KEYWORDS;
         updatedContent.creationsType = UPDATED_CREATIONS_TYPE;
@@ -399,7 +396,6 @@ public class ContentResourceTest {
         assertThat(testContent.avgRating).isEqualTo(UPDATED_AVG_RATING);
         assertThat(testContent.ratings).isEqualTo(UPDATED_RATINGS);
         assertThat(testContent.thumbnail).isEqualTo(UPDATED_THUMBNAIL);
-        assertThat(testContent.image1).isEqualTo(UPDATED_IMAGE_1);
         assertThat(testContent.dateEnd).isEqualTo(UPDATED_DATE_END);
         assertThat(testContent.keywords).isEqualTo(UPDATED_KEYWORDS);
         assertThat(testContent.creationsType).isEqualTo(UPDATED_CREATIONS_TYPE);
@@ -580,7 +576,7 @@ public class ContentResourceTest {
             .statusCode(OK.getStatusCode())
             .contentType(APPLICATION_JSON)
             .body("id", is(content.id.intValue()))
-            
+
                 .body("userId", is(DEFAULT_USER_ID.intValue()))
                 .body("title", is(DEFAULT_TITLE))
                 .body("author", is(DEFAULT_AUTHOR))
