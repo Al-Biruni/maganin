@@ -1,0 +1,86 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="article">
+            <h2><span jhiTranslate="maganinApp.article.detail.title">Article</span> {{ article.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="maganinApp.article.userId">User Id</span></dt>
+                <dd>
+                    <span>{{ article.userId }}</span>
+                </dd>
+                <dt><span jhiTranslate="maganinApp.article.title">Title</span></dt>
+                <dd>
+                    <span>{{ article.title }}</span>
+                </dd>
+                <dt><span jhiTranslate="maganinApp.article.author">Author</span></dt>
+                <dd>
+                    <span>{{ article.author }}</span>
+                </dd>
+                <dt><span jhiTranslate="maganinApp.article.relatedURL">Related URL</span></dt>
+                <dd>
+                    <span>{{ article.relatedURL }}</span>
+                </dd>
+                <dt><span jhiTranslate="maganinApp.article.dateAdded">Date Added</span></dt>
+                <dd>
+                    <span>{{ article.dateAdded }}</span>
+                </dd>
+                <dt><span jhiTranslate="maganinApp.article.shortDesc">Short Desc</span></dt>
+                <dd>
+                    <span>{{ article.shortDesc }}</span>
+                </dd>
+                <dt><span jhiTranslate="maganinApp.article.longDesc">Long Desc</span></dt>
+                <dd>
+                    <span>{{ article.longDesc }}</span>
+                </dd>
+                <dt><span jhiTranslate="maganinApp.article.display">Display</span></dt>
+                <dd>
+                    <span>{{ article.display }}</span>
+                </dd>
+                <dt><span jhiTranslate="maganinApp.article.accessLevel">Access Level</span></dt>
+                <dd>
+                    <span>{{ article.accessLevel }}</span>
+                </dd>
+                <dt><span jhiTranslate="maganinApp.article.impressions">Impressions</span></dt>
+                <dd>
+                    <span>{{ article.impressions }}</span>
+                </dd>
+                <dt><span jhiTranslate="maganinApp.article.avgRating">Avg Rating</span></dt>
+                <dd>
+                    <span>{{ article.avgRating }}</span>
+                </dd>
+                <dt><span jhiTranslate="maganinApp.article.thumbnail">Thumbnail</span></dt>
+                <dd>
+                    <span>{{ article.thumbnail }}</span>
+                </dd>
+                <dt><span jhiTranslate="maganinApp.article.keywords">Keywords</span></dt>
+                <dd>
+                    <span>{{ article.keywords }}</span>
+                </dd>
+                <dt><span jhiTranslate="maganinApp.article.country">Country</span></dt>
+                <dd>
+                    <span>{{ article.country }}</span>
+                </dd>
+                <dt><span jhiTranslate="maganinApp.article.dateLastMod">Date Last Mod</span></dt>
+                <dd>
+                    <span>{{ article.dateLastMod }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/article-maganin', article.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

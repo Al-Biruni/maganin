@@ -1,12 +1,87 @@
+
+
 <div class="row">
-    <div class="col-md-3">
-        <span class="hipster img-fluid rounded"></span>
+      <ngb-carousel *ngIf="images">
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper ">
+            <img class="carousel-img" [src]="images[0]" alt="Random first slide">
+          </div>
+          <div class="carousel-caption">
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img class="carousel-img" [src]="images[1]" alt="Random second slide">
+          </div>
+          <div class="carousel-caption">
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img class="carousel-img" [src]="images[2]" alt="Random third slide">
+          </div>
+          <div class="carousel-caption">
+            <h3>Third slide label</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+</div>
+
+<div class="row">
+
+
+
+          <div id="home-latest-content-container" class = "col-lg-6 col-md-12" >
+              <jhi-article-summery-list [articles]="latestArticlesSummary.slice(0,3)" [listTitle]="latestArticles"></jhi-article-summery-list>
+          </div>
+
+
+
     </div>
 
-    <div class="col-md-9">
-        <h1 class="display-4" jhiTranslate="home.title">Welcome, Java Hipster!</h1>
 
-        <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>
+
+<!-- *ngFor="let tile of tiles"
+[colspan]="tile.cols"
+[rowspan]="tile.rows"
+[style.background]="tile.color">
+{{tile.text}} -->
+
+<!-- <div class="row"> -->
+<!--
+    <div class="col-12">
+
+        <div id="myCarousel" class=" carousel slide" data-ride="carousel"> -->
+            <!-- Indicators -->
+            <!-- <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol> -->
+
+            <!-- Wrapper for slides -->
+            <!-- <div class=" carousel-inner ">
+              <div class="item active col-12">
+                <img  height= 500px src="../../content/images/people-connecting-jigsaw-pieces-head-together.jpg" alt="Los Angeles">
+              </div> -->
+
+
+
+            <!-- Left and right controls -->
+            <!-- <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+              <span class="sr-only">Next</span>
+            </a>
+        </div>
 
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
@@ -41,4 +116,4 @@
             <span jhiTranslate="home.like">If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.github">GitHub</a>!
         </p>
     </div>
-</div>
+</div> -->

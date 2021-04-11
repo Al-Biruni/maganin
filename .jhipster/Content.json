@@ -1,0 +1,118 @@
+{
+  "name": "Content",
+  "fields": [
+    {
+      "fieldName": "userId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "author",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "relatedURL",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateAdded",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "shortDesc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "longDesc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "display",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "accessLevel",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "expire",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "priority",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "impressions",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "clickThrus",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "avgRating",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "ratings",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "thumbnail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "image1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateEnd",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "keywords",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "creationsType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "wazn",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "country",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateLastMod",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "category",
+      "otherEntityRelationshipName": "content",
+      "relationshipName": "categoryId",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20210410231903",
+  "entityTableName": "content",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*",
+  "angularJSSuffix": "maganin"
+}

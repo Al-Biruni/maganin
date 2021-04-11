@@ -5,10 +5,18 @@ import { AlertComponent } from './alert/alert.component';
 import { AlertErrorComponent } from './alert/alert-error.component';
 import { LoginModalComponent } from './login/login.component';
 import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
+import { ArabicNumberPipe } from 'app/shared/pipe/arNumber.pipe';
 
 @NgModule({
   imports: [MaganinSharedLibsModule],
-  declarations: [FindLanguageFromKeyPipe, AlertComponent, AlertErrorComponent, LoginModalComponent, HasAnyAuthorityDirective],
+  declarations: [
+    FindLanguageFromKeyPipe,
+    AlertComponent,
+    AlertErrorComponent,
+    LoginModalComponent,
+    HasAnyAuthorityDirective,
+    ArabicNumberPipe,
+  ],
   entryComponents: [LoginModalComponent],
   exports: [
     MaganinSharedLibsModule,
@@ -17,6 +25,7 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
     AlertErrorComponent,
     LoginModalComponent,
     HasAnyAuthorityDirective,
+    ArabicNumberPipe,
   ],
 })
 export class MaganinSharedModule {}

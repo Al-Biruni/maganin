@@ -1,0 +1,22 @@
+{
+  "maganinApp": {
+    "consultancyType": {
+      "home": {
+        "title": "Consultancy Types",
+        "createLabel": "Create a new Consultancy Type",
+        "createOrEditLabel": "Create or edit a Consultancy Type",
+        "notFound": "No Consultancy Types found"
+      },
+      "created": "A new Consultancy Type is created with identifier {{ param }}",
+      "updated": "A Consultancy Type is updated with identifier {{ param }}",
+      "deleted": "A Consultancy Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Consultancy Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Consultancy Type"
+      },
+      "type": "Type"
+    }
+  }
+}

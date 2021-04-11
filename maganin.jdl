@@ -1,0 +1,101 @@
+entity Article {
+id Long,
+userId Integer,
+title String,
+author String,
+relatedURL String,
+dateAdded Instant,
+shortDesc String,
+longDesc String,
+display String,
+accessLevel Integer,
+impressions Integer,
+avgRating Integer,
+thumbnail String,
+keywords String,
+country String,
+dateLastMod Instant
+}
+
+
+entity Content {
+id Long,
+userId Integer,
+title String,
+author String,
+relatedURL String,
+dateAdded Instant,
+shortDesc String,
+longDesc String,
+display String,
+accessLevel Integer,
+expire Instant,
+priority Integer,
+impressions Integer,
+clickThrus Integer,
+avgRating Integer,
+ratings Integer,
+thumbnail String,
+image1 String,
+dateEnd Instant,
+keywords String,
+creationsType String,
+wazn String,
+country String,
+dateLastMod Instant
+}
+
+entity Category {
+id Long,
+categoryTypeId String,
+categoryName String,
+parentId Long,
+description String,
+imageURL String,
+hideSearch Boolean
+
+}
+entity Consultancy {
+	userId Integer,
+    name String,
+    date Instant,
+    age String,
+    gender String,
+    religion String,
+    rel2 String,
+    edu String,
+    social String,
+    econ String,
+    hop String,
+    job String,
+    country String,
+    origin String,
+    email String,
+    title String,
+    question String,
+    answer String,
+    doctor String,
+    consultantId Integer,
+    show Boolean,
+    paid Boolean,
+    impressions Integer
+}
+
+entity ConsultancyType{
+ type String
+}
+
+relationship ManyToOne {
+	Content{categoryId} to Category
+    Consultancy{consultancyType} to ConsultancyType
+}
+// Set pagination options
+paginate Content, Category with infinite-scroll
+paginate Consultancy, Article with pagination
+
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+ angularSuffix * with maganin

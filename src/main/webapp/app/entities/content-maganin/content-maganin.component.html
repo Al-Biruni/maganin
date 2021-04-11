@@ -1,0 +1,111 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="maganinApp.content.home.title">Contents</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-content-maganin" [routerLink]="['/content-maganin/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="maganinApp.content.home.createLabel">
+            Create a new Content
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="contents?.length === 0">
+        <span jhiTranslate="maganinApp.content.home.notFound">No contents found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="contents && contents.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="userId"><span jhiTranslate="maganinApp.content.userId">User Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="title"><span jhiTranslate="maganinApp.content.title">Title</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="author"><span jhiTranslate="maganinApp.content.author">Author</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="relatedURL"><span jhiTranslate="maganinApp.content.relatedURL">Related URL</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateAdded"><span jhiTranslate="maganinApp.content.dateAdded">Date Added</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="shortDesc"><span jhiTranslate="maganinApp.content.shortDesc">Short Desc</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="longDesc"><span jhiTranslate="maganinApp.content.longDesc">Long Desc</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="display"><span jhiTranslate="maganinApp.content.display">Display</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="accessLevel"><span jhiTranslate="maganinApp.content.accessLevel">Access Level</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="expire"><span jhiTranslate="maganinApp.content.expire">Expire</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="priority"><span jhiTranslate="maganinApp.content.priority">Priority</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="impressions"><span jhiTranslate="maganinApp.content.impressions">Impressions</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="clickThrus"><span jhiTranslate="maganinApp.content.clickThrus">Click Thrus</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="avgRating"><span jhiTranslate="maganinApp.content.avgRating">Avg Rating</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="ratings"><span jhiTranslate="maganinApp.content.ratings">Ratings</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="thumbnail"><span jhiTranslate="maganinApp.content.thumbnail">Thumbnail</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="image1"><span jhiTranslate="maganinApp.content.image1">Image 1</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateEnd"><span jhiTranslate="maganinApp.content.dateEnd">Date End</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="keywords"><span jhiTranslate="maganinApp.content.keywords">Keywords</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="creationsType"><span jhiTranslate="maganinApp.content.creationsType">Creations Type</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="wazn"><span jhiTranslate="maganinApp.content.wazn">Wazn</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="country"><span jhiTranslate="maganinApp.content.country">Country</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateLastMod"><span jhiTranslate="maganinApp.content.dateLastMod">Date Last Mod</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="categoryId.id"><span jhiTranslate="maganinApp.content.categoryId">Category Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let content of contents ;trackBy: trackId">
+                    <td><a [routerLink]="['/content-maganin', content.id, 'view']">{{ content.id }}</a></td>
+                    <td>{{ content.userId }}</td>
+                    <td>{{ content.title }}</td>
+                    <td>{{ content.author }}</td>
+                    <td>{{ content.relatedURL }}</td>
+                    <td>{{ content.dateAdded | date:'medium' }}</td>
+                    <td>{{ content.shortDesc }}</td>
+                    <td>{{ content.longDesc }}</td>
+                    <td>{{ content.display }}</td>
+                    <td>{{ content.accessLevel }}</td>
+                    <td>{{ content.expire | date:'medium' }}</td>
+                    <td>{{ content.priority }}</td>
+                    <td>{{ content.impressions }}</td>
+                    <td>{{ content.clickThrus }}</td>
+                    <td>{{ content.avgRating }}</td>
+                    <td>{{ content.ratings }}</td>
+                    <td>{{ content.thumbnail }}</td>
+                    <td>{{ content.image1 }}</td>
+                    <td>{{ content.dateEnd | date:'medium' }}</td>
+                    <td>{{ content.keywords }}</td>
+                    <td>{{ content.creationsType }}</td>
+                    <td>{{ content.wazn }}</td>
+                    <td>{{ content.country }}</td>
+                    <td>{{ content.dateLastMod | date:'medium' }}</td>
+                    <td>
+                        <div *ngIf="content.categoryId">
+                            <a [routerLink]="['/category-maganin', content.categoryId?.id, 'view']" >{{ content.categoryId?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/content-maganin', content.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/content-maganin', content.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(content)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

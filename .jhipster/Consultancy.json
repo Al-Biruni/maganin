@@ -1,0 +1,118 @@
+{
+  "name": "Consultancy",
+  "fields": [
+    {
+      "fieldName": "userId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "religion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rel2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "edu",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "social",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "econ",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hop",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "job",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "country",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "origin",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "question",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "answer",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "doctor",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "consultantId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "show",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "paid",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "impressions",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "consultancyType",
+      "otherEntityRelationshipName": "consultancy",
+      "relationshipName": "consultancyType",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20210410232103",
+  "entityTableName": "consultancy",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*",
+  "angularJSSuffix": "maganin"
+}

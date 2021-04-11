@@ -1,0 +1,78 @@
+{
+  "name": "Article",
+  "fields": [
+    {
+      "fieldName": "userId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "author",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "relatedURL",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateAdded",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "shortDesc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "longDesc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "display",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "accessLevel",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "impressions",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "avgRating",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "thumbnail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "keywords",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "country",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateLastMod",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210410231803",
+  "entityTableName": "article",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*",
+  "angularJSSuffix": "maganin"
+}

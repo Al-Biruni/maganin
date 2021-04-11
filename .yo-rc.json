@@ -44,6 +44,9 @@
         "name": "generator-jhipster-quarkus",
         "version": "1.1.1"
       }
-    ]
+    ],
+    "herokuAppName": "mysterious-lake-31967",
+    "herokuDeployType": "git",
+    "herokuJavaVersion": "11"
   }
 }
