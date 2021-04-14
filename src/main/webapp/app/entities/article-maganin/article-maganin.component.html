@@ -68,7 +68,7 @@
 <mat-card >
         <img mat-card-image class="custom" src="{{article.thumbnail}}"/>
     <mat-card-title>
-        {{article.title}}
+        <a [routerLink]="['/article-maganin', article.id, 'view']">{{ article.title }}</a>
     </mat-card-title>
     <mat-card-content>
         {{article.shortDesc}}

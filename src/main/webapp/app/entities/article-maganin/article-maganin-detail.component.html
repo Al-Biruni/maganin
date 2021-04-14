@@ -8,25 +8,19 @@
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="maganinApp.article.userId">User Id</span></dt>
-                <dd>
-                    <span>{{ article.userId }}</span>
-                </dd>
+
                 <dt><span jhiTranslate="maganinApp.article.title">Title</span></dt>
                 <dd>
                     <span>{{ article.title }}</span>
                 </dd>
                 <dt><span jhiTranslate="maganinApp.article.author">Author</span></dt>
                 <dd>
-                    <span>{{ article.author }}</span>
+                    <span><a href="{{article.relatedURL}}">{{ article.author }}</a></span>
                 </dd>
-                <dt><span jhiTranslate="maganinApp.article.relatedURL">Related URL</span></dt>
-                <dd>
-                    <span>{{ article.relatedURL }}</span>
-                </dd>
+
                 <dt><span jhiTranslate="maganinApp.article.dateAdded">Date Added</span></dt>
                 <dd>
-                    <span>{{ article.dateAdded }}</span>
+                    <span>{{ article.dateAdded | date}}</span>
                 </dd>
                 <dt><span jhiTranslate="maganinApp.article.shortDesc">Short Desc</span></dt>
                 <dd>
@@ -34,7 +28,7 @@
                 </dd>
                 <dt><span jhiTranslate="maganinApp.article.longDesc">Long Desc</span></dt>
                 <dd>
-                    <div [innerHTML]="article.longDesc"> </div>
+                    <div style=" text-align: justify; width: 70%;" [innerHTML]="article.longDesc"> </div>
                 </dd>
                 <dt><span jhiTranslate="maganinApp.article.display">Display</span></dt>
                 <dd>
@@ -54,19 +48,13 @@
                 </dd>
                 <dt><span jhiTranslate="maganinApp.article.thumbnail">Thumbnail</span></dt>
                 <dd>
-                    <span>{{ article.thumbnail }}</span>
+                    <img src="{{article.thumbnail}}"/>
                 </dd>
-                <dt><span jhiTranslate="maganinApp.article.keywords">Keywords</span></dt>
-                <dd>
-                    <span>{{ article.keywords }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.article.country">Country</span></dt>
-                <dd>
-                    <span>{{ article.country }}</span>
-                </dd>
+
+
                 <dt><span jhiTranslate="maganinApp.article.dateLastMod">Date Last Mod</span></dt>
                 <dd>
-                    <span>{{ article.dateLastMod }}</span>
+                    <span>{{ article.dateLastMod |date }}</span>
                 </dd>
             </dl>
 
