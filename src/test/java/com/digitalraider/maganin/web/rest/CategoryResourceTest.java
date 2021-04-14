@@ -19,7 +19,7 @@ import org.junit.jupiter.api.*;
 import javax.inject.Inject;
 
 import java.util.List;
-    
+
 @QuarkusTest
 public class CategoryResourceTest {
 
@@ -89,7 +89,7 @@ public class CategoryResourceTest {
     public static Category createEntity() {
         var category = new Category();
         category.categoryTypeId = DEFAULT_CATEGORY_TYPE_ID;
-        category.categoryName = DEFAULT_CATEGORY_NAME;
+        category.name = DEFAULT_CATEGORY_NAME;
         category.parentId = DEFAULT_PARENT_ID;
         category.description = DEFAULT_DESCRIPTION;
         category.imageURL = DEFAULT_IMAGE_URL;
@@ -147,7 +147,7 @@ public class CategoryResourceTest {
         assertThat(categoryList).hasSize(databaseSizeBeforeCreate + 1);
         var testCategory = categoryList.stream().filter(it -> category.id.equals(it.id)).findFirst().get();
         assertThat(testCategory.categoryTypeId).isEqualTo(DEFAULT_CATEGORY_TYPE_ID);
-        assertThat(testCategory.categoryName).isEqualTo(DEFAULT_CATEGORY_NAME);
+        assertThat(testCategory.name).isEqualTo(DEFAULT_CATEGORY_NAME);
         assertThat(testCategory.parentId).isEqualTo(DEFAULT_PARENT_ID);
         assertThat(testCategory.description).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testCategory.imageURL).isEqualTo(DEFAULT_IMAGE_URL);
@@ -246,7 +246,7 @@ public class CategoryResourceTest {
 
         // Update the category
         updatedCategory.categoryTypeId = UPDATED_CATEGORY_TYPE_ID;
-        updatedCategory.categoryName = UPDATED_CATEGORY_NAME;
+        updatedCategory.name = UPDATED_CATEGORY_NAME;
         updatedCategory.parentId = UPDATED_PARENT_ID;
         updatedCategory.description = UPDATED_DESCRIPTION;
         updatedCategory.imageURL = UPDATED_IMAGE_URL;
@@ -280,7 +280,7 @@ public class CategoryResourceTest {
         assertThat(categoryList).hasSize(databaseSizeBeforeUpdate);
         var testCategory = categoryList.stream().filter(it -> updatedCategory.id.equals(it.id)).findFirst().get();
         assertThat(testCategory.categoryTypeId).isEqualTo(UPDATED_CATEGORY_TYPE_ID);
-        assertThat(testCategory.categoryName).isEqualTo(UPDATED_CATEGORY_NAME);
+        assertThat(testCategory.name).isEqualTo(UPDATED_CATEGORY_NAME);
         assertThat(testCategory.parentId).isEqualTo(UPDATED_PARENT_ID);
         assertThat(testCategory.description).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testCategory.imageURL).isEqualTo(UPDATED_IMAGE_URL);
@@ -459,7 +459,7 @@ public class CategoryResourceTest {
             .statusCode(OK.getStatusCode())
             .contentType(APPLICATION_JSON)
             .body("id", is(category.id.intValue()))
-            
+
                 .body("categoryTypeId", is(DEFAULT_CATEGORY_TYPE_ID))
                 .body("categoryName", is(DEFAULT_CATEGORY_NAME))
                 .body("parentId", is(DEFAULT_PARENT_ID.intValue()))

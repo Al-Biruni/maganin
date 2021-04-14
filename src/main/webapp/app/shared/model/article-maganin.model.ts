@@ -17,6 +17,8 @@ export interface IArticleMaganin {
   keywords?: string;
   country?: string;
   dateLastMod?: Moment;
+  articleCategory?: string;
+  writerImageURL?: string;
 }
 
 export class ArticleMaganin implements IArticleMaganin {
@@ -36,6 +38,10 @@ export class ArticleMaganin implements IArticleMaganin {
     public thumbnail?: string,
     public keywords?: string,
     public country?: string,
-    public dateLastMod?: Moment
-  ) {}
+    public dateLastMod?: Moment,
+    public articleCategory?: string,
+    public writerImageURL?: string
+  ) {
+    this.impressions = 0;
+  }
 }

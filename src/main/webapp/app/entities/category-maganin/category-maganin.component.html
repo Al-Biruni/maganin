@@ -22,24 +22,18 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="categoryTypeId"><span jhiTranslate="maganinApp.category.categoryTypeId">Category Type Id</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="categoryName"><span jhiTranslate="maganinApp.category.categoryName">Category Name</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="parentId"><span jhiTranslate="maganinApp.category.parentId">Parent Id</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="description"><span jhiTranslate="maganinApp.category.description">Description</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="imageURL"><span jhiTranslate="maganinApp.category.imageURL">Image URL</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="hideSearch"><span jhiTranslate="maganinApp.category.hideSearch">Hide Search</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
                 <tr *ngFor="let category of categories ;trackBy: trackId">
-                    <td><a [routerLink]="['/category-maganin', category.id, 'view']">{{ category.id }}</a></td>
-                    <td>{{ category.categoryTypeId }}</td>
-                    <td>{{ category.categoryName }}</td>
+                    <td><a [routerLink]="['/category-maganin', category.id, 'view']">{{ category.name }}</a></td>
                     <td>{{ category.parentId }}</td>
-                    <td>{{ category.description }}</td>
-                    <td>{{ category.imageURL }}</td>
+                    <td><div [innerHTML]="category.description"></div> </td>
                     <td>{{ category.hideSearch }}</td>
                     <td class="text-right">
                         <div class="btn-group">

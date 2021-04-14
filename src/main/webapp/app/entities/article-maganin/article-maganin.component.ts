@@ -10,13 +10,16 @@ import { IArticleMaganin } from 'app/shared/model/article-maganin.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { ArticleMaganinService } from './article-maganin.service';
 import { ArticleMaganinDeleteDialogComponent } from './article-maganin-delete-dialog.component';
+import { AccountService } from '../../core/auth/account.service';
 
 @Component({
   selector: 'jhi-article-maganin',
   templateUrl: './article-maganin.component.html',
+  styleUrls: ['./article-maganin.component.scss'],
 })
 export class ArticleMaganinComponent implements OnInit, OnDestroy {
   articles?: IArticleMaganin[];
+  topArticles?: IArticleMaganin[];
   eventSubscriber?: Subscription;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -30,7 +33,8 @@ export class ArticleMaganinComponent implements OnInit, OnDestroy {
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    protected accountService: AccountService
   ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
@@ -51,6 +55,7 @@ export class ArticleMaganinComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.handleNavigation();
     this.registerChangeInArticles();
+    this.loadTopArticles();
   }
 
   protected handleNavigation(): void {
@@ -114,5 +119,19 @@ export class ArticleMaganinComponent implements OnInit, OnDestroy {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
+  }
+
+  isAdmin(): boolean {
+    return this.accountService.hasAnyAuthority('ROLE_ADMIN');
+  }
+
+  private loadTopArticles(): void {
+    this.articleService
+      .query({
+        page: 1,
+        size: 5,
+        sort: ['impressions,desc'],
+      })
+      .subscribe((res: HttpResponse<IArticleMaganin[]>) => (this.topArticles = res.body || []));
   }
 }

@@ -4,6 +4,7 @@ import static javax.ws.rs.core.UriBuilder.fromPath;
 
 import com.digitalraider.maganin.domain.Article;
 import com.digitalraider.maganin.service.ArticleService;
+import com.digitalraider.maganin.service.dto.ArticleSummery;
 import com.digitalraider.maganin.web.rest.errors.BadRequestAlertException;
 import com.digitalraider.maganin.web.util.HeaderUtil;
 import com.digitalraider.maganin.web.util.ResponseUtil;
@@ -22,6 +23,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing {@link com.digitalraider.maganin.domain.Article}.
@@ -108,7 +110,11 @@ public class ArticleResource {
         var page = pageRequest.toPage();
         var sort = sortRequest.toSort();
         Paged<Article> result = articleService.findAll(page,sort);
-        var response = Response.ok().entity(result.content);
+        List<ArticleSummery> resultSummery = result.content.stream().
+            map(article -> new ArticleSummery(article)).
+            collect(Collectors.toList());
+
+        var response = Response.ok().entity(resultSummery);
         response = PaginationUtil.withPaginationInfo(response, uriInfo, result);
         return response.build();
     }

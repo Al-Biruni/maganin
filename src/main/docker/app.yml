@@ -6,11 +6,11 @@ services:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=prod,swagger
       - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
-      - SPRING_DATASOURCE_URL=jdbc:mysql://maganin-mysql:3306/maganin?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
-      - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
+      - SPRING_DATASOURCE_URL=jdbc:mysql://be-user:hxh1zaxb9q8tfclr@private-db-mysql-fra1-maganin-do-user-9065049-0.b.db.ondigitalocean.com:25060/maganin-prod?ssl-mode=REQUIRED
+    #      - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
     ports:
       - 8080:8080
-  maganin-mysql:
-    extends:
-      file: mysql.yml
-      service: maganin-mysql
+#  maganin-mysql:
+#    extends:
+#      file: mysql.yml
+#      service: maganin-mysql

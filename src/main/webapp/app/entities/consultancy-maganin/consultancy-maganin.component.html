@@ -23,28 +23,9 @@
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="userId"><span jhiTranslate="maganinApp.consultancy.userId">User Id</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="maganinApp.consultancy.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="date"><span jhiTranslate="maganinApp.consultancy.date">Date</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="age"><span jhiTranslate="maganinApp.consultancy.age">Age</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="gender"><span jhiTranslate="maganinApp.consultancy.gender">Gender</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="religion"><span jhiTranslate="maganinApp.consultancy.religion">Religion</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="rel2"><span jhiTranslate="maganinApp.consultancy.rel2">Rel 2</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="edu"><span jhiTranslate="maganinApp.consultancy.edu">Edu</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="social"><span jhiTranslate="maganinApp.consultancy.social">Social</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="econ"><span jhiTranslate="maganinApp.consultancy.econ">Econ</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="hop"><span jhiTranslate="maganinApp.consultancy.hop">Hop</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="job"><span jhiTranslate="maganinApp.consultancy.job">Job</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="country"><span jhiTranslate="maganinApp.consultancy.country">Country</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="origin"><span jhiTranslate="maganinApp.consultancy.origin">Origin</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="maganinApp.consultancy.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+
                     <th scope="col"  jhiSortBy="title"><span jhiTranslate="maganinApp.consultancy.title">Title</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="question"><span jhiTranslate="maganinApp.consultancy.question">Question</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="answer"><span jhiTranslate="maganinApp.consultancy.answer">Answer</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="doctor"><span jhiTranslate="maganinApp.consultancy.doctor">Doctor</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="consultantId"><span jhiTranslate="maganinApp.consultancy.consultantId">Consultant Id</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="show"><span jhiTranslate="maganinApp.consultancy.show">Show</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="paid"><span jhiTranslate="maganinApp.consultancy.paid">Paid</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="impressions"><span jhiTranslate="maganinApp.consultancy.impressions">Impressions</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="consultancyType.id"><span jhiTranslate="maganinApp.consultancy.consultancyType">Consultancy Type</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
@@ -53,34 +34,10 @@
             <tbody>
                 <tr *ngFor="let consultancy of consultancies ;trackBy: trackId">
                     <td><a [routerLink]="['/consultancy-maganin', consultancy.id, 'view']">{{ consultancy.id }}</a></td>
-                    <td>{{ consultancy.userId }}</td>
-                    <td>{{ consultancy.name }}</td>
-                    <td>{{ consultancy.date | date:'medium' }}</td>
-                    <td>{{ consultancy.age }}</td>
-                    <td>{{ consultancy.gender }}</td>
-                    <td>{{ consultancy.religion }}</td>
-                    <td>{{ consultancy.rel2 }}</td>
-                    <td>{{ consultancy.edu }}</td>
-                    <td>{{ consultancy.social }}</td>
-                    <td>{{ consultancy.econ }}</td>
-                    <td>{{ consultancy.hop }}</td>
-                    <td>{{ consultancy.job }}</td>
-                    <td>{{ consultancy.country }}</td>
-                    <td>{{ consultancy.origin }}</td>
-                    <td>{{ consultancy.email }}</td>
                     <td>{{ consultancy.title }}</td>
-                    <td>{{ consultancy.question }}</td>
-                    <td>{{ consultancy.answer }}</td>
                     <td>{{ consultancy.doctor }}</td>
-                    <td>{{ consultancy.consultantId }}</td>
-                    <td>{{ consultancy.show }}</td>
-                    <td>{{ consultancy.paid }}</td>
                     <td>{{ consultancy.impressions }}</td>
-                    <td>
-                        <div *ngIf="consultancy.consultancyType">
-                            <a [routerLink]="['/consultancy-type-maganin', consultancy.consultancyType?.id, 'view']" >{{ consultancy.consultancyType?.id }}</a>
-                        </div>
-                    </td>
+                    <td>{{ consultancy.consultancyType }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

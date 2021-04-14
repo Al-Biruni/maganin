@@ -2,6 +2,7 @@ package com.digitalraider.maganin.service;
 
 import com.digitalraider.maganin.domain.Consultancy;
 import io.quarkus.panache.common.Page;
+import io.quarkus.panache.common.Sort;
 
 import java.util.Optional;
 
@@ -28,9 +29,10 @@ public interface ConsultancyService {
     /**
      * Get all the consultancies.
      * @param page the pagination information.
+     * @param sort
      * @return the list of entities.
      */
-    public Paged<Consultancy> findAll(Page page);
+    public Paged<Consultancy> findAll(Page page, Sort sort);
 
     /**
      * Get the "id" consultancy.

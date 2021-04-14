@@ -66,6 +66,13 @@ public class Article extends PanacheEntityBase implements Serializable {
     @Column(name = "date_last_mod")
     public Instant dateLastMod;
 
+    @Column(name = "writer_image_url")
+    public String writerImageURL;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    public Category category;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 
     @Override

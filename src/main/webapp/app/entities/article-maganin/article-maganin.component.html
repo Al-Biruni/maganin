@@ -1,86 +1,234 @@
-<div>
-    <h2 id="page-heading">
-        <span jhiTranslate="maganinApp.article.home.title">Articles</span>
+<div [ngSwitch]="isAdmin()" display="dynamic">
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-article-maganin" [routerLink]="['/article-maganin/new']">
-            <fa-icon icon="plus"></fa-icon>
-            <span  jhiTranslate="maganinApp.article.home.createLabel">
+
+<!--  -------------------------------------   non-admin view------------------------------------------------------------>
+    <div *ngSwitchCase="false" display="dynamic">
+
+        <div class="row" >
+            <ngb-carousel>
+                <ng-template *ngFor="let article of topArticles"  ngbSlide>
+                    <div class="article-img-div" >
+                        <img class="carousel-img " src="{{article.thumbnail}}" alt="{{article.articleCategory}}">
+                    </div>
+
+                    <div class="carousel-caption d-flex justify-content-center">
+                        <mat-card class="article-summary col-md-8 col-sm-11 ">
+                            <div class="row card-body">
+                                <!--- CARD AUTHOR AVATAR AND AUTHOR NAME -->
+                                <div class="col-12">
+                                    <mat-card-title>{{article.title}}</mat-card-title>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class ="row">
+                                        <div class = "col-12">
+                                            <img mat-card-avatar class="author-card-photo" src="{{article.writerImageURL}}"/>
+                                            <span class ="author-name">{{article.author}}</span>
+                                        </div>
+                                    </div>
+                                    <mat-card-content>
+                                        <p [innerHTML] = "article.shortDesc"></p>
+                                    </mat-card-content>
+                                </div>
+
+                            </div>
+
+
+
+                            <mat-card-footer>
+                                <hr style="background-color: #02598C; margin: 0">
+                                <div class="card-footer-date" style="direction: rtl">
+                                    <span>{{article.dateLastMod  | date : "dd-MMMM-yyyy":"" : "ar-ly" | arNumber}}</span>
+                                </div>
+
+                                <div class ="card-footer-category-bubble">
+                            <span>
+                                {{article.articleCategory}}
+                            </span>
+                                </div>
+
+                                <div class="card-footer-impressions">
+                                    <fa-icon icon="eye"></fa-icon>
+                                    <span>{{article.impressions| arNumber}}</span>
+
+                                </div>
+                            </mat-card-footer>
+
+                        </mat-card>
+
+                    </div>
+
+                </ng-template>
+
+            </ngb-carousel>
+        </div>
+
+
+  <div id="articles-grid" class="row card-group ">
+<div *ngFor="let article of articles?.slice(0,6)" class="col-sm-12 col-md-6 col-lg-4">
+<mat-card >
+        <img mat-card-image class="custom" src="{{article.thumbnail}}"/>
+    <mat-card-title>
+        {{article.title}}
+    </mat-card-title>
+    <mat-card-content>
+        {{article.shortDesc}}
+    </mat-card-content>
+    <mat-card-footer>
+        <hr style="background-color: #02598C; margin: 0">
+        <div class="card-footer-date" style="direction: rtl">
+            <span>{{article.dateLastMod  | date : "dd-MMMM-yyyy":"" : "ar-ly" | arNumber}}</span>
+        </div>
+
+        <div class ="card-footer-category-bubble">
+        <span>
+            {{article.articleCategory}}
+        </span>
+        </div>
+
+        <div class="card-footer-impressions">
+            <fa-icon icon="eye"></fa-icon>
+            <span>{{article.impressions| arNumber}}</span>
+
+        </div>
+    </mat-card-footer>
+
+</mat-card>
+</div>
+  </div>
+        <div class="row-cols-12" *ngIf="articles && articles.length > 0">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="totalItems"
+                                [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage"
+                                [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"
+                                (pageChange)="loadPage($event)"></ngb-pagination>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--  -------------------------------------   admin view------------------------------------------------------------>
+
+
+
+
+
+            <div *ngSwitchCase="true" display="dynamic">
+                <h2 id="page-heading">
+                    <span jhiTranslate="maganinApp.article.home.title">Articles</span>
+
+                    <button id="jh-create-entity"
+                            class="btn btn-primary float-right jh-create-entity create-article-maganin"
+                            [routerLink]="['/article-maganin/new']">
+                        <fa-icon icon="plus"></fa-icon>
+                        <span jhiTranslate="maganinApp.article.home.createLabel">
             Create a new Article
             </span>
-        </button>
-    </h2>
+                    </button>
+                </h2>
 
-    <jhi-alert-error></jhi-alert-error>
+                <jhi-alert-error></jhi-alert-error>
 
-    <jhi-alert></jhi-alert>
+                <jhi-alert></jhi-alert>
 
-    <div class="alert alert-warning" id="no-result" *ngIf="articles?.length === 0">
-        <span jhiTranslate="maganinApp.article.home.notFound">No articles found</span>
-    </div>
+                <div class="alert alert-warning" id="no-result" *ngIf="articles?.length === 0">
+                    <span jhiTranslate="maganinApp.article.home.notFound">No articles found</span>
+                </div>
 
-    <div class="table-responsive" id="entities" *ngIf="articles && articles.length > 0">
-        <table class="table table-striped" aria-describedby="page-heading">
-            <thead>
-                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="title"><span jhiTranslate="maganinApp.article.title">Title</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="author"><span jhiTranslate="maganinApp.article.author">Author</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="relatedURL"><span jhiTranslate="maganinApp.article.relatedURL">Related URL</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="dateAdded"><span jhiTranslate="maganinApp.article.dateAdded">Date Added</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="shortDesc"><span jhiTranslate="maganinApp.article.shortDesc">Short Desc</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="impressions"><span jhiTranslate="maganinApp.article.impressions">Impressions</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="avgRating"><span jhiTranslate="maganinApp.article.avgRating">Avg Rating</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="thumbnail"><span jhiTranslate="maganinApp.article.thumbnail">Thumbnail</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="dateLastMod"><span jhiTranslate="maganinApp.article.dateLastMod">Date Last Mod</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let article of articles ;trackBy: trackId">
+                <div class="table-responsive" id="entities" *ngIf="articles && articles.length > 0">
+                    <table class="table table-striped" aria-describedby="page-heading">
+                        <thead>
+                        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending"
+                            [callback]="loadPage.bind(this)">
+                            <th scope="col" jhiSortBy="title"><span jhiTranslate="maganinApp.article.title">Title</span>
+                                <fa-icon icon="sort"></fa-icon>
+                            </th>
+                            <th scope="col" jhiSortBy="author"><span
+                                jhiTranslate="maganinApp.article.author">Author</span>
+                                <fa-icon icon="sort"></fa-icon>
+                            </th>
+                            <th scope="col" jhiSortBy="relatedURL"><span jhiTranslate="maganinApp.article.relatedURL">Related URL</span>
+                                <fa-icon icon="sort"></fa-icon>
+                            </th>
+                            <th scope="col" jhiSortBy="dateAdded"><span jhiTranslate="maganinApp.article.dateAdded">Date Added</span>
+                                <fa-icon icon="sort"></fa-icon>
+                            </th>
+                            <th scope="col" jhiSortBy="shortDesc"><span jhiTranslate="maganinApp.article.shortDesc">Short Desc</span>
+                                <fa-icon icon="sort"></fa-icon>
+                            </th>
+                            <th scope="col" jhiSortBy="impressions"><span jhiTranslate="maganinApp.article.impressions">Impressions</span>
+                                <fa-icon icon="sort"></fa-icon>
+                            </th>
+                            <th scope="col" jhiSortBy="avgRating"><span jhiTranslate="maganinApp.article.avgRating">Avg Rating</span>
+                                <fa-icon icon="sort"></fa-icon>
+                            </th>
+                            <th scope="col" jhiSortBy="thumbnail"><span jhiTranslate="maganinApp.article.thumbnail">Thumbnail</span>
+                                <fa-icon icon="sort"></fa-icon>
+                            </th>
+                            <th scope="col" jhiSortBy="dateLastMod"><span jhiTranslate="maganinApp.article.dateLastMod">Date Last Mod</span>
+                                <fa-icon icon="sort"></fa-icon>
+                            </th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let article of articles ;trackBy: trackId">
 
-                    <td><a [routerLink]="['/article-maganin', article.id, 'view']">{{ article.title }}</a></td>
-                    <td>{{ article.author }}</td>
-                    <td>{{ article.relatedURL }}</td>
-                    <td>{{ article.dateAdded | date:'medium' }}</td>
-                    <td><div [innerHTML]="article.shortDesc"></div></td>
-                    <td>{{ article.impressions }}</td>
-                    <td>{{ article.avgRating }}</td>
-                    <td>{{ article.thumbnail }}</td>
-                    <td>{{ article.dateLastMod | date:'medium' }}</td>
-                    <td class="text-right">
-                        <div class="btn-group">
-                            <button type="submit"
-                                    [routerLink]="['/article-maganin', article.id, 'view']"
-                                    class="btn btn-info btn-sm">
-                                <fa-icon icon="eye"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                            </button>
+                            <td><a [routerLink]="['/article-maganin', article.id, 'view']">{{ article.title }}</a></td>
+                            <td>{{ article.author }}</td>
+                            <td>{{ article.relatedURL }}</td>
+                            <td>{{ article.dateAdded | date:'medium' }}</td>
+                            <td>
+                                <div [innerHTML]="article.shortDesc"></div>
+                            </td>
+                            <td>{{ article.impressions }}</td>
+                            <td>{{ article.avgRating }}</td>
+                            <td>{{ article.thumbnail }}</td>
+                            <td>{{ article.dateLastMod | date:'medium' }}</td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <button type="submit"
+                                            [routerLink]="['/article-maganin', article.id, 'view']"
+                                            class="btn btn-info btn-sm">
+                                        <fa-icon icon="eye"></fa-icon>
+                                        <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                    </button>
 
-                            <button type="submit"
-                                    [routerLink]="['/article-maganin', article.id, 'edit']"
-                                    class="btn btn-primary btn-sm">
-                                <fa-icon icon="pencil-alt"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                            </button>
+                                    <button type="submit"
+                                            [routerLink]="['/article-maganin', article.id, 'edit']"
+                                            class="btn btn-primary btn-sm">
+                                        <fa-icon icon="pencil-alt"></fa-icon>
+                                        <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                    </button>
 
-                            <button type="submit" (click)="delete(article)"
-                                    class="btn btn-danger btn-sm">
-                                <fa-icon icon="times"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                                    <button type="submit" (click)="delete(article)"
+                                            class="btn btn-danger btn-sm">
+                                        <fa-icon icon="times"></fa-icon>
+                                        <span class="d-none d-md-inline"
+                                              jhiTranslate="entity.action.delete">Delete</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-    <div *ngIf="articles && articles.length > 0">
-        <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-        </div>
+                <div *ngIf="articles && articles.length > 0">
+                    <div class="row justify-content-center">
+                        <jhi-item-count [page]="page" [total]="totalItems"
+                                        [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                    </div>
 
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
-        </div>
-    </div>
+                    <div class="row justify-content-center">
+                        <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage"
+                                        [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"
+                                        (pageChange)="loadPage($event)"></ngb-pagination>
+                    </div>
+                </div>
+            </div>
 </div>

@@ -14,7 +14,7 @@ import { CategoryMaganinService } from './category-maganin.service';
 })
 export class CategoryMaganinUpdateComponent implements OnInit {
   isSaving = false;
-
+  descriptionHTML: String = '';
   editForm = this.fb.group({
     id: [],
     categoryTypeId: [],
@@ -37,7 +37,7 @@ export class CategoryMaganinUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: category.id,
       categoryTypeId: category.categoryTypeId,
-      categoryName: category.categoryName,
+      categoryName: category.name,
       parentId: category.parentId,
       description: category.description,
       imageURL: category.imageURL,
@@ -64,7 +64,7 @@ export class CategoryMaganinUpdateComponent implements OnInit {
       ...new CategoryMaganin(),
       id: this.editForm.get(['id'])!.value,
       categoryTypeId: this.editForm.get(['categoryTypeId'])!.value,
-      categoryName: this.editForm.get(['categoryName'])!.value,
+      name: this.editForm.get(['categoryName'])!.value,
       parentId: this.editForm.get(['parentId'])!.value,
       description: this.editForm.get(['description'])!.value,
       imageURL: this.editForm.get(['imageURL'])!.value,

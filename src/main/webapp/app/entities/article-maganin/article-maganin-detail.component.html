@@ -30,11 +30,11 @@
                 </dd>
                 <dt><span jhiTranslate="maganinApp.article.shortDesc">Short Desc</span></dt>
                 <dd>
-                    <span>{{ article.shortDesc }}</span>
+                    <div>{{ article.shortDesc }}</div>
                 </dd>
                 <dt><span jhiTranslate="maganinApp.article.longDesc">Long Desc</span></dt>
                 <dd>
-                    <span>{{ article.longDesc }}</span>
+                    <div [innerHTML]="article.longDesc"> </div>
                 </dd>
                 <dt><span jhiTranslate="maganinApp.article.display">Display</span></dt>
                 <dd>

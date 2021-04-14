@@ -74,11 +74,11 @@
                 </dd>
                 <dt><span jhiTranslate="maganinApp.consultancy.question">Question</span></dt>
                 <dd>
-                    <span>{{ consultancy.question }}</span>
+                    <div [innerHTML]="consultancy.question"></div>
                 </dd>
                 <dt><span jhiTranslate="maganinApp.consultancy.answer">Answer</span></dt>
                 <dd>
-                    <span>{{ consultancy.answer }}</span>
+                    <div [innerHTML]="consultancy.answer"></div>
                 </dd>
                 <dt><span jhiTranslate="maganinApp.consultancy.doctor">Doctor</span></dt>
                 <dd>
@@ -102,9 +102,9 @@
                 </dd>
                 <dt><span jhiTranslate="maganinApp.consultancy.consultancyType">Consultancy Type</span></dt>
                 <dd>
-                    <div *ngIf="consultancy.consultancyType">
-                        <a [routerLink]="['/consultancy-type-maganin', consultancy.consultancyType?.id, 'view']">{{ consultancy.consultancyType?.id }}</a>
-                    </div>
+
+                        <span>{{ consultancy.consultancyType}}</span>
+
                 </dd>
             </dl>
 

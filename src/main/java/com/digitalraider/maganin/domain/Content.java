@@ -1,10 +1,8 @@
 package com.digitalraider.maganin.domain;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import javax.json.bind.annotation.JsonbTransient;
-import io.quarkus.hibernate.orm.panache.PanacheQuery;
+
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
@@ -74,6 +72,9 @@ public class Content extends PanacheEntityBase implements Serializable {
     @Column(name = "thumbnail")
     public String thumbnail;
 
+    @Column(name = "writer_image_url")
+    public String writerImageURL;
+
     @Column(name = "date_end")
     public Instant dateEnd;
 
@@ -95,7 +96,7 @@ public class Content extends PanacheEntityBase implements Serializable {
     @ManyToOne
     @JoinColumn(name = "category_id")
     @JsonbTransient
-    public Category categoryId;
+    public Category category;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 
@@ -135,6 +136,7 @@ public class Content extends PanacheEntityBase implements Serializable {
             ", avgRating=" + avgRating +
             ", ratings=" + ratings +
             ", thumbnail='" + thumbnail + "'" +
+            ", writerImageURL='" + writerImageURL + "'" +
             ", dateEnd='" + dateEnd + "'" +
             ", keywords='" + keywords + "'" +
             ", creationsType='" + creationsType + "'" +
@@ -174,13 +176,14 @@ public class Content extends PanacheEntityBase implements Serializable {
             entity.avgRating = content.avgRating;
             entity.ratings = content.ratings;
             entity.thumbnail = content.thumbnail;
+            entity.writerImageURL = content.writerImageURL;
             entity.dateEnd = content.dateEnd;
             entity.keywords = content.keywords;
             entity.creationsType = content.creationsType;
             entity.wazn = content.wazn;
             entity.country = content.country;
             entity.dateLastMod = content.dateLastMod;
-            entity.categoryId = content.categoryId;
+            entity.category = content.category;
         }
         return entity;
     }

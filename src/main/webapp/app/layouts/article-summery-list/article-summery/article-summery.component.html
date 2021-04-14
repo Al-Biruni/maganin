@@ -24,28 +24,28 @@
 
 </div>
 
+    <hr style="background-color: #02598C; margin: 0">
+    <mat-card-footer>
 
-<hr style="background-color: #02598C; margin: 0">
-<mat-card-footer>
+        <div class="card-footer-date" style="direction: rtl">
+            <span>{{articleSummery.dateLastMod  | date : "dd-MMMM-yyyy":"" : "ar-ly" | arNumber}}</span>
+        </div>
 
-    <div class="card-footer-date" style="direction: rtl">
-        <span>{{articleSummery.dateLastMod  | date : "dd-MMMM-yyyy":"" : "ar-ly" | arNumber}}</span>
-    </div>
-
-    <div class ="card-footer-category-bubble">
+        <div class ="card-footer-category-bubble">
         <span>
             {{articleSummery.articleCategory}}
         </span>
-    </div>
+        </div>
 
-    <div class="card-footer-impressions">
-        <fa-icon icon="eye"></fa-icon>
-        <span>{{articleSummery.impressions| arNumber}}</span>
+        <div class="card-footer-impressions">
+            <fa-icon icon="eye"></fa-icon>
+            <span>{{articleSummery.impressions| arNumber}}</span>
 
-    </div>
+        </div>
+    </mat-card-footer>
 
 
 
-</mat-card-footer>
+
 
   </mat-card>

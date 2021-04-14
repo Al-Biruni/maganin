@@ -5,6 +5,7 @@ import io.quarkus.panache.common.Page;
 import com.digitalraider.maganin.service.Paged;
 import com.digitalraider.maganin.domain.Consultancy;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import io.quarkus.panache.common.Sort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +22,7 @@ public class ConsultancyServiceImpl implements ConsultancyService {
 
     private final Logger log = LoggerFactory.getLogger(ConsultancyServiceImpl.class);
 
-    
+
 
     @Override
     @Transactional
@@ -62,9 +63,9 @@ public class ConsultancyServiceImpl implements ConsultancyService {
      * @return the list of entities.
      */
     @Override
-    public Paged<Consultancy> findAll(Page page) {
+    public Paged<Consultancy> findAll(Page page, Sort sort) {
         log.debug("Request to get all Consultancies");
-        return new Paged<>(Consultancy.findAll().page(page));    }
+        return new Paged<>(Consultancy.findAll(sort).page(page));    }
 
 
 

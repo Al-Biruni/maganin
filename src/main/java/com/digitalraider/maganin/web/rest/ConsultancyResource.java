@@ -4,6 +4,7 @@ import static javax.ws.rs.core.UriBuilder.fromPath;
 
 import com.digitalraider.maganin.domain.Consultancy;
 import com.digitalraider.maganin.service.ConsultancyService;
+import com.digitalraider.maganin.service.dto.ConsultancySummery;
 import com.digitalraider.maganin.web.rest.errors.BadRequestAlertException;
 import com.digitalraider.maganin.web.util.HeaderUtil;
 import com.digitalraider.maganin.web.util.ResponseUtil;
@@ -22,6 +23,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing {@link com.digitalraider.maganin.domain.Consultancy}.
@@ -107,8 +109,11 @@ public class ConsultancyResource {
         log.debug("REST request to get a page of Consultancies");
         var page = pageRequest.toPage();
         var sort = sortRequest.toSort();
-        Paged<Consultancy> result = consultancyService.findAll(page);
-        var response = Response.ok().entity(result.content);
+        Paged<Consultancy> result = consultancyService.findAll(page,sort);
+        List<ConsultancySummery> resultSummery = result.content.stream().
+            map(consultancy -> new ConsultancySummery(consultancy)).
+            collect(Collectors.toList());
+        var response = Response.ok().entity(resultSummery);
         response = PaginationUtil.withPaginationInfo(response, uriInfo, result);
         return response.build();
     }

@@ -1,5 +1,4 @@
 import { Moment } from 'moment';
-import { IConsultancyTypeMaganin } from 'app/shared/model/consultancy-type-maganin.model';
 
 export interface IConsultancyMaganin {
   id?: number;
@@ -26,7 +25,7 @@ export interface IConsultancyMaganin {
   show?: boolean;
   paid?: boolean;
   impressions?: number;
-  consultancyType?: IConsultancyTypeMaganin;
+  consultancyType?: String;
 }
 
 export class ConsultancyMaganin implements IConsultancyMaganin {
@@ -55,7 +54,7 @@ export class ConsultancyMaganin implements IConsultancyMaganin {
     public show?: boolean,
     public paid?: boolean,
     public impressions?: number,
-    public consultancyType?: IConsultancyTypeMaganin
+    public consultancyType?: String
   ) {
     this.show = this.show || false;
     this.paid = this.paid || false;

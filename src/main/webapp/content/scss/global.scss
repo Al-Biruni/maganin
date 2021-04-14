@@ -6,12 +6,23 @@
 Bootstrap tweaks
 ===============================================================*/
 
+@font-face {
+  font-family: PalatinoLT;
+  src: url('../fonts/palatino-lt-arabic.ttf') format('truetype');
+}
+@font-face {
+  font-family: PalatinoSans;
+  src: url('../fonts/palatino-sans-arabic-bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
 body,
 h1,
 h2,
 h3,
 h4 {
   font-weight: 300;
+  font-family: PalatinoSans;
 }
 
 /* Increase contrast of links to get 100% on Lighthouse Accessability Audit. Override this color if you want to change the link color, or use a Bootswatch theme */
@@ -147,7 +158,15 @@ Custom alerts for notification
   }
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 750px) {
+  mat-card {
+    font-size: 18px !important;
+  }
+}
+@media screen and (min-width: 426px) {
+  mat-card {
+    font-size: 14px !important;
+  }
   .alerts .jhi-toast {
     width: 50%;
   }

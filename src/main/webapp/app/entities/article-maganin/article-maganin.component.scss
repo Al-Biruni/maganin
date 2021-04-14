@@ -1,39 +1,49 @@
-.author-card-photo {
-  height: 30px;
-  width: 30px;
+#articles-grid {
+  align-items: baseline;
 }
-mat-card-title {
-  color: #02598c;
-  font-size: 1.5em;
-  font-weight: bold;
-  line-height: 1.5em;
+
+.carousel-img {
+  height: 500px;
+  width: 100%;
+  z-index: -1;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
 }
 
 mat-card {
+  position: relative;
   background-color: #ffffff;
   color: #404040;
   letter-spacing: 0px;
   font-size: 10px;
-  margin-bottom: 2em;
-  padding: 0;
+  //padding: 10px 5px;
   border-radius: 25px;
+  margin: 10px 5px;
 }
 .card-body {
-  font-size: 1.3em;
+  font-size: 1.2em;
+  padding: 10px;
 }
 mat-card-content {
   margin-top: 10px;
   line-height: 1.5em;
+
+  min-height: 17%;
+  width: 95%;
+  text-align: justify;
 }
 .custom.mat-card-image {
   width: 100%;
   margin: 0px;
-  border-radius: 10px;
 }
 
 mat-card-footer {
-  margin: 5px 25px;
-  font-size: 1.2em;
+  margin: 5px 10px;
+  font-size: 1em;
 }
 .card-footer-impressions {
   width: fit-content;
@@ -49,8 +59,8 @@ mat-card-footer {
   background-color: #f0f0f0;
   border-radius: 25px;
   color: #02598c;
-  margin-right: 0.2em;
-  display: initial;
+  margin-right: 1em;
+  display: inline-block;
 }
 .card-footer-date {
   width: fit-content;

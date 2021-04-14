@@ -1,10 +1,6 @@
 package com.digitalraider.maganin.domain;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import javax.json.bind.annotation.JsonbTransient;
-import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
@@ -29,7 +25,7 @@ public class Category extends PanacheEntityBase implements Serializable {
     public String categoryTypeId;
 
     @Column(name = "name")
-    public String categoryName;
+    public String name;
 
     @Column(name = "parent_id")
     public Long parentId;
@@ -66,7 +62,7 @@ public class Category extends PanacheEntityBase implements Serializable {
         return "Category{" +
             "id=" + id +
             ", categoryTypeId='" + categoryTypeId + "'" +
-            ", categoryName='" + categoryName + "'" +
+            ", categoryName='" + name + "'" +
             ", parentId=" + parentId +
             ", description='" + description + "'" +
             ", imageURL='" + imageURL + "'" +
@@ -89,7 +85,7 @@ public class Category extends PanacheEntityBase implements Serializable {
         var entity = Category.<Category>findById(category.id);
         if (entity != null) {
             entity.categoryTypeId = category.categoryTypeId;
-            entity.categoryName = category.categoryName;
+            entity.name = category.name;
             entity.parentId = category.parentId;
             entity.description = category.description;
             entity.imageURL = category.imageURL;

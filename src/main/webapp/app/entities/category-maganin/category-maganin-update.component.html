@@ -31,8 +31,9 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="maganinApp.category.description" for="field_description">Description</label>
+                    <div [innerHTML]="descriptionHTML"></div>
                     <input type="text" class="form-control" name="description" id="field_description"
-                           formControlName="description"/>
+                           formControlName="description" />
                 </div>
 
                 <div class="form-group">

@@ -15,7 +15,7 @@ export class ArabicNumberPipe implements PipeTransform {
     '0': '٠',
   };
 
-  transform(n: number | string | null): string {
+  transform(n: number | string | null | undefined): string {
     if (n === null || n === undefined) return '';
     n = n + ''; // to make it a string if it was a number
     let newString = '';
