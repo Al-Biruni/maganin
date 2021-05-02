@@ -1,4 +1,5 @@
-<form *ngIf="article" name="deleteForm" (ngSubmit)="confirmDelete(article?.id!)">
+<form *ngIf="article" name="deleteForm" (ngSubmit)="confirmDelete(article?.id!)">   map(consultancy -> new ConsultancySummery(consultancy)).
+            collect(Collectors.toList());;
     <div class="modal-header">
         <h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm delete operation</h4>
 

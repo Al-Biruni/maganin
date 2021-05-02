@@ -73,8 +73,9 @@
     <mat-card-content>
         {{article.shortDesc}}
     </mat-card-content>
+    <hr style="background-color: #02598C; margin: 0">
     <mat-card-footer>
-        <hr style="background-color: #02598C; margin: 0">
+
         <div class="card-footer-date" style="direction: rtl">
             <span>{{article.dateLastMod  | date : "dd-MMMM-yyyy":"" : "ar-ly" | arNumber}}</span>
         </div>
@@ -151,9 +152,7 @@
                                 jhiTranslate="maganinApp.article.author">Author</span>
                                 <fa-icon icon="sort"></fa-icon>
                             </th>
-                            <th scope="col" jhiSortBy="relatedURL"><span jhiTranslate="maganinApp.article.relatedURL">Related URL</span>
-                                <fa-icon icon="sort"></fa-icon>
-                            </th>
+
                             <th scope="col" jhiSortBy="dateAdded"><span jhiTranslate="maganinApp.article.dateAdded">Date Added</span>
                                 <fa-icon icon="sort"></fa-icon>
                             </th>
@@ -164,9 +163,6 @@
                                 <fa-icon icon="sort"></fa-icon>
                             </th>
                             <th scope="col" jhiSortBy="avgRating"><span jhiTranslate="maganinApp.article.avgRating">Avg Rating</span>
-                                <fa-icon icon="sort"></fa-icon>
-                            </th>
-                            <th scope="col" jhiSortBy="thumbnail"><span jhiTranslate="maganinApp.article.thumbnail">Thumbnail</span>
                                 <fa-icon icon="sort"></fa-icon>
                             </th>
                             <th scope="col" jhiSortBy="dateLastMod"><span jhiTranslate="maganinApp.article.dateLastMod">Date Last Mod</span>
@@ -180,14 +176,12 @@
 
                             <td><a [routerLink]="['/article-maganin', article.id, 'view']">{{ article.title }}</a></td>
                             <td>{{ article.author }}</td>
-                            <td>{{ article.relatedURL }}</td>
                             <td>{{ article.dateAdded | date:'medium' }}</td>
                             <td>
                                 <div [innerHTML]="article.shortDesc"></div>
                             </td>
                             <td>{{ article.impressions }}</td>
                             <td>{{ article.avgRating }}</td>
-                            <td>{{ article.thumbnail }}</td>
                             <td>{{ article.dateLastMod | date:'medium' }}</td>
                             <td class="text-right">
                                 <div class="btn-group">

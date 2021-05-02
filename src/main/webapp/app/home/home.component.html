@@ -36,13 +36,32 @@
 
 
 
-          <div id="home-latest-content-container" class = "col-lg-6 col-md-12" >
+          <div id="home-latest-content-container" class = "col-lg-4 col-sm-12" >
               <jhi-article-summery-list [articles]="latestArticlesSummary.slice(0,3)" [listTitle]="latestArticles"></jhi-article-summery-list>
           </div>
 
+    <div id="home-latest-consultancy-container" class = "col-lg-4 col-sm-12" >
+        <span> أخر الإستشارت</span>
+        <div class="card-group">
+            <mat-card *ngFor="let consultancy of latestConsultancies" class="custom">
+                <mat-card-title>   {{consultancy.title}}</mat-card-title>
 
+                <mat-card-content>
+                 <div [innerHTML]="consultancy.question ">
+                 </div>
+                </mat-card-content>
+                <mat-card-footer>
+                    <hr>
+                    {{consultancy.impressions}}
+                </mat-card-footer>
+
+            </mat-card>
+            </div>
 
     </div>
+</div>
+
+
 
 
 

@@ -1,7 +1,11 @@
 package com.digitalraider.maganin.domain;
+
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 import javax.json.bind.annotation.JsonbTransient;
+
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import io.quarkus.panache.common.Sort;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -10,6 +14,7 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.List;
 
 /**
  * A Consultancy.
@@ -33,6 +38,7 @@ public class Consultancy extends PanacheEntityBase implements Serializable {
     public String name;
 
     @Column(name = "date")
+    @GeneratedValue()
     public Instant date;
 
     @Column(name = "age")
@@ -80,24 +86,19 @@ public class Consultancy extends PanacheEntityBase implements Serializable {
     @Column(name = "answer")
     public String answer;
 
-    @Column(name = "doctor")
-    public String doctor;
-
-    @Column(name = "consultant_id")
-    public Integer consultantId;
-
     @Column(name = "show")
     public Boolean show;
-
-    @Column(name = "paid")
-    public Boolean paid;
 
     @Column(name = "impressions")
     public Integer impressions;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "consultancy_type_id")
     public ConsultancyType consultancyType;
+
+    @ManyToOne
+    @JoinColumn(name = "consultant_id")
+    public Doctor doctor;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 
@@ -140,9 +141,7 @@ public class Consultancy extends PanacheEntityBase implements Serializable {
             ", question='" + question + "'" +
             ", answer='" + answer + "'" +
             ", doctor='" + doctor + "'" +
-            ", consultantId=" + consultantId +
             ", show='" + show + "'" +
-            ", paid='" + paid + "'" +
             ", impressions=" + impressions +
             "}";
     }
@@ -163,7 +162,6 @@ public class Consultancy extends PanacheEntityBase implements Serializable {
         if (entity != null) {
             entity.userId = consultancy.userId;
             entity.name = consultancy.name;
-            entity.date = consultancy.date;
             entity.age = consultancy.age;
             entity.gender = consultancy.gender;
             entity.religion = consultancy.religion;
@@ -180,9 +178,7 @@ public class Consultancy extends PanacheEntityBase implements Serializable {
             entity.question = consultancy.question;
             entity.answer = consultancy.answer;
             entity.doctor = consultancy.doctor;
-            entity.consultantId = consultancy.consultantId;
             entity.show = consultancy.show;
-            entity.paid = consultancy.paid;
             entity.impressions = consultancy.impressions;
             entity.consultancyType = consultancy.consultancyType;
         }
@@ -194,12 +190,17 @@ public class Consultancy extends PanacheEntityBase implements Serializable {
             throw new IllegalArgumentException("consultancy can't be null");
         }
         if (consultancy.id == null) {
+            consultancy.date = Instant.now();
             persist(consultancy);
             return consultancy;
         } else {
             return update(consultancy);
         }
     }
+    public void setDate(){
+        this.date = Instant.now();
+    }
+
 
 
 }

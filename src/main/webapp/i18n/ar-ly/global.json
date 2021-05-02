@@ -1,17 +1,17 @@
 {
   "global": {
-    "title": "Maganin",
+    "title": " مجانين",
     "browsehappy": "أنت تستخدم متصفح <strong>قديم</strong> . من فضلك <a href=\"http://browsehappy.com/?locale=en\">قم بتحديث متصفحك</a> لتحسين تجربتك.",
     "menu": {
       "home": "الصفحة الرئيسية",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "الكيانات",
-        "articleMaganin": "Article",
-        "contentMaganin": "Content",
-        "categoryMaganin": "Category",
-        "consultancyMaganin": "Consultancy",
-        "consultancyTypeMaganin": "Consultancy Type",
+        "articleMaganin": "المقالات",
+        "contentMaganin": "المحتوى",
+        "categoryMaganin": "أنواع المقالات",
+        "consultancyMaganin": "الإستشارات",
+        "consultancyTypeMaganin": "أنواع الإستشارات",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

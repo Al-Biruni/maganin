@@ -7,9 +7,10 @@ import * as moment from 'moment';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { IConsultancyMaganin } from 'app/shared/model/consultancy-maganin.model';
+import { IConsultancySummery } from '../../shared/model/consultancy-summery.model';
 
 type EntityResponseType = HttpResponse<IConsultancyMaganin>;
-type EntityArrayResponseType = HttpResponse<IConsultancyMaganin[]>;
+type EntityArrayResponseType = HttpResponse<IConsultancySummery[]>;
 
 @Injectable({ providedIn: 'root' })
 export class ConsultancyMaganinService {
@@ -40,7 +41,7 @@ export class ConsultancyMaganinService {
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http
-      .get<IConsultancyMaganin[]>(this.resourceUrl, { params: options, observe: 'response' })
+      .get<IConsultancySummery[]>(this.resourceUrl, { params: options, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
@@ -64,7 +65,7 @@ export class ConsultancyMaganinService {
 
   protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
     if (res.body) {
-      res.body.forEach((consultancy: IConsultancyMaganin) => {
+      res.body.forEach((consultancy: IConsultancySummery) => {
         consultancy.date = consultancy.date ? moment(consultancy.date) : undefined;
       });
     }

@@ -8,6 +8,7 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.List;
 
 /**
  * A Content.
@@ -97,6 +98,9 @@ public class Content extends PanacheEntityBase implements Serializable {
     @JoinColumn(name = "category_id")
     @JsonbTransient
     public Category category;
+
+    @OneToMany(mappedBy = "content", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    public List<Comment> comments;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 

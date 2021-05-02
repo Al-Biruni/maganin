@@ -104,21 +104,42 @@ public class ConsultancyResource {
      * @param pageRequest the pagination information.
      * @return the {@link Response} with status {@code 200 (OK)} and the list of consultancies in body.
      */
+//    @GET
+//    public Response getAllConsultancies(@BeanParam PageRequestVM pageRequest, @BeanParam SortRequestVM sortRequest, @Context UriInfo uriInfo) {
+//        log.debug("REST request to get a page of Consultancies");
+//        var page = pageRequest.toPage();
+//        var sort = sortRequest.toSort();
+//        Paged<Consultancy> result = consultancyService.findAll(page,sort);
+//        List<ConsultancySummery> resultSummery = result.content.stream().
+//            map(consultancy -> new ConsultancySummery(consultancy)).
+//            collect(Collectors.toList());
+//        var response = Response.ok().entity(resultSummery);
+//        response = PaginationUtil.withPaginationInfo(response, uriInfo, result);
+//        return response.build();
+//    }
     @GET
     public Response getAllConsultancies(@BeanParam PageRequestVM pageRequest, @BeanParam SortRequestVM sortRequest, @Context UriInfo uriInfo) {
         log.debug("REST request to get a page of Consultancies");
         var page = pageRequest.toPage();
         var sort = sortRequest.toSort();
         Paged<Consultancy> result = consultancyService.findAll(page,sort);
-        List<ConsultancySummery> resultSummery = result.content.stream().
-            map(consultancy -> new ConsultancySummery(consultancy)).
-            collect(Collectors.toList());
-        var response = Response.ok().entity(resultSummery);
-        response = PaginationUtil.withPaginationInfo(response, uriInfo, result);
+
+         Paged<ConsultancySummery>resultSummery =   result.map(consultancy -> new ConsultancySummery(consultancy));
+
+        var response = Response.ok().entity(resultSummery.content);
+       response = PaginationUtil.withPaginationInfo(response, uriInfo, resultSummery);
         return response.build();
     }
 
+    @GET
+    @Path("/latest")
+    public Response getLatestConsultancies() {
+        log.debug("REST request to get latest Consultancies");
+        List<ConsultancySummery> result = consultancyService.findLatestConsultancies();
 
+        var response = Response.ok().entity(result);
+        return response.build();
+    }
     /**
      * {@code GET  /consultancies/:id} : get the "id" consultancy.
      *

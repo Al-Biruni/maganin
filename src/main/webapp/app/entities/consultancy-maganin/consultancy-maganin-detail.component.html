@@ -1,124 +1,67 @@
 <div class="row justify-content-center">
-    <div class="col-8">
         <div *ngIf="consultancy">
-            <h2><span jhiTranslate="maganinApp.consultancy.detail.title">Consultancy</span> {{ consultancy.id }}</h2>
+            <div id="consultancy-header" class="col-lg-6 col-md-12">
+                <div class="row">
+                    <div class="col-8">
 
-            <hr>
+                        <span>{{ consultancy.doctor?.name }}</span>
+                        <span>{{ consultancy.date | date }}</span>
+
+                        <span>{{ consultancy.age }}</span>
+
+
+                        <span>{{ consultancy.gender }}</span>
+
+                        <span>{{ consultancy.impressions }}</span>
+
+                        <span>{{ consultancy.country }}</span>
+
+                        <h2>{{ consultancy.title }}</h2>
+
+                        <span>{{ consultancy.consultancyType?.type}}</span>
+
+
+
+                    </div>
+                </div>
+            </div>
 
             <jhi-alert-error></jhi-alert-error>
 
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="maganinApp.consultancy.userId">User Id</span></dt>
-                <dd>
-                    <span>{{ consultancy.userId }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.name">Name</span></dt>
-                <dd>
-                    <span>{{ consultancy.name }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.date">Date</span></dt>
-                <dd>
-                    <span>{{ consultancy.date }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.age">Age</span></dt>
-                <dd>
-                    <span>{{ consultancy.age }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.gender">Gender</span></dt>
-                <dd>
-                    <span>{{ consultancy.gender }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.religion">Religion</span></dt>
-                <dd>
-                    <span>{{ consultancy.religion }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.rel2">Rel 2</span></dt>
-                <dd>
-                    <span>{{ consultancy.rel2 }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.edu">Edu</span></dt>
-                <dd>
-                    <span>{{ consultancy.edu }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.social">Social</span></dt>
-                <dd>
-                    <span>{{ consultancy.social }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.econ">Econ</span></dt>
-                <dd>
-                    <span>{{ consultancy.econ }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.hop">Hop</span></dt>
-                <dd>
-                    <span>{{ consultancy.hop }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.job">Job</span></dt>
-                <dd>
-                    <span>{{ consultancy.job }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.country">Country</span></dt>
-                <dd>
-                    <span>{{ consultancy.country }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.origin">Origin</span></dt>
-                <dd>
-                    <span>{{ consultancy.origin }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.email">Email</span></dt>
-                <dd>
-                    <span>{{ consultancy.email }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.title">Title</span></dt>
-                <dd>
-                    <span>{{ consultancy.title }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.question">Question</span></dt>
-                <dd>
-                    <div [innerHTML]="consultancy.question"></div>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.answer">Answer</span></dt>
-                <dd>
-                    <div [innerHTML]="consultancy.answer"></div>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.doctor">Doctor</span></dt>
-                <dd>
-                    <span>{{ consultancy.doctor }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.consultantId">Consultant Id</span></dt>
-                <dd>
-                    <span>{{ consultancy.consultantId }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.show">Show</span></dt>
-                <dd>
-                    <span>{{ consultancy.show }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.paid">Paid</span></dt>
-                <dd>
-                    <span>{{ consultancy.paid }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.impressions">Impressions</span></dt>
-                <dd>
-                    <span>{{ consultancy.impressions }}</span>
-                </dd>
-                <dt><span jhiTranslate="maganinApp.consultancy.consultancyType">Consultancy Type</span></dt>
-                <dd>
 
-                        <span>{{ consultancy.consultancyType}}</span>
 
-                </dd>
-            </dl>
+            <div class="card col-10">
+                <span jhiTranslate="maganinApp.consultancy.question">Question</span>
+                    <div class="card" [innerHTML]="consultancy.question">
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
-            </button>
 
-            <button type="button"
-                    [routerLink]="['/consultancy-maganin', consultancy.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
-            </button>
+                    </div>
+            <span jhiTranslate="maganinApp.consultancy.answer">Answer</span>
+            <div class="card"  [innerHTML]="consultancy.answer"></div>
+
+            </div>
+
+<div class="container col-4">
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/consultancy-maganin', consultancy.id, 'edit']"
+            class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+    </button>
+</div>
+
+
+
+
+
+
+
+
         </div>
-    </div>
 </div>

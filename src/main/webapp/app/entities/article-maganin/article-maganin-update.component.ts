@@ -9,14 +9,12 @@ import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
 import { IArticleMaganin, ArticleMaganin } from 'app/shared/model/article-maganin.model';
 import { ArticleMaganinService } from './article-maganin.service';
-
 @Component({
   selector: 'jhi-article-maganin-update',
   templateUrl: './article-maganin-update.component.html',
 })
 export class ArticleMaganinUpdateComponent implements OnInit {
   isSaving = false;
-
   editForm = this.fb.group({
     id: [],
     userId: [],
@@ -57,17 +55,14 @@ export class ArticleMaganinUpdateComponent implements OnInit {
       title: article.title,
       author: article.author,
       relatedURL: article.relatedURL,
-      dateAdded: article.dateAdded ? article.dateAdded.format(DATE_TIME_FORMAT) : null,
       shortDesc: article.shortDesc,
       longDesc: article.longDesc,
       display: article.display,
       accessLevel: article.accessLevel,
-      impressions: article.impressions,
       avgRating: article.avgRating,
       thumbnail: article.thumbnail,
       keywords: article.keywords,
       country: article.country,
-      dateLastMod: article.dateLastMod ? article.dateLastMod.format(DATE_TIME_FORMAT) : null,
     });
   }
 

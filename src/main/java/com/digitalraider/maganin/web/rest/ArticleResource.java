@@ -4,11 +4,13 @@ import static javax.ws.rs.core.UriBuilder.fromPath;
 
 import com.digitalraider.maganin.domain.Article;
 import com.digitalraider.maganin.service.ArticleService;
+import com.digitalraider.maganin.service.dto.ArticleDTO;
 import com.digitalraider.maganin.service.dto.ArticleSummery;
 import com.digitalraider.maganin.web.rest.errors.BadRequestAlertException;
 import com.digitalraider.maganin.web.util.HeaderUtil;
 import com.digitalraider.maganin.web.util.ResponseUtil;
 
+import liquibase.pro.packaged.A;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -131,7 +133,7 @@ public class ArticleResource {
 
     public Response getArticle(@PathParam("id") Long id) {
         log.debug("REST request to get Article : {}", id);
-        Optional<Article> article = articleService.findOne(id);
+        Optional<ArticleDTO> article = articleService.findOne(id).map(article1 -> new ArticleDTO(article1));
         return ResponseUtil.wrapOrNotFound(article);
     }
 }

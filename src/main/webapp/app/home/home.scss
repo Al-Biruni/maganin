@@ -4,7 +4,7 @@ Main page styles
 
 .carousel-img {
   width: 100%;
-  height: 688px;
+  height: 450px;
   border-radius: 5px;
   opacity: 1;
 }
@@ -19,6 +19,16 @@ Main page styles
 
 #home-latest-content-container {
   padding-top: 1.5em;
+}
+mat-card {
+  background-color: #ffffff;
+  width: 100%;
+  margin: 10px;
+  border-radius: 25px;
+}
+mat-card-content {
+  max-height: 300px;
+  overflow: scroll;
 }
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */

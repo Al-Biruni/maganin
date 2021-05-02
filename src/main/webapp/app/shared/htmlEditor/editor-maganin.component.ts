@@ -1,0 +1,51 @@
+import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+
+import { Editor, Toolbar } from 'ngx-editor';
+import { FormGroup } from '@angular/forms';
+
+@Component({
+  selector: 'jhi-maganin-editor',
+  template: `
+    <div *ngIf="formGroup" [formGroup]="formGroup">
+      <div class="NgxEditor__Wrapper">
+        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [colorPresets]="colorPresets"> </ngx-editor-menu>
+        <ngx-editor [editor]="editor" [formControlName]="content"> </ngx-editor>
+      </div>
+    </div>
+  `,
+  styles: [
+    `
+      ngx-editor {
+        padding: 0;
+      }
+    `,
+  ],
+  encapsulation: ViewEncapsulation.ShadowDom,
+})
+export class MaganinEditorComponent implements OnInit, OnDestroy {
+  @Input() content = '';
+  @Input() formGroup?: FormGroup;
+
+  editor: Editor;
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
+  colorPresets = ['maganin-red', '#cc0066', 'rgb(204, 0, 102)'];
+  constructor() {
+    this.editor = new Editor();
+  }
+  ngOnInit(): void {
+    this.editor.setContent('type here ');
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+}

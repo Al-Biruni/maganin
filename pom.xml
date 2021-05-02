@@ -597,17 +597,17 @@
                                     <arguments>install</arguments>
                                 </configuration>
                             </execution>
-                            <execution>
-                                <id>webpack build test</id>
-                                <phase>test</phase>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>run webpack:test</arguments>
-                                    <npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
-                                </configuration>
-                            </execution>
+<!--                            <execution>-->
+<!--                                <id>webpack build test</id>-->
+<!--                                <phase>test</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>npm</goal>-->
+<!--                                </goals>-->
+<!--                                <configuration>-->
+<!--                                    <arguments>run webpack:test</arguments>-->
+<!--                                    <npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>-->
+<!--                                </configuration>-->
+<!--                            </execution>-->
                             <execution>
                                 <id>webpack build prod</id>
                                 <phase>generate-resources</phase>

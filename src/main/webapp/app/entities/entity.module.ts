@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   imports: [
+    NgxEditorModule,
     RouterModule.forChild([
       {
         path: 'article-maganin',

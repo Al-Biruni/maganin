@@ -27,7 +27,7 @@ h4 {
 
 /* Increase contrast of links to get 100% on Lighthouse Accessability Audit. Override this color if you want to change the link color, or use a Bootswatch theme */
 a {
-  color: #533f03;
+  color: #145dc9;
   font-weight: bold;
 }
 
@@ -157,7 +157,13 @@ Custom alerts for notification
     }
   }
 }
-
+.article-content img {
+  width: 85%;
+}
+div.article-content table {
+  width: 100%;
+  margin: 20px 10px;
+}
 @media screen and (min-width: 750px) {
   mat-card {
     font-size: 18px !important;

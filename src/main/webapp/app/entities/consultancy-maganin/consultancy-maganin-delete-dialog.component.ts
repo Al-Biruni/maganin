@@ -4,12 +4,13 @@ import { JhiEventManager } from 'ng-jhipster';
 
 import { IConsultancyMaganin } from 'app/shared/model/consultancy-maganin.model';
 import { ConsultancyMaganinService } from './consultancy-maganin.service';
+import { IConsultancySummery } from '../../shared/model/consultancy-summery.model';
 
 @Component({
   templateUrl: './consultancy-maganin-delete-dialog.component.html',
 })
 export class ConsultancyMaganinDeleteDialogComponent {
-  consultancy?: IConsultancyMaganin;
+  consultancy?: IConsultancySummery;
 
   constructor(
     protected consultancyService: ConsultancyMaganinService,

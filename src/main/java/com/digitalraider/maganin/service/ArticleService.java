@@ -39,8 +39,8 @@ public interface ArticleService {
      * @param id the id of the entity.
      * @return the entity.
      */
-    Optional<Article> findOne(Long id);
 
+    Optional<Article> findOne(Long id);
 
 
 }

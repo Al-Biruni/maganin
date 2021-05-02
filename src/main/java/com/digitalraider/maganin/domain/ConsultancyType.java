@@ -27,6 +27,9 @@ public class ConsultancyType extends PanacheEntityBase implements Serializable {
 
     @Column(name = "type")
     public String type;
+//
+//    @ManyToOne
+//    public Doctor doctor;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 

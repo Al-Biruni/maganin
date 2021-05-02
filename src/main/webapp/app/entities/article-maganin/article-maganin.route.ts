@@ -40,7 +40,7 @@ export const articleRoute: Routes = [
     component: ArticleMaganinComponent,
     data: {
       authorities: [Authority.USER],
-      defaultSort: 'id,asc',
+      defaultSort: 'dateAdded,des',
       pageTitle: 'maganinApp.article.home.title',
     },
     canActivate: [UserRouteAccessService],

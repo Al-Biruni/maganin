@@ -18,7 +18,7 @@ import { ConsultancyTypeMaganinService } from 'app/entities/consultancy-type-mag
 })
 export class ConsultancyMaganinUpdateComponent implements OnInit {
   isSaving = false;
-  consultancytypes: IConsultancyTypeMaganin[] = [];
+  consultancyTypes: IConsultancyTypeMaganin[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -66,7 +66,7 @@ export class ConsultancyMaganinUpdateComponent implements OnInit {
 
       this.consultancyTypeService
         .query()
-        .subscribe((res: HttpResponse<IConsultancyTypeMaganin[]>) => (this.consultancytypes = res.body || []));
+        .subscribe((res: HttpResponse<IConsultancyTypeMaganin[]>) => (this.consultancyTypes = res.body || []));
     });
   }
 
@@ -139,8 +139,6 @@ export class ConsultancyMaganinUpdateComponent implements OnInit {
       doctor: this.editForm.get(['doctor'])!.value,
       consultantId: this.editForm.get(['consultantId'])!.value,
       show: this.editForm.get(['show'])!.value,
-      paid: this.editForm.get(['paid'])!.value,
-      impressions: this.editForm.get(['impressions'])!.value,
       consultancyType: this.editForm.get(['consultancyType'])!.value,
     };
   }

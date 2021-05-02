@@ -1,4 +1,6 @@
 import { Moment } from 'moment';
+import { Doctor, IDoctorMaganin } from './doctor.model';
+import { ConsultancyTypeMaganin, IConsultancyTypeMaganin } from './consultancy-type-maganin.model';
 
 export interface IConsultancyMaganin {
   id?: number;
@@ -20,12 +22,12 @@ export interface IConsultancyMaganin {
   title?: string;
   question?: string;
   answer?: string;
-  doctor?: string;
+  doctor?: IDoctorMaganin;
   consultantId?: number;
   show?: boolean;
   paid?: boolean;
   impressions?: number;
-  consultancyType?: String;
+  consultancyType?: IConsultancyTypeMaganin;
 }
 
 export class ConsultancyMaganin implements IConsultancyMaganin {
@@ -49,12 +51,12 @@ export class ConsultancyMaganin implements IConsultancyMaganin {
     public title?: string,
     public question?: string,
     public answer?: string,
-    public doctor?: string,
+    public doctor?: Doctor,
     public consultantId?: number,
     public show?: boolean,
     public paid?: boolean,
     public impressions?: number,
-    public consultancyType?: String
+    public consultancyType?: ConsultancyTypeMaganin
   ) {
     this.show = this.show || false;
     this.paid = this.paid || false;

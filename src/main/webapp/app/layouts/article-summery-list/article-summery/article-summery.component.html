@@ -2,9 +2,11 @@
 
 <div class="row card-body">
     <div class="col-12">
-        <mat-card-title><a [routerLink]="['/article-maganin', articleSummery.id, 'view']">{{ articleSummery.title }}</a></mat-card-title>
+        <mat-card-title>
+            <a [routerLink]="['/article-maganin', articleSummery.id, 'view']">{{ articleSummery.title }}</a>
+        </mat-card-title>
     </div>
-    <div class="col-md-6 col-sm-12">
+    <div class="col-11">
         <div class ="row">
 
             <div class = "col-12">
@@ -18,11 +20,10 @@
         </mat-card-content>
     </div>
 
-    <div class="col-md-6 col-sm-12">
-        <img mat-card-image class="custom" src="{{articleSummery.thumbnail}}" alt="{{articleSummery.articleCategory}}">
-    </div>
 
 </div>
+    <img mat-card-image class="custom" src="{{articleSummery.thumbnail}}" alt="{{articleSummery.articleCategory}}">
+
 
     <hr style="background-color: #02598C; margin: 0">
     <mat-card-footer>

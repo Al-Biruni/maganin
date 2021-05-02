@@ -11,11 +11,6 @@
                     <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="maganinApp.article.userId" for="field_userId">User Id</label>
-                    <input type="number" class="form-control" name="userId" id="field_userId"
-                           formControlName="userId"/>
-                </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="maganinApp.article.title" for="field_title">Title</label>
@@ -26,32 +21,23 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="maganinApp.article.author" for="field_author">Author</label>
                     <input type="text" class="form-control" name="author" id="field_author"
-                           formControlName="author"/>
+                           formControlName="author" readonly/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="maganinApp.article.relatedURL" for="field_relatedURL">Related URL</label>
-                    <input type="text" class="form-control" name="relatedURL" id="field_relatedURL"
-                           formControlName="relatedURL"/>
+                    <jhi-maganin-editor [formGroup]="editForm" content="shortDesc"></jhi-maganin-editor>
                 </div>
+<!--                <form [formGroup]="form">-->
+<!--                    <ngx-editor [editor]="editor" ></ngx-editor>-->
+<!--                </form>-->
 
+<!--                <div class="form-group">-->
+<!--                    <label class="form-control-label" jhiTranslate="maganinApp.article.longDesc" for="field_longDesc">Long Desc</label>-->
+<!--                    <input type="text" class="form-control" name="longDesc" id="field_longDesc"-->
+<!--                           formControlName="longDesc"/>-->
+<!--                </div>-->
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="maganinApp.article.dateAdded" for="field_dateAdded">Date Added</label>
-                    <div class="d-flex">
-                        <input id="field_dateAdded" type="datetime-local" class="form-control" name="dateAdded" formControlName="dateAdded" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="maganinApp.article.shortDesc" for="field_shortDesc">Short Desc</label>
-                    <input type="text" class="form-control" name="shortDesc" id="field_shortDesc"
-                           formControlName="shortDesc"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="maganinApp.article.longDesc" for="field_longDesc">Long Desc</label>
-                    <input type="text" class="form-control" name="longDesc" id="field_longDesc"
-                           formControlName="longDesc"/>
+                <jhi-maganin-editor [formGroup]="editForm" content="longDesc"></jhi-maganin-editor>
                 </div>
 
                 <div class="form-group">
@@ -66,17 +52,9 @@
                            formControlName="accessLevel"/>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="maganinApp.article.impressions" for="field_impressions">Impressions</label>
-                    <input type="number" class="form-control" name="impressions" id="field_impressions"
-                           formControlName="impressions"/>
-                </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="maganinApp.article.avgRating" for="field_avgRating">Avg Rating</label>
-                    <input type="number" class="form-control" name="avgRating" id="field_avgRating"
-                           formControlName="avgRating"/>
-                </div>
+
+
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="maganinApp.article.thumbnail" for="field_thumbnail">Thumbnail</label>
@@ -90,18 +68,6 @@
                            formControlName="keywords"/>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="maganinApp.article.country" for="field_country">Country</label>
-                    <input type="text" class="form-control" name="country" id="field_country"
-                           formControlName="country"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="maganinApp.article.dateLastMod" for="field_dateLastMod">Date Last Mod</label>
-                    <div class="d-flex">
-                        <input id="field_dateLastMod" type="datetime-local" class="form-control" name="dateLastMod" formControlName="dateLastMod" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                </div>
             </div>
 
             <div>
@@ -114,5 +80,7 @@
                 </button>
             </div>
         </form>
+
+
     </div>
 </div>

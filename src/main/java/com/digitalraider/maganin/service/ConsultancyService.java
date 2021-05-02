@@ -1,9 +1,12 @@
 package com.digitalraider.maganin.service;
 
 import com.digitalraider.maganin.domain.Consultancy;
+import com.digitalraider.maganin.service.dto.ConsultancySummery;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.panache.common.Page;
 import io.quarkus.panache.common.Sort;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -43,5 +46,9 @@ public interface ConsultancyService {
     Optional<Consultancy> findOne(Long id);
 
 
+
+    Paged<Consultancy> findPublished(Page page , Sort sort);
+
+    List<ConsultancySummery> findLatestConsultancies();
 
 }

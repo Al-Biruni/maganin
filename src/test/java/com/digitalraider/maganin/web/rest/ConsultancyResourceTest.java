@@ -9,6 +9,7 @@ import static org.hamcrest.Matchers.*;
 
 import com.digitalraider.maganin.TestUtil;
 import com.digitalraider.maganin.domain.Consultancy;
+import com.digitalraider.maganin.domain.Doctor;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 import io.restassured.common.mapper.TypeRef;
@@ -85,8 +86,8 @@ public class ConsultancyResourceTest {
     private static final String DEFAULT_ANSWER = "AAAAAAAAAA";
     private static final String UPDATED_ANSWER = "BBBBBBBBBB";
 
-    private static final String DEFAULT_DOCTOR = "AAAAAAAAAA";
-    private static final String UPDATED_DOCTOR = "BBBBBBBBBB";
+    private static final Doctor DEFAULT_DOCTOR = new Doctor();
+    private static final Doctor UPDATED_DOCTOR = new Doctor();
 
     private static final Integer DEFAULT_CONSULTANT_ID = 1;
     private static final Integer UPDATED_CONSULTANT_ID = 2;
@@ -160,9 +161,9 @@ public class ConsultancyResourceTest {
         consultancy.question = DEFAULT_QUESTION;
         consultancy.answer = DEFAULT_ANSWER;
         consultancy.doctor = DEFAULT_DOCTOR;
-        consultancy.consultantId = DEFAULT_CONSULTANT_ID;
+//        consultancy.consultantId = DEFAULT_CONSULTANT_ID;
         consultancy.show = DEFAULT_SHOW;
-        consultancy.paid = DEFAULT_PAID;
+//        consultancy.paid = DEFAULT_PAID;
         consultancy.impressions = DEFAULT_IMPRESSIONS;
         return consultancy;
     }
@@ -580,7 +581,7 @@ public class ConsultancyResourceTest {
             .statusCode(OK.getStatusCode())
             .contentType(APPLICATION_JSON)
             .body("id", is(consultancy.id.intValue()))
-            
+
                 .body("userId", is(DEFAULT_USER_ID.intValue()))
                 .body("name", is(DEFAULT_NAME))
                 .body("date", is(TestUtil.formatDateTime(DEFAULT_DATE)))

@@ -1,26 +1,18 @@
 package com.digitalraider.maganin.domain;
+
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import javax.json.bind.annotation.JsonbTransient;
-import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Date;
 import java.util.List;
-
-/**
- * A Article.
- */
 @Entity
-@Table(name = "article")
+@Table(name = "personal_blog")
 @Cacheable
 @RegisterForReflection
-public class Article extends PanacheEntityBase implements Serializable {
+public class PersonalBlog extends PanacheEntityBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,12 +23,6 @@ public class Article extends PanacheEntityBase implements Serializable {
 
     @Column(name = "title")
     public String title;
-
-    @Column(name = "author")
-    public String author;
-
-    @Column(name = "related_url")
-    public String relatedURL;
 
     @Column(name = "date_added")
     public Instant dateAdded;
@@ -49,9 +35,6 @@ public class Article extends PanacheEntityBase implements Serializable {
 
     @Column(name = "display")
     public String display;
-
-    @Column(name = "access_level")
-    public Integer accessLevel;
 
     @Column(name = "impressions")
     public Integer impressions;
@@ -68,14 +51,16 @@ public class Article extends PanacheEntityBase implements Serializable {
     @Column(name = "date_last_mod")
     public Instant dateLastMod;
 
-    @Column(name = "writer_image_url")
-    public String writerImageURL;
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     public Category category;
 
-    @OneToMany(mappedBy = "content", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn(name = "doctor_name")
+    @JsonbTransient
+    public Doctor doctor;
+
+    @OneToMany(mappedBy = "content", cascade = CascadeType.ALL, orphanRemoval = true)
     public List<Comment> comments;
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 
@@ -84,10 +69,10 @@ public class Article extends PanacheEntityBase implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Article)) {
+        if (!(o instanceof PersonalBlog)) {
             return false;
         }
-        return id != null && id.equals(((Article) o).id);
+        return id != null && id.equals(((PersonalBlog) o).id);
     }
 
     @Override
@@ -97,16 +82,14 @@ public class Article extends PanacheEntityBase implements Serializable {
 
     @Override
     public String toString() {
-        return "Article{" +
+        return "PersonalBlog{" +
             "id=" + id +
             ", title='" + title + "'" +
-            ", author='" + author + "'" +
-            ", relatedURL='" + relatedURL + "'" +
             ", dateAdded='" + dateAdded + "'" +
             ", shortDesc='" + shortDesc + "'" +
             ", longDesc='" + longDesc + "'" +
             ", display='" + display + "'" +
-            ", accessLevel=" + accessLevel +
+            ", doctor=" + doctor.name +
             ", impressions=" + impressions +
             ", avgRating=" + avgRating +
             ", thumbnail='" + thumbnail + "'" +
@@ -115,51 +98,46 @@ public class Article extends PanacheEntityBase implements Serializable {
             "}";
     }
 
-    public Article update() {
+    public PersonalBlog update() {
         return update(this);
     }
 
-    public Article persistOrUpdate() {
+    public PersonalBlog persistOrUpdate() {
         return persistOrUpdate(this);
     }
 
-    public static Article update(Article article) {
-        if (article == null) {
-            throw new IllegalArgumentException("article can't be null");
+    public static PersonalBlog update(PersonalBlog personalBlog) {
+        if (personalBlog == null) {
+            throw new IllegalArgumentException("personalBlog can't be null");
         }
-        var entity = Article.<Article>findById(article.id);
+        var entity = PersonalBlog.<PersonalBlog>findById(personalBlog.id);
         if (entity != null) {
-            entity.title = article.title;
-            entity.author = article.author;
-            entity.relatedURL = article.relatedURL;
-            entity.shortDesc = article.shortDesc;
-            entity.longDesc = article.longDesc;
-            entity.display = article.display;
-            entity.accessLevel = article.accessLevel;
-            entity.avgRating = article.avgRating;
-            entity.thumbnail = article.thumbnail;
-            entity.keywords = article.keywords;
+            entity.title = personalBlog.title;
+            entity.doctor = personalBlog.doctor;
+            entity.shortDesc = personalBlog.shortDesc;
+            entity.longDesc = personalBlog.longDesc;
+            entity.display = personalBlog.display;
+            entity.impressions = personalBlog.impressions;
+            entity.avgRating = personalBlog.avgRating;
+            entity.thumbnail = personalBlog.thumbnail;
+            entity.keywords = personalBlog.keywords;
             entity.dateLastMod = Instant.now();
         }
         return entity;
     }
 
-    public static Article persistOrUpdate(Article article) {
-        if (article == null) {
-            throw new IllegalArgumentException("article can't be null");
+    public static PersonalBlog persistOrUpdate(PersonalBlog personalBlog) {
+        if (personalBlog == null) {
+            throw new IllegalArgumentException("personalBlog can't be null");
         }
-        if (article.id == null) {
-            persist(article);
-            return article;
+        if (personalBlog.id == null) {
+            personalBlog.dateAdded=Instant.now();
+            persist(personalBlog);
+            return personalBlog;
         } else {
-            return update(article);
+            return update(personalBlog);
         }
     }
-public void setDateAdded(){
-        if(this.dateAdded==null){
-            this.dateAdded=Instant.now();
 
-        }
-}
 
 }

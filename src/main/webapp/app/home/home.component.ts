@@ -7,6 +7,7 @@ import { Account } from 'app/core/user/account.model';
 import { HomeService } from './home.service';
 import { ArticleSummary, IArticleSummary } from 'app/shared/model/article-summery.model';
 import { HttpResponse } from '@angular/common/http';
+import { ConsultancySummery, IConsultancySummery } from 'app/shared/model/consultancy-summery.model';
 
 @Component({
   selector: 'jhi-home',
@@ -24,11 +25,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   latestArticles = 'أخر المقالات';
   latestArticlesSummary: ArticleSummary[] = [];
 
+  latestConsultancies: ConsultancySummery[] = [];
+
   constructor(private accountService: AccountService, private loginModalService: LoginModalService, private homeService: HomeService) {}
   ngOnInit(): void {
     this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account));
-    this.homeService.find(1).subscribe((res: HttpResponse<IArticleSummary[]>) => {
+    this.homeService.getLatestArticles(1).subscribe((res: HttpResponse<IArticleSummary[]>) => {
       this.latestArticlesSummary = res.body || [];
+    });
+
+    this.homeService.getLatestConsultancies().subscribe((res: HttpResponse<IConsultancySummery[]>) => {
+      this.latestConsultancies = res.body || [];
     });
   }
 

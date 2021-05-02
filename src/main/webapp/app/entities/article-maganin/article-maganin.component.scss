@@ -44,6 +44,9 @@ mat-card-content {
 mat-card-footer {
   margin: 5px 10px;
   font-size: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 .card-footer-impressions {
   width: fit-content;

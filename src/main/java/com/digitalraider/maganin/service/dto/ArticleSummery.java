@@ -3,10 +3,12 @@ package com.digitalraider.maganin.service.dto;
 import com.digitalraider.maganin.domain.Article;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
+import javax.persistence.Cacheable;
 import java.time.Instant;
 
 
 @RegisterForReflection
+@Cacheable
 public class ArticleSummery {
     public Long id;
     public String title;

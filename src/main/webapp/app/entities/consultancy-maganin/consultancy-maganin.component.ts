@@ -10,13 +10,14 @@ import { IConsultancyMaganin } from 'app/shared/model/consultancy-maganin.model'
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { ConsultancyMaganinService } from './consultancy-maganin.service';
 import { ConsultancyMaganinDeleteDialogComponent } from './consultancy-maganin-delete-dialog.component';
+import { IConsultancySummery } from '../../shared/model/consultancy-summery.model';
 
 @Component({
   selector: 'jhi-consultancy-maganin',
   templateUrl: './consultancy-maganin.component.html',
 })
 export class ConsultancyMaganinComponent implements OnInit, OnDestroy {
-  consultancies?: IConsultancyMaganin[];
+  consultancies?: IConsultancySummery[];
   eventSubscriber?: Subscription;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -43,7 +44,7 @@ export class ConsultancyMaganinComponent implements OnInit, OnDestroy {
         sort: this.sort(),
       })
       .subscribe(
-        (res: HttpResponse<IConsultancyMaganin[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
+        (res: HttpResponse<IConsultancySummery[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
         () => this.onError()
       );
   }
@@ -74,7 +75,7 @@ export class ConsultancyMaganinComponent implements OnInit, OnDestroy {
     }
   }
 
-  trackId(index: number, item: IConsultancyMaganin): number {
+  trackId(index: number, item: IConsultancySummery): number {
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
     return item.id!;
   }
@@ -83,7 +84,7 @@ export class ConsultancyMaganinComponent implements OnInit, OnDestroy {
     this.eventSubscriber = this.eventManager.subscribe('consultancyListModification', () => this.loadPage());
   }
 
-  delete(consultancy: IConsultancyMaganin): void {
+  delete(consultancy: IConsultancySummery): void {
     const modalRef = this.modalService.open(ConsultancyMaganinDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.consultancy = consultancy;
   }
@@ -96,7 +97,7 @@ export class ConsultancyMaganinComponent implements OnInit, OnDestroy {
     return result;
   }
 
-  protected onSuccess(data: IConsultancyMaganin[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {
+  protected onSuccess(data: IConsultancySummery[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.page = page;
     if (navigate) {

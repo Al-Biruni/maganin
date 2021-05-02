@@ -1,6 +1,7 @@
 package com.digitalraider.maganin.service.impl;
 
 import com.digitalraider.maganin.service.ConsultancyService;
+import com.digitalraider.maganin.service.dto.ConsultancySummery;
 import io.quarkus.panache.common.Page;
 import com.digitalraider.maganin.service.Paged;
 import com.digitalraider.maganin.domain.Consultancy;
@@ -15,6 +16,7 @@ import javax.transaction.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 @Transactional
@@ -68,5 +70,21 @@ public class ConsultancyServiceImpl implements ConsultancyService {
         return new Paged<>(Consultancy.findAll(sort).page(page));    }
 
 
+
+    public Paged<Consultancy> findPublished(Page page , Sort sort){
+
+        return new Paged<>(
+            Consultancy.find("show",Boolean.getBoolean("true")).page(page)
+        );
+    }
+
+    @Override
+    public List<ConsultancySummery> findLatestConsultancies() {
+
+       return Consultancy.find("show",Sort.by("date", Sort.Direction.Descending),true).
+           range(0,5).stream().map(c -> new ConsultancySummery((Consultancy) c)).
+           collect(Collectors.toList());
+
+    }
 
 }

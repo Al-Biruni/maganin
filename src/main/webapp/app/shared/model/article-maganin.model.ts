@@ -1,4 +1,5 @@
 import { Moment } from 'moment';
+import { IContentComment } from './content-comment-model';
 
 export interface IArticleMaganin {
   id?: number;
@@ -19,6 +20,7 @@ export interface IArticleMaganin {
   dateLastMod?: Moment;
   articleCategory?: string;
   writerImageURL?: string;
+  comments?: IContentComment[];
 }
 
 export class ArticleMaganin implements IArticleMaganin {
@@ -40,7 +42,8 @@ export class ArticleMaganin implements IArticleMaganin {
     public country?: string,
     public dateLastMod?: Moment,
     public articleCategory?: string,
-    public writerImageURL?: string
+    public writerImageURL?: string,
+    public comments?: IContentComment[]
   ) {
     this.impressions = 0;
   }
