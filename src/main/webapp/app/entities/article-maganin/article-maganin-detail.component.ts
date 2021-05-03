@@ -10,7 +10,7 @@ import { AccountService } from '../../core/auth/account.service';
   styleUrls: ['article-maganin-detail.component.scss'],
 })
 export class ArticleMaganinDetailComponent implements OnInit {
-  article: IArticleMaganin | null = null;
+  article?: IArticleMaganin;
 
   constructor(protected activatedRoute: ActivatedRoute, protected accountService: AccountService) {}
 

@@ -5,8 +5,6 @@ import { Subscription, combineLatest } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { IConsultancyMaganin } from 'app/shared/model/consultancy-maganin.model';
-
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { ConsultancyMaganinService } from './consultancy-maganin.service';
 import { ConsultancyMaganinDeleteDialogComponent } from './consultancy-maganin-delete-dialog.component';

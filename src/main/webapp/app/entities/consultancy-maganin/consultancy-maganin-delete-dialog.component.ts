@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { IConsultancyMaganin } from 'app/shared/model/consultancy-maganin.model';
 import { ConsultancyMaganinService } from './consultancy-maganin.service';
 import { IConsultancySummery } from '../../shared/model/consultancy-summery.model';
 

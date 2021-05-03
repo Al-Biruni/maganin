@@ -6,6 +6,7 @@ import { AlertErrorComponent } from './alert/alert-error.component';
 import { LoginModalComponent } from './login/login.component';
 import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 import { ArabicNumberPipe } from 'app/shared/pipe/arNumber.pipe';
+import { SafeHtmlPipe } from 'app/shared/pipe/safeHTML.pipe';
 
 @NgModule({
   imports: [MaganinSharedLibsModule],
@@ -16,6 +17,7 @@ import { ArabicNumberPipe } from 'app/shared/pipe/arNumber.pipe';
     LoginModalComponent,
     HasAnyAuthorityDirective,
     ArabicNumberPipe,
+    SafeHtmlPipe,
   ],
   entryComponents: [LoginModalComponent],
   exports: [
@@ -26,6 +28,7 @@ import { ArabicNumberPipe } from 'app/shared/pipe/arNumber.pipe';
     LoginModalComponent,
     HasAnyAuthorityDirective,
     ArabicNumberPipe,
+    SafeHtmlPipe,
   ],
 })
 export class MaganinSharedModule {}

@@ -20,7 +20,7 @@ import { FormGroup } from '@angular/forms';
       }
     `,
   ],
-  encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class MaganinEditorComponent implements OnInit, OnDestroy {
   @Input() content = '';
@@ -37,7 +37,7 @@ export class MaganinEditorComponent implements OnInit, OnDestroy {
     ['text_color', 'background_color'],
     ['align_left', 'align_center', 'align_right', 'align_justify'],
   ];
-  colorPresets = ['maganin-red', '#cc0066', 'rgb(204, 0, 102)'];
+  colorPresets = ['#cc0066', '#000000', '#FFFFFF'];
   constructor() {
     this.editor = new Editor();
   }

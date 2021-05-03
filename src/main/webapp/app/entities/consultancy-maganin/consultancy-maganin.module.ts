@@ -7,9 +7,10 @@ import { ConsultancyMaganinDetailComponent } from './consultancy-maganin-detail.
 import { ConsultancyMaganinUpdateComponent } from './consultancy-maganin-update.component';
 import { ConsultancyMaganinDeleteDialogComponent } from './consultancy-maganin-delete-dialog.component';
 import { consultancyRoute } from './consultancy-maganin.route';
+import { MaganinEditorModule } from '../../shared/htmlEditor/editor-maganin.module';
 
 @NgModule({
-  imports: [MaganinSharedModule, RouterModule.forChild(consultancyRoute)],
+  imports: [MaganinSharedModule, MaganinEditorModule, RouterModule.forChild(consultancyRoute)],
   declarations: [
     ConsultancyMaganinComponent,
     ConsultancyMaganinDetailComponent,

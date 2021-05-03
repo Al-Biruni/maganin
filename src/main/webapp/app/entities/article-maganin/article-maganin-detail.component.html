@@ -44,7 +44,7 @@
             <jhi-alert-error></jhi-alert-error>
 
 
-            <div class="article-content" [innerHTML]="article.longDesc"></div>
+            <div class="article-content col-lg-8 col-md-10" [innerHTML]="article?.longDesc |safeHtml"></div>
 
 
             <!--                    <span>{{ article.avgRating }}</span>-->

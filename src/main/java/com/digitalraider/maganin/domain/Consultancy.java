@@ -94,10 +94,12 @@ public class Consultancy extends PanacheEntityBase implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "consultancy_type_id")
+    @JsonbTransient
     public ConsultancyType consultancyType;
 
     @ManyToOne
     @JoinColumn(name = "consultant_id")
+    @JsonbTransient
     public Doctor doctor;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
