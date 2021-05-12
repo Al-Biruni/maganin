@@ -14,19 +14,19 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="maganinApp.consultancy.userId" for="field_userId">User Id</label>
                     <input type="number" class="form-control" name="userId" id="field_userId"
-                           formControlName="userId"/>
+                           formControlName="userId" readonly/>
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="maganinApp.consultancy.name" for="field_name">Name</label>
                     <input type="text" class="form-control" name="name" id="field_name"
-                           formControlName="name"/>
+                           formControlName="name" />
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="maganinApp.consultancy.date" for="field_date">Date</label>
+                    <label class="form-control-label" jhiTranslate="maganinApp.consultancy.date" for="field_dateAdded">Date</label>
                     <div class="d-flex">
-                        <input id="field_date" type="datetime-local" class="form-control" name="date" formControlName="date" placeholder="YYYY-MM-DD HH:mm"/>
+                        <input id="field_dateAdded" type="datetime-local" class="form-control" name="dateAdded" formControlName="dateAdded" placeholder="YYYY-MM-DD HH:mm" readonly/>
                     </div>
                 </div>
 
@@ -128,17 +128,39 @@
 <!--                           formControlName="answer"/>-->
 <!--                </div>-->
 
+<!--                <div class="form-group">-->
+<!--                    <label class="form-control-label" jhiTranslate="maganinApp.consultancy.doctor" for="field_doctor">Doctor</label>-->
+<!--                    <input type="text" class="form-control" name="doctor" id="field_doctor"-->
+<!--                           formControlName="doctor" readonly/>-->
+<!--                </div>-->
+
+
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="maganinApp.consultancy.doctor" for="field_doctor">Doctor</label>
-                    <input type="text" class="form-control" name="doctor" id="field_doctor"
-                           formControlName="doctor" readonly/>
+                    <label class="form-control-label" jhiTranslate="maganinApp.consultancy.doctor" for="field_consultantId">Consultant</label>
+                    <select class="form-control" id="field_consultantId" name="doctor" formControlName="doctor">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="doctor.doctorId"
+                                *ngFor="let doctor of doctors;"
+                                [selected]="doctor.doctorId == editForm.get('doctor')!.value">
+                            {{doctor.doctorName }}</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="maganinApp.consultancy.consultantId" for="field_consultantId">Consultant Id</label>
-                    <input type="number" class="form-control" name="consultantId" id="field_consultantId"
-                           formControlName="consultantId"/>
+                    <label class="form-control-label" jhiTranslate="maganinApp.consultancy.consultancyType" for="field_consultancyType">Consultancy Type</label>
+                    <select class="form-control" id="field_consultancyType" name="consultancyType" formControlName="consultancyType">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="consultancyTypeOption.id"
+                                *ngFor="let consultancyTypeOption of consultancyTypes;"
+                                [selected]="consultancyTypeOption.id == editForm.get('consultantId')!.value">
+                            {{ consultancyTypeOption.arName }}</option>
+                    </select>
                 </div>
+<!--                <div class="form-group">-->
+<!--                    <label class="form-control-label" jhiTranslate="maganinApp.consultancy.consultantId" for="field_consultantId">Consultant Id</label>-->
+<!--                    <input type="number" class="form-control" name="consultantId" id="field_consultantId"-->
+<!--                           formControlName="consultantId"/>-->
+<!--                </div>-->
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="maganinApp.consultancy.show" for="field_show">Show</label>
@@ -147,13 +169,6 @@
                 </div>
 
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="maganinApp.consultancy.consultancyType" for="field_consultancyType">Consultancy Type</label>
-                    <select class="form-control" id="field_consultancyType" name="consultancyType" formControlName="consultancyType">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="consultancyTypeOption.id === editForm.get('consultancyType')!.value?.id ? editForm.get('consultancyType')!.value : consultancyTypeOption" *ngFor="let consultancyTypeOption of consultancyTypes; trackBy: trackById">{{ consultancyTypeOption.id }}</option>
-                    </select>
-                </div>
             </div>
 
             <div>

@@ -5,7 +5,7 @@
                     <div class="col-8">
 
                         <span>{{ consultancy.doctor?.name }}</span>
-                        <span>{{ consultancy.date | date }}</span>
+                        <span>{{ consultancy.dateAdded | date }}</span>
 
                         <span>{{ consultancy.age }}</span>
 
@@ -18,7 +18,7 @@
 
                         <h2>{{ consultancy.title }}</h2>
 
-                        <span>{{ consultancy.consultancyType?.type}}</span>
+                        <span>{{ consultancy.consultancyType?.arName}}</span>
 
 
 
@@ -32,12 +32,12 @@
 
             <div class="card col-10">
                 <span jhiTranslate="maganinApp.consultancy.question">Question</span>
-                    <div class="card" [innerHTML]="consultancy.question">
+                    <div class="card" [innerHTML]="consultancy.question | safeHtml">
 
 
                     </div>
             <span jhiTranslate="maganinApp.consultancy.answer">Answer</span>
-            <div class="card"  [innerHTML]="consultancy.answer"></div>
+            <div class="card"  [innerHTML]="consultancy.answer | safeHtml "></div>
 
             </div>
 

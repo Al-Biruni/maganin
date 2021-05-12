@@ -17,7 +17,7 @@ export class ConsultancyTypeMaganinUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    type: [],
+    arName: [],
   });
 
   constructor(
@@ -35,7 +35,7 @@ export class ConsultancyTypeMaganinUpdateComponent implements OnInit {
   updateForm(consultancyType: IConsultancyTypeMaganin): void {
     this.editForm.patchValue({
       id: consultancyType.id,
-      type: consultancyType.type,
+      arName: consultancyType.arName,
     });
   }
 
@@ -57,7 +57,7 @@ export class ConsultancyTypeMaganinUpdateComponent implements OnInit {
     return {
       ...new ConsultancyTypeMaganin(),
       id: this.editForm.get(['id'])!.value,
-      type: this.editForm.get(['type'])!.value,
+      arName: this.editForm.get(['arName'])!.value,
     };
   }
 

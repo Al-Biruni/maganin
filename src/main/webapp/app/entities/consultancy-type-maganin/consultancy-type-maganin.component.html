@@ -30,7 +30,7 @@
             <tbody>
                 <tr *ngFor="let consultancyType of consultancyTypes ;trackBy: trackId">
                     <td><a [routerLink]="['/consultancy-type-maganin', consultancyType.id, 'view']">{{ consultancyType.id }}</a></td>
-                    <td>{{ consultancyType.type }}</td>
+                    <td>{{ consultancyType.arName }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

@@ -1,11 +1,8 @@
 package com.digitalraider.maganin.domain;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import javax.json.bind.annotation.JsonbTransient;
-import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 import java.io.Serializable;
@@ -25,8 +22,12 @@ public class ConsultancyType extends PanacheEntityBase implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
-    @Column(name = "type")
-    public String type;
+    @Column(name = "ar_name")
+    public String arName;
+
+    @Column(name = "en_name")
+    @JsonbTransient
+    public String enName;
 //
 //    @ManyToOne
 //    public Doctor doctor;
@@ -53,7 +54,7 @@ public class ConsultancyType extends PanacheEntityBase implements Serializable {
     public String toString() {
         return "ConsultancyType{" +
             "id=" + id +
-            ", type='" + type + "'" +
+            ", type='" + arName + "'" +
             "}";
     }
 
@@ -71,7 +72,8 @@ public class ConsultancyType extends PanacheEntityBase implements Serializable {
         }
         var entity = ConsultancyType.<ConsultancyType>findById(consultancyType.id);
         if (entity != null) {
-            entity.type = consultancyType.type;
+            entity.arName = consultancyType.arName;
+            entity.enName = consultancyType.enName;
         }
         return entity;
     }

@@ -1,6 +1,7 @@
 package com.digitalraider.maganin.service.impl;
 
 import com.digitalraider.maganin.service.ConsultancyService;
+import com.digitalraider.maganin.service.dto.ConsultancyDTO;
 import com.digitalraider.maganin.service.dto.ConsultancySummery;
 import io.quarkus.panache.common.Page;
 import com.digitalraider.maganin.service.Paged;
@@ -67,7 +68,16 @@ public class ConsultancyServiceImpl implements ConsultancyService {
     @Override
     public Paged<Consultancy> findAll(Page page, Sort sort) {
         log.debug("Request to get all Consultancies");
-        return new Paged<>(Consultancy.findAll(sort).page(page));    }
+        if(sort ==null) {
+            return new Paged<>(Consultancy.find("show",
+                Sort.descending("date")
+                , true).page(page));
+        } else {
+            return new Paged<>(Consultancy.find("show",
+                sort.and("date", Sort.Direction.Descending)
+                , true).page(page));
+        }
+    }
 
 
 

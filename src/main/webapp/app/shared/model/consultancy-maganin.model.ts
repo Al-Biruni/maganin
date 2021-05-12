@@ -6,7 +6,7 @@ export interface IConsultancyMaganin {
   id?: number;
   userId?: number;
   name?: string;
-  date?: Moment;
+  dateAdded?: Moment;
   age?: string;
   gender?: string;
   religion?: string;
@@ -35,7 +35,7 @@ export class ConsultancyMaganin implements IConsultancyMaganin {
     public id?: number,
     public userId?: number,
     public name?: string,
-    public date?: Moment,
+    public dateAdded?: Moment,
     public age?: string,
     public gender?: string,
     public religion?: string,

@@ -3,6 +3,7 @@ package com.digitalraider.maganin.web.rest;
 import static javax.ws.rs.core.UriBuilder.fromPath;
 
 import com.digitalraider.maganin.domain.Article;
+import com.digitalraider.maganin.security.AuthoritiesConstants;
 import com.digitalraider.maganin.service.ArticleService;
 import com.digitalraider.maganin.service.dto.ArticleDTO;
 import com.digitalraider.maganin.service.dto.ArticleSummery;
@@ -19,6 +20,7 @@ import com.digitalraider.maganin.web.rest.vm.PageRequestVM;
 import com.digitalraider.maganin.web.rest.vm.SortRequestVM;
 import com.digitalraider.maganin.web.util.PaginationUtil;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -53,6 +55,7 @@ public class ArticleResource {
      * @return the {@link Response} with status {@code 201 (Created)} and with body the new article, or with status {@code 400 (Bad Request)} if the article has already an ID.
      */
     @POST
+    @RolesAllowed(AuthoritiesConstants.ADMIN)
     public Response createArticle(Article article, @Context UriInfo uriInfo) {
         log.debug("REST request to save Article : {}", article);
         if (article.id != null) {

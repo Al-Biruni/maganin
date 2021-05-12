@@ -7,8 +7,8 @@
             <img class="carousel-img" [src]="images[0]" alt="Random first slide">
           </div>
           <div class="carousel-caption">
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <h3> إستشر طبيب</h3>
+            <p>أكثر من 15000إستشاره</p>
           </div>
         </ng-template>
         <ng-template ngbSlide>
@@ -16,8 +16,8 @@
             <img class="carousel-img" [src]="images[1]" alt="Random second slide">
           </div>
           <div class="carousel-caption">
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3>تصفح المقالت</h3>
+            <p> 3000+</p>
           </div>
         </ng-template>
         <ng-template ngbSlide>
@@ -32,31 +32,18 @@
       </ngb-carousel>
 </div>
 
-<div class="row">
+<div id="home-latest-content-container" class="row" >
 
 
 
-          <div id="home-latest-content-container" class = "col-lg-4 col-sm-12" >
+          <div class = "col-lg-5 col-sm-12" >
               <jhi-article-summery-list [articles]="latestArticlesSummary.slice(0,3)" [listTitle]="latestArticles"></jhi-article-summery-list>
           </div>
 
-    <div id="home-latest-consultancy-container" class = "col-lg-4 col-sm-12" >
-        <span> أخر الإستشارت</span>
-        <div class="card-group">
-            <mat-card *ngFor="let consultancy of latestConsultancies" class="custom">
-                <mat-card-title>   {{consultancy.title}}</mat-card-title>
+    <div id="home-latest-consultancy-container" class = "col-lg-7 col-sm-12" >
+      <jhi-consultancy-summery-list [listTitle]="arConTitle" [consultancies]="latestConsultancies.slice(0,6)">
 
-                <mat-card-content>
-                 <div [innerHTML]="consultancy.question ">
-                 </div>
-                </mat-card-content>
-                <mat-card-footer>
-                    <hr>
-                    {{consultancy.impressions}}
-                </mat-card-footer>
-
-            </mat-card>
-            </div>
+      </jhi-consultancy-summery-list>
 
     </div>
 </div>

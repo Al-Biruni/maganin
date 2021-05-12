@@ -1,6 +1,7 @@
 package com.digitalraider.maganin.service;
 
 import com.digitalraider.maganin.domain.Consultancy;
+import com.digitalraider.maganin.service.dto.ConsultancyDTO;
 import com.digitalraider.maganin.service.dto.ConsultancySummery;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.panache.common.Page;

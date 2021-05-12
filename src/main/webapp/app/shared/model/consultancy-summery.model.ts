@@ -1,25 +1,23 @@
 import { Moment } from 'moment';
-import { Doctor, IDoctorMaganin } from './doctor.model';
-import { ConsultancyTypeMaganin, IConsultancyTypeMaganin } from './consultancy-type-maganin.model';
 
 export interface IConsultancySummery {
-  id?: number;
-  date?: Moment;
+  id: number;
+  dateAdded?: Moment;
   title?: string;
   question?: string;
-  doctor?: IDoctorMaganin;
-  impressions?: number;
-  consultancyType?: string;
+  doctor?: number;
+  impressions: number;
+  consultancyType?: number;
 }
 
 export class ConsultancySummery implements IConsultancySummery {
   constructor(
-    public id?: number,
-    public date?: Moment,
+    public id: number,
+    public impressions: number,
+    public dateAdded?: Moment,
     public title?: string,
     public question?: string,
-    public doctor?: Doctor,
-    public impressions?: number,
-    public consultancyType?: string
+    public doctor?: number,
+    public consultancyType?: number
   ) {}
 }

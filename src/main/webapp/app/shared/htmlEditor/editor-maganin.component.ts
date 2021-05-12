@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular
 
 import { Editor, Toolbar } from 'ngx-editor';
 import { FormGroup } from '@angular/forms';
+import schema from './magninEditorSchema';
 
 @Component({
   selector: 'jhi-maganin-editor',
@@ -10,6 +11,7 @@ import { FormGroup } from '@angular/forms';
       <div class="NgxEditor__Wrapper">
         <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [colorPresets]="colorPresets"> </ngx-editor-menu>
         <ngx-editor [editor]="editor" [formControlName]="content"> </ngx-editor>
+        <!--        <ngx-editor [editor]="editor" [formControlName]="content" [(ngModel)]="safeHtmlContent"> </ngx-editor>-->
       </div>
     </div>
   `,
@@ -39,10 +41,16 @@ export class MaganinEditorComponent implements OnInit, OnDestroy {
   ];
   colorPresets = ['#cc0066', '#000000', '#FFFFFF'];
   constructor() {
-    this.editor = new Editor();
+    this.editor = new Editor({
+      schema,
+      history: true,
+      keyboardShortcuts: true,
+    });
   }
+
   ngOnInit(): void {
-    this.editor.setContent('type here ');
+    // this.jsonDoc = toDoc(this.safeHtmlContent.toString())
+    // this.editor.setContent(this.jsonDoc);
   }
 
   ngOnDestroy(): void {

@@ -1,13 +1,13 @@
-{
+﻿{
   "maganinApp": {
     "article": {
       "home": {
         "title": "المقال",
         "createLabel": "أضف مقال",
-        "createOrEditLabel": "أضافت أو تعديل المقال",
+        "createOrEditLabel": "إضافة أو تعديل المقال",
         "notFound": "لم نجد مقالات"
       },
-      "created": "{{ param }}تم إضافت مقال",
+      "created": "{{ param }}تمت إضافة مقال",
       "updated": "{{ param }}تم تعديل مقال",
       "deleted": "A Article is deleted with identifier {{ param }}",
       "delete": {
@@ -20,14 +20,14 @@
       "title": "العنوان",
       "author": "الكاتب",
       "relatedURL": "Related URL",
-      "dateAdded": "تاريخ الإضافه",
+      "dateAdded": "تاريخ الإضافة",
       "shortDesc": "الملخص",
       "longDesc": "محتوى المقال",
       "display": "إظهار",
       "accessLevel": "Access Level",
       "impressions": "المشاهدات",
-      "avgRating": "منوسط التقيم",
-      "thumbnail": "ظفر الأبهم",
+      "avgRating": "منوسط التقييم",
+      "thumbnail": "ظفر الأبهام",
       "keywords": "أهم الكلمات",
       "country": "البلد",
       "dateLastMod": "تاريخ التعديل"

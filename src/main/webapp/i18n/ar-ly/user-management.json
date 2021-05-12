@@ -1,7 +1,7 @@
-{
+﻿{
   "userManagement": {
     "home": {
-      "title": "المستخدمين",
+      "title": "المستخدمون",
       "createLabel": "إنشاء مستخدم جديد",
       "createOrEditLabel": "إنشاء أو تعديل مستخدم"
     },
@@ -15,7 +15,7 @@
       "title": "مستخدم"
     },
     "login": "تسجيل الدخول",
-    "firstName": "الاسم الاول",
+    "firstName": "الاسم الأول",
     "lastName": "اللقب",
     "email": "البريد الإلكتروني",
     "activated": "مفعل",

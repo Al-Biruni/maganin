@@ -39,8 +39,8 @@ export const consultancyRoute: Routes = [
     path: '',
     component: ConsultancyMaganinComponent,
     data: {
-      authorities: [Authority.USER],
-      defaultSort: 'id,asc',
+      authorities: [],
+      defaultSort: 'id,desc',
       pageTitle: 'maganinApp.consultancy.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -52,7 +52,7 @@ export const consultancyRoute: Routes = [
       consultancy: ConsultancyMaganinResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [],
       pageTitle: 'maganinApp.consultancy.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -76,7 +76,7 @@ export const consultancyRoute: Routes = [
       consultancy: ConsultancyMaganinResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'maganinApp.consultancy.home.title',
     },
     canActivate: [UserRouteAccessService],

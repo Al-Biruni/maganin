@@ -8,9 +8,19 @@ import { ConsultancyMaganinUpdateComponent } from './consultancy-maganin-update.
 import { ConsultancyMaganinDeleteDialogComponent } from './consultancy-maganin-delete-dialog.component';
 import { consultancyRoute } from './consultancy-maganin.route';
 import { MaganinEditorModule } from '../../shared/htmlEditor/editor-maganin.module';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { ConsultancySummeryListModule } from '../../layouts/consultancy-list/consultancy-summery-list.module';
 
 @NgModule({
-  imports: [MaganinSharedModule, MaganinEditorModule, RouterModule.forChild(consultancyRoute)],
+  imports: [
+    MaganinSharedModule,
+    MaganinEditorModule,
+    RouterModule.forChild(consultancyRoute),
+    MatIconModule,
+    MatMenuModule,
+    ConsultancySummeryListModule,
+  ],
   declarations: [
     ConsultancyMaganinComponent,
     ConsultancyMaganinDetailComponent,

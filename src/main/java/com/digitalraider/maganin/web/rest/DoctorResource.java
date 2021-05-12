@@ -4,6 +4,7 @@ import com.digitalraider.maganin.domain.Doctor;
 import com.digitalraider.maganin.domain.PersonalBlog;
 import com.digitalraider.maganin.service.DoctorService;
 import com.digitalraider.maganin.service.Paged;
+import com.digitalraider.maganin.service.dto.DoctorDTO;
 import com.digitalraider.maganin.web.rest.errors.BadRequestAlertException;
 import com.digitalraider.maganin.web.rest.vm.PageRequestVM;
 import com.digitalraider.maganin.web.rest.vm.SortRequestVM;
@@ -23,10 +24,11 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static javax.ws.rs.core.UriBuilder.fromPath;
 
-@Path("/api/Doctors")
+@Path("/api/doctors")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @ApplicationScoped
@@ -112,7 +114,14 @@ public class DoctorResource {
         response = PaginationUtil.withPaginationInfo(response, uriInfo, result);
         return response.build();
     }
-
+    @GET
+    @Path("/summery")
+    public Response getAllDoctorsSummery() {
+        log.debug("REST request to get all of Doctors");
+        List<DoctorDTO> result = Doctor.findAll().stream().map(d -> new DoctorDTO((Doctor) d)).collect(Collectors.toList());
+        var response = Response.ok().entity(result);
+        return response.build();
+    }
 
     /**
      * {@code GET  /doctors/:id} : get the "name" doctor.

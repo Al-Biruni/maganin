@@ -9,13 +9,15 @@ import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { ConsultancyMaganinService } from './consultancy-maganin.service';
 import { ConsultancyMaganinDeleteDialogComponent } from './consultancy-maganin-delete-dialog.component';
 import { IConsultancySummery } from '../../shared/model/consultancy-summery.model';
+import { AccountService } from '../../core/auth/account.service';
 
 @Component({
   selector: 'jhi-consultancy-maganin',
   templateUrl: './consultancy-maganin.component.html',
+  styleUrls: ['./consultancy-maganin.component.scss'],
 })
 export class ConsultancyMaganinComponent implements OnInit, OnDestroy {
-  consultancies?: IConsultancySummery[];
+  consultancies!: IConsultancySummery[];
   eventSubscriber?: Subscription;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -23,8 +25,10 @@ export class ConsultancyMaganinComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  impressionSort = true;
 
   constructor(
+    protected accountService: AccountService,
     protected consultancyService: ConsultancyMaganinService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
@@ -113,5 +117,19 @@ export class ConsultancyMaganinComponent implements OnInit, OnDestroy {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
+  }
+  isAdmin(): boolean {
+    return this.accountService.hasAnyAuthority('ROLE_ADMIN');
+  }
+  sortByImpressions(): void {
+    this?.consultancies.sort((a, b) => {
+      if (this.impressionSort) {
+        return b?.impressions - a?.impressions;
+      } else {
+        return a?.impressions - b?.impressions;
+      }
+    });
+    this.registerChangeInConsultancies();
+    this.impressionSort = !this.impressionSort;
   }
 }

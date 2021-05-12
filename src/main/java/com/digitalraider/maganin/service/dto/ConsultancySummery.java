@@ -29,7 +29,7 @@ public class ConsultancySummery {
         this.doctor= c.doctor.name;
         this.impressions= c.impressions;
         if(c.consultancyType != null)
-        this.consultancyType= c.consultancyType.type;
+        this.consultancyType= c.consultancyType.arName;
     }
 
 }

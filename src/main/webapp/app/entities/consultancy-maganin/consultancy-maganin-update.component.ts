@@ -11,6 +11,7 @@ import { IConsultancyMaganin, ConsultancyMaganin } from 'app/shared/model/consul
 import { ConsultancyMaganinService } from './consultancy-maganin.service';
 import { IConsultancyTypeMaganin } from 'app/shared/model/consultancy-type-maganin.model';
 import { ConsultancyTypeMaganinService } from 'app/entities/consultancy-type-maganin/consultancy-type-maganin.service';
+import { IDoctorDTO } from '../../shared/model/doctorSummery.model';
 
 @Component({
   selector: 'jhi-consultancy-maganin-update',
@@ -19,12 +20,13 @@ import { ConsultancyTypeMaganinService } from 'app/entities/consultancy-type-mag
 export class ConsultancyMaganinUpdateComponent implements OnInit {
   isSaving = false;
   consultancyTypes: IConsultancyTypeMaganin[] = [];
+  doctors: IDoctorDTO[] = [];
 
   editForm = this.fb.group({
     id: [],
     userId: [],
     name: [],
-    date: [],
+    dateAdded: [],
     age: [],
     gender: [],
     religion: [],
@@ -68,6 +70,9 @@ export class ConsultancyMaganinUpdateComponent implements OnInit {
         .query()
         .subscribe((res: HttpResponse<IConsultancyTypeMaganin[]>) => (this.consultancyTypes = res.body || []));
     });
+    this.consultancyService.getDoctors().subscribe((res: HttpResponse<IDoctorDTO[]>) => {
+      this.doctors = res.body || [];
+    });
   }
 
   updateForm(consultancy: IConsultancyMaganin): void {
@@ -75,7 +80,7 @@ export class ConsultancyMaganinUpdateComponent implements OnInit {
       id: consultancy.id,
       userId: consultancy.userId,
       name: consultancy.name,
-      date: consultancy.date ? consultancy.date.format(DATE_TIME_FORMAT) : null,
+      dateAdded: consultancy.dateAdded ? consultancy.dateAdded.format(DATE_TIME_FORMAT) : null,
       age: consultancy.age,
       gender: consultancy.gender,
       religion: consultancy.religion,
@@ -92,7 +97,7 @@ export class ConsultancyMaganinUpdateComponent implements OnInit {
       question: consultancy.question,
       answer: consultancy.answer,
       doctor: consultancy.doctor,
-      consultantId: consultancy.consultantId,
+      consultantId: consultancy.doctor,
       show: consultancy.show,
       paid: consultancy.paid,
       impressions: consultancy.impressions,
@@ -120,7 +125,7 @@ export class ConsultancyMaganinUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       userId: this.editForm.get(['userId'])!.value,
       name: this.editForm.get(['name'])!.value,
-      date: this.editForm.get(['date'])!.value ? moment(this.editForm.get(['date'])!.value, DATE_TIME_FORMAT) : undefined,
+      dateAdded: this.editForm.get(['dateAdded'])!.value ? moment(this.editForm.get(['dateAdded'])!.value, DATE_TIME_FORMAT) : undefined,
       age: this.editForm.get(['age'])!.value,
       gender: this.editForm.get(['gender'])!.value,
       religion: this.editForm.get(['religion'])!.value,

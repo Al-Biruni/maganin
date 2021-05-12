@@ -70,8 +70,8 @@
     <mat-card-title>
         <a [routerLink]="['/article-maganin', article.id, 'view']">{{ article.title }}</a>
     </mat-card-title>
-    <mat-card-content>
-        {{article.shortDesc}}
+    <mat-card-content [innerHTML]="article.shortDesc">
+
     </mat-card-content>
     <hr style="background-color: #02598C; margin: 0">
     <mat-card-footer>

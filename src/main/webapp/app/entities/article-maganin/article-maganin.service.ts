@@ -73,4 +73,7 @@ export class ArticleMaganinService {
     }
     return res;
   }
+  getLatestArticles(pageNum: number): Observable<EntityArrayResponseType> {
+    return this.http.get<IArticleMaganin[]>(`${this.resourceUrl}?pageNum=${pageNum}&sort=dateAdded`, { observe: 'response' });
+  }
 }

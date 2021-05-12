@@ -8,13 +8,16 @@ import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { IConsultancyMaganin } from 'app/shared/model/consultancy-maganin.model';
 import { IConsultancySummery } from '../../shared/model/consultancy-summery.model';
+import { IDoctorDTO } from '../../shared/model/doctorSummery.model';
 
 type EntityResponseType = HttpResponse<IConsultancyMaganin>;
 type EntityArrayResponseType = HttpResponse<IConsultancySummery[]>;
+type doctorEntityArrayResponseType = HttpResponse<IDoctorDTO[]>;
 
 @Injectable({ providedIn: 'root' })
 export class ConsultancyMaganinService {
   public resourceUrl = SERVER_API_URL + 'api/consultancies';
+  public doctorSummeryResourceUrl = SERVER_API_URL + 'api/doctors/summery';
 
   constructor(protected http: HttpClient) {}
 
@@ -51,14 +54,14 @@ export class ConsultancyMaganinService {
 
   protected convertDateFromClient(consultancy: IConsultancyMaganin): IConsultancyMaganin {
     const copy: IConsultancyMaganin = Object.assign({}, consultancy, {
-      date: consultancy.date && consultancy.date.isValid() ? consultancy.date.toJSON() : undefined,
+      date: consultancy.dateAdded && consultancy.dateAdded.isValid() ? consultancy.dateAdded.toJSON() : undefined,
     });
     return copy;
   }
 
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
     if (res.body) {
-      res.body.date = res.body.date ? moment(res.body.date) : undefined;
+      res.body.dateAdded = res.body.dateAdded ? moment(res.body.dateAdded) : undefined;
     }
     return res;
   }
@@ -66,9 +69,16 @@ export class ConsultancyMaganinService {
   protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
     if (res.body) {
       res.body.forEach((consultancy: IConsultancySummery) => {
-        consultancy.date = consultancy.date ? moment(consultancy.date) : undefined;
+        consultancy.dateAdded = consultancy.dateAdded ? moment(consultancy.dateAdded) : undefined;
       });
     }
     return res;
+  }
+
+  getDoctors(): Observable<doctorEntityArrayResponseType> {
+    return this.http.get<IDoctorDTO[]>(this.doctorSummeryResourceUrl, { observe: 'response' });
+  }
+  getLatestConsultancies(): Observable<EntityArrayResponseType> {
+    return this.http.get<IConsultancySummery[]>(`${this.resourceUrl}`, { observe: 'response' });
   }
 }

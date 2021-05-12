@@ -1,8 +1,8 @@
-{
+﻿{
   "settings": {
     "title": "إعدادات المستخدم ل [<strong>{{username}}</strong>]",
     "form": {
-      "firstname": "الاسم الاول",
+      "firstname": "الاسم الأول",
       "firstname.placeholder": "اسمك الأول",
       "lastname": "اللقب",
       "lastname.placeholder": "لقبك",
@@ -14,17 +14,17 @@
         "fail": "<strong>حدث خطأ!</strong> تعذر حفظ الإعدادات.",
         "emailexists": "<strong>Eالبريد الالكتروني قيد الاستخدام بالفعل!</strong> الرجاء اختيار واحد آخر."
       },
-      "success": "<strong>تم حفظ الاعدادات!</strong>",
+      "success": "<strong>تم حفظ الإعدادات!</strong>",
       "validate": {
         "firstname": {
           "required": "مطلوب اسمك الأول.",
           "minlength": "مطلوب اسمك الأول أن يكون على الأقل 1 حرف",
-          "maxlength": "لا يمكن أن يكون الاسم الأول اكثر من 50 حرفا"
+          "maxlength": "لا يمكن أن يكون الاسم الأول أكثر من 50 حرفا"
         },
         "lastname": {
           "required": "مطلوب لقبك.",
           "minlength": "مطلوب اسم عائلتك ليكون على الأقل 1 حرف",
-          "maxlength": "لا يمكن أن يكون اسم العائلة اكثر من 50 حرفا"
+          "maxlength": "لا يمكن أن يكون اسم العائلة أكثر من 50 حرفا"
         }
       }
     }

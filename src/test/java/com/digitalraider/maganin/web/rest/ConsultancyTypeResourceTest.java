@@ -19,7 +19,7 @@ import org.junit.jupiter.api.*;
 import javax.inject.Inject;
 
 import java.util.List;
-    
+
 @QuarkusTest
 public class ConsultancyTypeResourceTest {
 
@@ -73,7 +73,7 @@ public class ConsultancyTypeResourceTest {
      */
     public static ConsultancyType createEntity() {
         var consultancyType = new ConsultancyType();
-        consultancyType.type = DEFAULT_TYPE;
+        consultancyType.arName = DEFAULT_TYPE;
         return consultancyType;
     }
 
@@ -126,7 +126,7 @@ public class ConsultancyTypeResourceTest {
 
         assertThat(consultancyTypeList).hasSize(databaseSizeBeforeCreate + 1);
         var testConsultancyType = consultancyTypeList.stream().filter(it -> consultancyType.id.equals(it.id)).findFirst().get();
-        assertThat(testConsultancyType.type).isEqualTo(DEFAULT_TYPE);
+        assertThat(testConsultancyType.arName).isEqualTo(DEFAULT_TYPE);
     }
 
     @Test
@@ -220,7 +220,7 @@ public class ConsultancyTypeResourceTest {
             .extract().body().as(ENTITY_TYPE);
 
         // Update the consultancyType
-        updatedConsultancyType.type = UPDATED_TYPE;
+        updatedConsultancyType.arName = UPDATED_TYPE;
 
         given()
             .auth()
@@ -249,7 +249,7 @@ public class ConsultancyTypeResourceTest {
 
         assertThat(consultancyTypeList).hasSize(databaseSizeBeforeUpdate);
         var testConsultancyType = consultancyTypeList.stream().filter(it -> updatedConsultancyType.id.equals(it.id)).findFirst().get();
-        assertThat(testConsultancyType.type).isEqualTo(UPDATED_TYPE);
+        assertThat(testConsultancyType.arName).isEqualTo(UPDATED_TYPE);
     }
 
     @Test
@@ -424,7 +424,7 @@ public class ConsultancyTypeResourceTest {
             .statusCode(OK.getStatusCode())
             .contentType(APPLICATION_JSON)
             .body("id", is(consultancyType.id.intValue()))
-            
+
                 .body("type", is(DEFAULT_TYPE));
     }
 

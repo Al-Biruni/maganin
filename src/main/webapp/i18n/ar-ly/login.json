@@ -1,10 +1,10 @@
-{
+﻿{
   "login": {
     "title": "تسجيل الدخول",
     "form": {
       "password": "كلمه السر",
       "password.placeholder": "كلمة السر خاصتك",
-      "rememberme": "تذكرنى",
+      "rememberme": "تذكرني",
       "button": "تسجيل الدخول"
     },
     "messages": {

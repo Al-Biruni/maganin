@@ -19,21 +19,24 @@ public class Doctor  extends PanacheEntityBase implements Serializable {
 
     @Id
     @Column(name = "id")
-    private Integer id;
+    public Integer id;
 
     @Column(name = "name")
     public String name;
 
     @Column(name = "date_added")
+    @JsonbTransient
     public Instant dateAdded;
 
     @Column(name = "short_desc")
     public String shortDesc;
 
     @Column(name = "long_desc")
+    @JsonbTransient
     public String longDesc;
 
     @Column(name = "display")
+    @JsonbTransient
     public String display;
 
     @Column(name = "impressions")
@@ -49,12 +52,14 @@ public class Doctor  extends PanacheEntityBase implements Serializable {
     public String speciality;
 
     @Column(name = "date_last_mod")
+    @JsonbTransient
     public Instant dateLastMod;
 
     @Column(name = "writer_image_url")
     public String writerImageURL;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER )
+    @JsonbTransient
     public List<PersonalBlog> blogs;
 
     @OneToMany(mappedBy = "doctor",orphanRemoval = true)

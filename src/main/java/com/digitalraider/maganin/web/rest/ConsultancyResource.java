@@ -3,7 +3,10 @@ package com.digitalraider.maganin.web.rest;
 import static javax.ws.rs.core.UriBuilder.fromPath;
 
 import com.digitalraider.maganin.domain.Consultancy;
+import com.digitalraider.maganin.domain.ConsultancyType;
+import com.digitalraider.maganin.domain.Doctor;
 import com.digitalraider.maganin.service.ConsultancyService;
+import com.digitalraider.maganin.service.dto.ConsultancyDTO;
 import com.digitalraider.maganin.service.dto.ConsultancySummery;
 import com.digitalraider.maganin.web.rest.errors.BadRequestAlertException;
 import com.digitalraider.maganin.web.util.HeaderUtil;
@@ -71,12 +74,16 @@ public class ConsultancyResource {
      * or with status {@code 500 (Internal Server Error)} if the consultancy couldn't be updated.
      */
     @PUT
-    public Response updateConsultancy(Consultancy consultancy) {
+    public Response updateConsultancy(ConsultancyDTO consultancy) {
         log.debug("REST request to update Consultancy : {}", consultancy);
+        log.info(consultancy.toString());
         if (consultancy.id == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        var result = consultancyService.persistOrUpdate(consultancy);
+        Consultancy c = new Consultancy(consultancy);
+        c.doctor = Doctor.findById(consultancy.doctor);
+        c.consultancyType = ConsultancyType.findById(consultancy.consultancyType);
+        var result = consultancyService.persistOrUpdate(c);
         var response = Response.ok().entity(result);
         HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, consultancy.id.toString()).forEach(response::header);
         return response.build();
@@ -124,7 +131,7 @@ public class ConsultancyResource {
         var sort = sortRequest.toSort();
         Paged<Consultancy> result = consultancyService.findAll(page,sort);
 
-         Paged<ConsultancySummery>resultSummery =   result.map(consultancy -> new ConsultancySummery(consultancy));
+         Paged<ConsultancySummery>resultSummery = result.map(consultancy -> new ConsultancySummery(consultancy));
 
         var response = Response.ok().entity(resultSummery.content);
        response = PaginationUtil.withPaginationInfo(response, uriInfo, resultSummery);
@@ -135,7 +142,7 @@ public class ConsultancyResource {
     @Path("/latest")
     public Response getLatestConsultancies() {
         log.debug("REST request to get latest Consultancies");
-        List<ConsultancySummery> result = consultancyService.findLatestConsultancies();
+        List<ConsultancySummery> result = Consultancy.getLatest();
 
         var response = Response.ok().entity(result);
         return response.build();
@@ -151,7 +158,8 @@ public class ConsultancyResource {
 
     public Response getConsultancy(@PathParam("id") Long id) {
         log.debug("REST request to get Consultancy : {}", id);
-        Optional<Consultancy> consultancy = consultancyService.findOne(id);
+        Optional<ConsultancyDTO> consultancy = consultancyService.findOne(id).map(
+            c -> new ConsultancyDTO(c));
         return ResponseUtil.wrapOrNotFound(consultancy);
     }
 }

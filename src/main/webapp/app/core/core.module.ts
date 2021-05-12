@@ -20,6 +20,7 @@ import { ErrorHandlerInterceptor } from 'app/blocks/interceptor/errorhandler.int
 import { NotificationInterceptor } from 'app/blocks/interceptor/notification.interceptor';
 
 import { fontAwesomeIcons } from './icons/font-awesome-icons';
+import { CachingInterceptor } from 'app/blocks/interceptor/cache-interseptor';
 
 @NgModule({
   imports: [
@@ -50,11 +51,13 @@ import { fontAwesomeIcons } from './icons/font-awesome-icons';
     CookieService,
     {
       provide: LOCALE_ID,
-      useValue: 'en',
+      useValue: 'ar-ly',
     },
+
     { provide: NgbDateAdapter, useClass: NgbDateMomentAdapter },
     FindLanguageFromKeyPipe,
     DatePipe,
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
@@ -63,6 +66,12 @@ import { fontAwesomeIcons } from './icons/font-awesome-icons';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthExpiredInterceptor,
+      multi: true,
+    },
+
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CachingInterceptor,
       multi: true,
     },
     {

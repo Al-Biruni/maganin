@@ -4,10 +4,11 @@ import { Subscription } from 'rxjs';
 import { LoginModalService } from 'app/core/login/login-modal.service';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
-import { HomeService } from './home.service';
-import { ArticleSummary, IArticleSummary } from 'app/shared/model/article-summery.model';
 import { HttpResponse } from '@angular/common/http';
 import { ConsultancySummery, IConsultancySummery } from 'app/shared/model/consultancy-summery.model';
+import { ArticleMaganinService } from 'app/entities/article-maganin/article-maganin.service';
+import { ConsultancyMaganinService } from 'app/entities/consultancy-maganin/consultancy-maganin.service';
+import { IArticleMaganin } from 'app/shared/model/article-maganin.model';
 
 @Component({
   selector: 'jhi-home',
@@ -18,23 +19,29 @@ export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
   authSubscription?: Subscription;
   images = [
-    'content/images/people-connecting-jigsaw-pieces-head-together.jpg',
-    'content/images/woman-visiting-psychologist.jpg',
+    'content/images/Carousel Photos/woman-holding-hands-together-talking-with-counselor.jpg',
+    'content/images//Carousel Photos/reading-articles-large.jpg',
     'content/images/people-connecting-jigsaw-pieces-head-together.jpg',
   ];
   latestArticles = 'أخر المقالات';
-  latestArticlesSummary: ArticleSummary[] = [];
+  arConTitle = 'أخر الإستشارت';
+  latestArticlesSummary: IArticleMaganin[] = [];
 
   latestConsultancies: ConsultancySummery[] = [];
 
-  constructor(private accountService: AccountService, private loginModalService: LoginModalService, private homeService: HomeService) {}
+  constructor(
+    private accountService: AccountService,
+    private loginModalService: LoginModalService,
+    private articleService: ArticleMaganinService,
+    private consultancyService: ConsultancyMaganinService
+  ) {}
   ngOnInit(): void {
     this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account));
-    this.homeService.getLatestArticles(1).subscribe((res: HttpResponse<IArticleSummary[]>) => {
+    this.articleService.getLatestArticles(1).subscribe((res: HttpResponse<IArticleMaganin[]>) => {
       this.latestArticlesSummary = res.body || [];
     });
 
-    this.homeService.getLatestConsultancies().subscribe((res: HttpResponse<IConsultancySummery[]>) => {
+    this.consultancyService.getLatestConsultancies().subscribe((res: HttpResponse<IConsultancySummery[]>) => {
       this.latestConsultancies = res.body || [];
     });
   }

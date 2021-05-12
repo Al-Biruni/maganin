@@ -1,4 +1,4 @@
-{
+﻿{
   "sessions": {
     "title": "جلسات العمل النشطة ل [<strong>{{username}}</strong>]",
     "table": {
@@ -9,7 +9,7 @@
     },
     "messages": {
       "success": "<strong>الجلسة أبطلت!</strong>",
-      "error": "<strong>حدث خطأ!</strong> تعذر ابطال الجلسة"
+      "error": "<strong>حدث خطأ!</strong> تعذر إبطال الجلسة"
     }
   }
 }
