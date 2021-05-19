@@ -1,0 +1,33 @@
+update consultancy
+    set question  =Replace(question,'<div style="display:none">fiogf49gjkf0d</div>',''),
+            answer =REPLACE(answer,'<div style="display:none">fiogf49gjkf0d</div>','');
+
+update category
+set description = Replace(description,'<div style="display:none">fiogf49gjkf0d</div>','');
+
+
+update consultancy
+set
+    answer = REGEXP_REPLACE(answer, 'http://www.maganin.com/consultanciesview.asp[?{1}]key=([0-9]+)', '/consultancy-maganin/$1/view');
+
+
+update consultancy
+set
+    question = REGEXP_REPLACE(question, 'http[s*]://www.maganin.com/consultanciesview.asp[?{1}]key=([0-9]+)', '/consultancy-maganin/$1/view');
+
+
+SELECT REGEXP_LIKE('https://www.maganin.com/consultanciesview.asp?key=19154','https://www.maganin.com/consultanciesview.asp?key=');
+
+SELECT Count(*)
+from consultancy
+where REGEXP_LIKE(question,'http[s*]://www.maganin.com/consultanciesview.asp[?{1}]key=([0-9]+)');
+
+SELECT Count(*)
+from consultancy
+where REGEXP_LIKE(answer,'/consultancy-maganin/[0-9]+/view');
+
+
+SELECT REGEXP_REPLACE('gfdgdfghttps://www.maganin.com/consultanciesview.asp?key=19154bc/n //\n vbcvbcvbhttps://www.maganin.com/consultanciesview.asp?key=19154',
+    'https://www.maganin.com/consultanciesview.asp[?{1}]key=([0-9]+)',
+    '/consultancy-maganin/$1/view'
+    );

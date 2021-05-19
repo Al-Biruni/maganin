@@ -147,7 +147,9 @@ public class Doctor  extends PanacheEntityBase implements Serializable {
             return update(doctor);
         }
     }
-
+ public static Doctor findByName(String name){
+        return Doctor.find("name",name).firstResult();
+ }
 
 }
 

@@ -21,6 +21,7 @@ public class Paged<T> {
         this(query.page().index, query.page().size, query.count(), query.pageCount(), query.list());
     }
 
+
     public Paged(long index, long size, long totalCount, long pageCount, List<T> content) {
         this.index = index;
         this.size = size;

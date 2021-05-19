@@ -89,6 +89,10 @@ public class ConsultancyType extends PanacheEntityBase implements Serializable {
             return update(consultancyType);
         }
     }
+    public static ConsultancyType findByArName(String arName){
+        return ConsultancyType.find("arName",arName).firstResult();
+
+    }
 
 
 }

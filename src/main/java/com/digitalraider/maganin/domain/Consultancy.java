@@ -128,6 +128,8 @@ public class Consultancy extends PanacheEntityBase implements Serializable {
         this.question = consultancyDTO.question;
         this.answer = consultancyDTO.answer;
         this.show = consultancyDTO.show;
+        this.doctor=Doctor.findByName(consultancyDTO.doctor);
+        this.consultancyType=ConsultancyType.findByArName(consultancyDTO.consultancyType);
 
     }
 
@@ -273,16 +275,26 @@ public class Consultancy extends PanacheEntityBase implements Serializable {
             entity.question = consultancy.question;
             entity.answer = consultancy.answer;
             entity.show = consultancy.show;
-            entity.doctor = Doctor.findById(consultancy.doctor);
-            entity.consultancyType = ConsultancyType.findById(consultancy.consultancyType);
+            entity.doctor = Doctor.findByName(consultancy.doctor);
+            entity.consultancyType = ConsultancyType.findByArName(consultancy.consultancyType);
         }
         return entity;
     }
-    public static List<Consultancy> getPublished(){
-       return Consultancy.list("show",Sort.by("dateAdded"),true);
+    public static List<Consultancy> getPublished(Sort sort ){
+       if(sort==null)
+        return Consultancy.list("show",Sort.by("date"),true);
+
+        return Consultancy.list("show",sort,true);
+
+    }
+    public static PanacheQuery<Consultancy> getPublishedPanacheQuery(Sort sort ){
+        if(sort==null)
+       return Consultancy.find("show",Sort.by("date"),true);
+
+       return Consultancy.find("show",sort,true);
     }
     public static List<ConsultancySummery> getLatest(){
-        return Consultancy.getPublished().subList(0,5).stream().
+        return Consultancy.getPublished(null).subList(0,5).stream().
             map(c->new ConsultancySummery(c)).
             collect(Collectors.toList());
     }

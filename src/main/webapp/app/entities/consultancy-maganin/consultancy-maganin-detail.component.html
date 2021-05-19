@@ -1,24 +1,11 @@
-<div class="row justify-content-center">
+<div id="consultancy-detail-main-container" class="row justify-content-center">
         <div *ngIf="consultancy">
             <div id="consultancy-header" class="col-lg-6 col-md-12">
                 <div class="row">
-                    <div class="col-8">
-
-                        <span>{{ consultancy.doctor?.name }}</span>
-                        <span>{{ consultancy.dateAdded | date }}</span>
-
-                        <span>{{ consultancy.age }}</span>
-
-
-                        <span>{{ consultancy.gender }}</span>
-
-                        <span>{{ consultancy.impressions }}</span>
-
-                        <span>{{ consultancy.country }}</span>
+                    <div class="col-lg-8 col-sm-12">
 
                         <h2>{{ consultancy.title }}</h2>
-
-                        <span>{{ consultancy.consultancyType?.arName}}</span>
+                        <span id="consultancy-type">{{ consultancy.consultancyType}}</span>
 
 
 
@@ -30,14 +17,29 @@
 
 
 
-            <div class="card col-10">
+            <div id="QA-main-card" class="card col-lg-9 col-sm-11">
                 <span jhiTranslate="maganinApp.consultancy.question">Question</span>
-                    <div class="card" [innerHTML]="consultancy.question | safeHtml">
+
+                <div id="asker-info" class="inline-flex">
+                    <span>{{ consultancy.country }}</span>
+                <span>{{ consultancy.age }}</span>
+
+                <span>{{ consultancy.gender }}</span>
+
+                </div>
+
+                <div id="Q-card" class="card" [innerHTML]="consultancy.question | safeHtml">
 
 
                     </div>
             <span jhiTranslate="maganinApp.consultancy.answer">Answer</span>
-            <div class="card"  [innerHTML]="consultancy.answer | safeHtml "></div>
+
+                <span>{{ consultancy.doctor }}</span>
+
+                <span>{{ consultancy.dateAdded | date }}</span>
+                <span>{{ consultancy.impressions }}</span>
+
+            <div  id="A-card" class="card"  [innerHTML]="consultancy.answer | safeHtml "></div>
 
             </div>
 

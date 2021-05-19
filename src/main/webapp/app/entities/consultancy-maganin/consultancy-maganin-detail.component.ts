@@ -6,6 +6,7 @@ import { IConsultancyMaganin } from 'app/shared/model/consultancy-maganin.model'
 @Component({
   selector: 'jhi-consultancy-maganin-detail',
   templateUrl: './consultancy-maganin-detail.component.html',
+  styleUrls: ['./consultancy-maganin-detail.component.scss'],
 })
 export class ConsultancyMaganinDetailComponent implements OnInit {
   consultancy: IConsultancyMaganin | null = null;

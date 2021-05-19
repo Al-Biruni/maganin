@@ -28,8 +28,8 @@ public class ConsultancyDTO {
     public String title;
     public String question;
     public String answer;
-    public Long consultancyType;
-    public Integer doctor;
+    public String consultancyType;
+    public String doctor;
     public boolean show;
 
     public ConsultancyDTO(Consultancy c) {
@@ -52,8 +52,10 @@ public class ConsultancyDTO {
         this.title = c.title;
         this.question = c.question;
         this.answer = c.answer;
-        this.consultancyType = c.consultancyType.id;
-        this.doctor = c.doctor.id;
+        if(c.consultancyType!=null)
+        this.consultancyType = c.consultancyType.arName;
+        if(c.doctor!=null)
+        this.doctor = c.doctor.name;
         this.show = c.show;
     }
 

@@ -39,7 +39,7 @@ export const articleRoute: Routes = [
     path: '',
     component: ArticleMaganinComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [],
       defaultSort: 'dateAdded,des',
       pageTitle: 'maganinApp.article.home.title',
     },
@@ -52,7 +52,7 @@ export const articleRoute: Routes = [
       article: ArticleMaganinResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [],
       pageTitle: 'maganinApp.article.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -76,7 +76,7 @@ export const articleRoute: Routes = [
       article: ArticleMaganinResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'maganinApp.article.home.title',
     },
     canActivate: [UserRouteAccessService],

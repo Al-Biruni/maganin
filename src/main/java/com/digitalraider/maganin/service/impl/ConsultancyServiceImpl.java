@@ -68,15 +68,14 @@ public class ConsultancyServiceImpl implements ConsultancyService {
     @Override
     public Paged<Consultancy> findAll(Page page, Sort sort) {
         log.debug("Request to get all Consultancies");
-        if(sort ==null) {
-            return new Paged<>(Consultancy.find("show",
-                Sort.descending("date")
-                , true).page(page));
-        } else {
-            return new Paged<>(Consultancy.find("show",
-                sort.and("date", Sort.Direction.Descending)
-                , true).page(page));
-        }
+        return new Paged<>(Consultancy.getPublishedPanacheQuery(sort).page(page));
+//        if(sort ==null) {
+//            return new Paged<>(Consultancy.getPublishedPanacheQuery().page(page));
+//        } else {
+//            return new Paged<>(Consultancy.find("show",
+//                sort.and("date", Sort.Direction.Descending)
+//                , true).page(page));
+//        }
     }
 
 
@@ -84,7 +83,7 @@ public class ConsultancyServiceImpl implements ConsultancyService {
     public Paged<Consultancy> findPublished(Page page , Sort sort){
 
         return new Paged<>(
-            Consultancy.find("show",Boolean.getBoolean("true")).page(page)
+            Consultancy.getPublishedPanacheQuery(sort)
         );
     }
 

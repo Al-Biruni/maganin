@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   images = [
     'content/images/Carousel Photos/woman-holding-hands-together-talking-with-counselor.jpg',
     'content/images//Carousel Photos/reading-articles-large.jpg',
-    'content/images/people-connecting-jigsaw-pieces-head-together.jpg',
   ];
   latestArticles = 'أخر المقالات';
   arConTitle = 'أخر الإستشارت';

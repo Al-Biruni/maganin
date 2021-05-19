@@ -96,18 +96,7 @@
 </mat-card>
 </div>
   </div>
-        <div class="row-cols-12" *ngIf="articles && articles.length > 0">
-            <div class="row justify-content-center">
-                <jhi-item-count [page]="page" [total]="totalItems"
-                                [itemsPerPage]="itemsPerPage"></jhi-item-count>
-            </div>
 
-            <div class="row justify-content-center">
-                <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage"
-                                [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"
-                                (pageChange)="loadPage($event)"></ngb-pagination>
-            </div>
-        </div>
 
     </div>
 
@@ -212,17 +201,30 @@
                     </table>
                 </div>
 
-                <div *ngIf="articles && articles.length > 0">
-                    <div class="row justify-content-center">
-                        <jhi-item-count [page]="page" [total]="totalItems"
-                                        [itemsPerPage]="itemsPerPage"></jhi-item-count>
-                    </div>
+<!--                <div *ngIf="articles && articles.length > 0">-->
+<!--                    <div class="row justify-content-center">-->
+<!--                        <jhi-item-count [page]="page" [total]="totalItems"-->
+<!--                                        [itemsPerPage]="itemsPerPage"></jhi-item-count>-->
+<!--                    </div>-->
 
-                    <div class="row justify-content-center">
-                        <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage"
-                                        [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"
-                                        (pageChange)="loadPage($event)"></ngb-pagination>
-                    </div>
-                </div>
+<!--                    <div class="row justify-content-center">-->
+<!--                        <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage"-->
+<!--                                        [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"-->
+<!--                                        (pageChange)="loadPage($event)"></ngb-pagination>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
+
+    <div class="row-cols-12" *ngIf="articles && articles.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems"
+                            [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage"
+                            [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"
+                            (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
 </div>

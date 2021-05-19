@@ -16,6 +16,7 @@ export class CachingInterceptor implements HttpInterceptor {
     if (req.method !== 'GET') {
       return next.handle(req);
     }
+    // No headers allowed in npm search request
 
     const cachedResponse = this.get(req.urlWithParams);
     if (cachedResponse !== null && cachedResponse !== undefined) return of(cachedResponse.clone());
@@ -30,7 +31,10 @@ export class CachingInterceptor implements HttpInterceptor {
       tap(event => {
         // There may be other events besides the response.
         if (event instanceof HttpResponse) {
-          this.set(req.urlWithParams, event); // Update the cache.
+          // const noHeaderRes = event.clone({ headers: new HttpHeaders() });
+
+          this.set(req.urlWithParams, event);
+          // Update the cache.
         }
       })
     );
@@ -52,7 +56,8 @@ export class CachingInterceptor implements HttpInterceptor {
     return httpResponse;
   }
 
-  set(key: string, value: HttpResponse<any>, ttl = 1000): void {
+  // ttl =3 hours
+  set(key: string, value: HttpResponse<any>, ttl = 10800): void {
     if (ttl) {
       const expires = new Date();
       expires.setSeconds(expires.getSeconds() + ttl);

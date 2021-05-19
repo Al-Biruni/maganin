@@ -139,9 +139,9 @@
                     <label class="form-control-label" jhiTranslate="maganinApp.consultancy.doctor" for="field_consultantId">Consultant</label>
                     <select class="form-control" id="field_consultantId" name="doctor" formControlName="doctor">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="doctor.doctorId"
+                        <option [ngValue]="doctor.doctorName"
                                 *ngFor="let doctor of doctors;"
-                                [selected]="doctor.doctorId == editForm.get('doctor')!.value">
+                                [selected]="doctor.doctorName == editForm.get('doctor')!.value">
                             {{doctor.doctorName }}</option>
                     </select>
                 </div>
@@ -150,9 +150,9 @@
                     <label class="form-control-label" jhiTranslate="maganinApp.consultancy.consultancyType" for="field_consultancyType">Consultancy Type</label>
                     <select class="form-control" id="field_consultancyType" name="consultancyType" formControlName="consultancyType">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="consultancyTypeOption.id"
+                        <option [ngValue]="consultancyTypeOption.arName"
                                 *ngFor="let consultancyTypeOption of consultancyTypes;"
-                                [selected]="consultancyTypeOption.id == editForm.get('consultantId')!.value">
+                                [selected]="consultancyTypeOption.arName == editForm.get('consultantId')!.value">
                             {{ consultancyTypeOption.arName }}</option>
                     </select>
                 </div>
