@@ -13,7 +13,7 @@ type EntityArrayResponseType = HttpResponse<IContentMaganin[]>;
 
 @Injectable({ providedIn: 'root' })
 export class ContentMaganinService {
-  public resourceUrl = SERVER_API_URL + 'api/contents';
+  public resourceUrl = SERVER_API_URL + 'api/creations';
 
   constructor(protected http: HttpClient) {}
 
@@ -70,7 +70,8 @@ export class ContentMaganinService {
 
   protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
     if (res.body) {
-      res.body.forEach((content: IContentMaganin) => {
+      console.log(res.body);
+      res.body['content'].forEach((content: IContentMaganin) => {
         content.dateAdded = content.dateAdded ? moment(content.dateAdded) : undefined;
         content.expire = content.expire ? moment(content.expire) : undefined;
         content.dateEnd = content.dateEnd ? moment(content.dateEnd) : undefined;

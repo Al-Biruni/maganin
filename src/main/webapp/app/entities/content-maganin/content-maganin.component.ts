@@ -97,8 +97,8 @@ export class ContentMaganinComponent implements OnInit, OnDestroy {
     const headersLink = headers.get('link');
     this.links = this.parseLinks.parse(headersLink ? headersLink : '');
     if (data) {
-      for (let i = 0; i < data.length; i++) {
-        this.contents.push(data[i]);
+      for (let i = 0; i < data['content'].length; i++) {
+        this.contents.push(data['content'][i]);
       }
     }
   }

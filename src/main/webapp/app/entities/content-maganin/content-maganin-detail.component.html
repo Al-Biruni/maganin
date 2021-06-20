@@ -26,15 +26,15 @@
                 </dd>
                 <dt><span jhiTranslate="maganinApp.content.dateAdded">Date Added</span></dt>
                 <dd>
-                    <span>{{ content.dateAdded }}</span>
+                    <span>{{ content.dateAdded  | date}}</span>
                 </dd>
                 <dt><span jhiTranslate="maganinApp.content.shortDesc">Short Desc</span></dt>
                 <dd>
-                    <span>{{ content.shortDesc }}</span>
+                    <p [innerHTML]="content.shortDesc"></p>
                 </dd>
                 <dt><span jhiTranslate="maganinApp.content.longDesc">Long Desc</span></dt>
                 <dd>
-                    <span>{{ content.longDesc }}</span>
+                    <p [innerHTML]="content.longDesc"></p>
                 </dd>
                 <dt><span jhiTranslate="maganinApp.content.display">Display</span></dt>
                 <dd>
@@ -98,7 +98,7 @@
                 </dd>
                 <dt><span jhiTranslate="maganinApp.content.dateLastMod">Date Last Mod</span></dt>
                 <dd>
-                    <span>{{ content.dateLastMod }}</span>
+                    <span>{{ content.dateLastMod | date}}</span>
                 </dd>
                 <dt><span jhiTranslate="maganinApp.content.categoryId">Category Id</span></dt>
                 <dd>

@@ -1,20 +1,18 @@
 package com.digitalraider.maganin.domain;
+
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import javax.persistence.*;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.List;
 
-/**
- * A Article.
- */
 @Entity
-@Table(name = "article")
+@Table(name = "creation")
 @Cacheable
 @RegisterForReflection
-public class Article extends PanacheEntityBase implements Serializable {
+public class Creation extends PanacheEntityBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -109,19 +107,19 @@ public class Article extends PanacheEntityBase implements Serializable {
             "}";
     }
 
-    public Article update() {
+    public Creation update() {
         return update(this);
     }
 
-    public Article persistOrUpdate() {
+    public Creation persistOrUpdate() {
         return persistOrUpdate(this);
     }
 
-    public static Article update(Article article) {
+    public static Creation update(Creation article) {
         if (article == null) {
             throw new IllegalArgumentException("article can't be null");
         }
-        var entity = Article.<Article>findById(article.id);
+        var entity = Creation.<Creation>findById(article.id);
         if (entity != null) {
             entity.title = article.title;
             entity.author = article.author;
@@ -138,7 +136,7 @@ public class Article extends PanacheEntityBase implements Serializable {
         return entity;
     }
 
-    public static Article persistOrUpdate(Article article) {
+    public static Creation persistOrUpdate(Creation article) {
         if (article == null) {
             throw new IllegalArgumentException("article can't be null");
         }
@@ -149,11 +147,10 @@ public class Article extends PanacheEntityBase implements Serializable {
             return update(article);
         }
     }
-public void setDateAdded(){
+    public void setDateAdded(){
         if(this.dateAdded==null){
             this.dateAdded=Instant.now();
 
         }
-}
-
+    }
 }
