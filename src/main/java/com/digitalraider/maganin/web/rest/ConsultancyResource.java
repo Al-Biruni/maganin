@@ -5,6 +5,7 @@ import static javax.ws.rs.core.UriBuilder.fromPath;
 import com.digitalraider.maganin.domain.Consultancy;
 import com.digitalraider.maganin.domain.ConsultancyType;
 import com.digitalraider.maganin.domain.Doctor;
+import com.digitalraider.maganin.security.AuthoritiesConstants;
 import com.digitalraider.maganin.service.ConsultancyService;
 import com.digitalraider.maganin.service.dto.ConsultancyDTO;
 import com.digitalraider.maganin.service.dto.ConsultancySummery;
@@ -20,6 +21,7 @@ import com.digitalraider.maganin.web.rest.vm.PageRequestVM;
 import com.digitalraider.maganin.web.rest.vm.SortRequestVM;
 import com.digitalraider.maganin.web.util.PaginationUtil;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -54,6 +56,7 @@ public class ConsultancyResource {
      * @return the {@link Response} with status {@code 201 (Created)} and with body the new consultancy, or with status {@code 400 (Bad Request)} if the consultancy has already an ID.
      */
     @POST
+    @RolesAllowed(AuthoritiesConstants.ADMIN)
     public Response createConsultancy(Consultancy consultancy, @Context UriInfo uriInfo) {
         log.debug("REST request to save Consultancy : {}", consultancy);
         if (consultancy.id != null) {
@@ -74,6 +77,7 @@ public class ConsultancyResource {
      * or with status {@code 500 (Internal Server Error)} if the consultancy couldn't be updated.
      */
     @PUT
+    @RolesAllowed(AuthoritiesConstants.ADMIN)
     public Response updateConsultancy(ConsultancyDTO consultancy) {
         log.debug("REST request to update Consultancy : {}", consultancy);
         log.info(consultancy.toString());
@@ -81,8 +85,6 @@ public class ConsultancyResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         Consultancy c = new Consultancy(consultancy);
-        c.doctor = Doctor.findById(consultancy.doctor);
-        c.consultancyType = ConsultancyType.findById(consultancy.consultancyType);
         var result = consultancyService.persistOrUpdate(c);
         var response = Response.ok().entity(result);
         HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, consultancy.id.toString()).forEach(response::header);
@@ -97,6 +99,7 @@ public class ConsultancyResource {
      */
     @DELETE
     @Path("/{id}")
+    @RolesAllowed(AuthoritiesConstants.ADMIN)
     public Response deleteConsultancy(@PathParam("id") Long id) {
         log.debug("REST request to delete Consultancy : {}", id);
         consultancyService.delete(id);
@@ -125,6 +128,7 @@ public class ConsultancyResource {
 //        return response.build();
 //    }
     @GET
+    @RolesAllowed(AuthoritiesConstants.ADMIN)
     public Response getAllConsultancies(@BeanParam PageRequestVM pageRequest, @BeanParam SortRequestVM sortRequest, @Context UriInfo uriInfo) {
         log.debug("REST request to get a page of Consultancies");
         var page = pageRequest.toPage();
@@ -137,12 +141,27 @@ public class ConsultancyResource {
        response = PaginationUtil.withPaginationInfo(response, uriInfo, resultSummery);
         return response.build();
     }
+    @GET
+    @Path("/published")
+    public Response getPublishedConsultancies(@BeanParam PageRequestVM pageRequest, @BeanParam SortRequestVM sortRequest, @Context UriInfo uriInfo) {
+        log.debug("REST request to get a page of published Consultancies");
+        var page = pageRequest.toPage();
+        var sort = sortRequest.toSort();
+
+        Paged<Consultancy> result = consultancyService.findPublished(page,sort);
+
+        Paged<ConsultancySummery>resultSummery = result.map(consultancy -> new ConsultancySummery(consultancy));
+
+        var response = Response.ok().entity(resultSummery.content);
+        response = PaginationUtil.withPaginationInfo(response, uriInfo, resultSummery);
+        return response.build();
+    }
 
     @GET
     @Path("/latest")
     public Response getLatestConsultancies() {
         log.debug("REST request to get latest Consultancies");
-        List<ConsultancySummery> result = Consultancy.getLatest();
+        List<ConsultancySummery> result = consultancyService.findLatestConsultancies();
 
         var response = Response.ok().entity(result);
         return response.build();

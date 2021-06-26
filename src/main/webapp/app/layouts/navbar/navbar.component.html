@@ -52,14 +52,17 @@
                 </ul>
             </li>
 
-                <a routerLink="consultancy-maganin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                <a  class="nav-item" routerLink="consultancy-maganin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                     <span jhiTranslate="global.menu.entities.consultancyMaganin">Consultancy Maganin</span>
                 </a>
 
-                <a  class="nav-item" routerLink="article-maganin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                <a  class="nav-item" routerLink="article-maganin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true } ">
                     <span jhiTranslate="global.menu.entities.articleMaganin">Article Maganin</span>
                 </a>
 
+            <a  class="nav-item" routerLink="doctor" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true } ">
+                <span jhiTranslate="global.menu.entities.doctors">Doctors</span>
+            </a>
 
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">

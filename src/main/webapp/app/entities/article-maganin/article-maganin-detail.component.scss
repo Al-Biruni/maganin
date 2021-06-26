@@ -21,7 +21,7 @@ mat-card-title {
   width: 100%;
   margin: 0px;
   border-radius: 10px;
-  max-height: 500px;
+  max-height: 250px;
   padding: 0;
 }
 
@@ -66,16 +66,15 @@ mat-card-footer {
 }
 
 .article-content {
-  width: 85%;
-  margin: 10px auto;
-  float: none;
-  font-size: 1.5em;
+  //width: 85%;
+  //margin: 10px auto;
+  //font-size: 1.5em;
   font-family: PalatinoSans;
 }
 
 @media screen and (min-width: 750px) {
   #article-details-main-card {
-    font-size: 15px !important;
+    font-size: 20px !important;
   }
   .author-card-photo {
     display: inline;

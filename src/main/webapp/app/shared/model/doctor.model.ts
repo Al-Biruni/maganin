@@ -1,5 +1,4 @@
 import { Moment } from 'moment';
-import { IContentComment } from './content-comment-model';
 
 export interface IDoctorMaganin {
   id?: number;

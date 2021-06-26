@@ -27,6 +27,10 @@ import { NgxEditorModule } from 'ngx-editor';
         loadChildren: () =>
           import('./consultancy-type-maganin/consultancy-type-maganin.module').then(m => m.MaganinConsultancyTypeMaganinModule),
       },
+      {
+        path: 'doctor',
+        loadChildren: () => import('./doctor-maganin/doctor-maganin.module').then(m => m.DoctorModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

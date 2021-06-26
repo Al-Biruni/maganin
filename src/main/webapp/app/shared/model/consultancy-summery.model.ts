@@ -8,6 +8,7 @@ export interface IConsultancySummery {
   doctor?: number;
   impressions: number;
   consultancyType?: number;
+  show?: boolean;
 }
 
 export class ConsultancySummery implements IConsultancySummery {
@@ -18,6 +19,7 @@ export class ConsultancySummery implements IConsultancySummery {
     public title?: string,
     public question?: string,
     public doctor?: number,
-    public consultancyType?: number
+    public consultancyType?: number,
+    public show?: boolean
   ) {}
 }

@@ -74,6 +74,9 @@
                     <th scope="col" jhiSortBy="title"><span jhiTranslate="maganinApp.consultancy.title">Title</span>
                         <fa-icon icon="sort"></fa-icon>
                     </th>
+                    <th scope="col" jhiSortBy="show"><span jhiTranslate="maganinApp.consultancy.show">Show</span>
+                        <fa-icon icon="sort"></fa-icon>
+                    </th>
                     <th scope="col" jhiSortBy="doctor"><span jhiTranslate="maganinApp.consultancy.doctor">Doctor</span>
                         <fa-icon icon="sort"></fa-icon>
                     </th>
@@ -91,6 +94,7 @@
                 <tr *ngFor="let consultancy of consultancies ;trackBy: trackId">
                     <td><a [routerLink]="['/consultancy-maganin', consultancy.id, 'view']">{{ consultancy.id }}</a></td>
                     <td>{{ consultancy.title }}</td>
+                    <td>{{ consultancy.show }}</td>
                     <td>{{ consultancy.doctor }}</td>
                     <td>{{ consultancy.impressions }}</td>
                     <td>{{ consultancy.consultancyType }}</td>

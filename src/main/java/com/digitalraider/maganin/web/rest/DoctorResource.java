@@ -110,7 +110,7 @@ public class DoctorResource {
         var sort = sortRequest.toSort();
         Paged<Doctor> result = doctorService.findAll(page,sort);
 
-        var response = Response.ok().entity(result);
+        var response = Response.ok().entity(result.content);
         response = PaginationUtil.withPaginationInfo(response, uriInfo, result);
         return response.build();
     }

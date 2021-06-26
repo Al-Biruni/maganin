@@ -12,6 +12,8 @@
         "categoryMaganin": "أنواع المقالات",
         "consultancyMaganin": "الاستشارات",
         "consultancyTypeMaganin": "أنواع الإستشارات",
+        "doctors": " الأطباء",
+
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

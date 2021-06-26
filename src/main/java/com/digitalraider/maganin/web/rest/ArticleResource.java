@@ -76,6 +76,7 @@ public class ArticleResource {
      * or with status {@code 500 (Internal Server Error)} if the article couldn't be updated.
      */
     @PUT
+    @RolesAllowed(AuthoritiesConstants.ADMIN)
     public Response updateArticle(Article article) {
         log.debug("REST request to update Article : {}", article);
         if (article.id == null) {
@@ -95,6 +96,7 @@ public class ArticleResource {
      */
     @DELETE
     @Path("/{id}")
+    @RolesAllowed(AuthoritiesConstants.ADMIN)
     public Response deleteArticle(@PathParam("id") Long id) {
         log.debug("REST request to delete Article : {}", id);
         articleService.delete(id);
@@ -133,8 +135,15 @@ public class ArticleResource {
      */
     @GET
     @Path("/{id}")
-
     public Response getArticle(@PathParam("id") Long id) {
+        log.debug("REST request to get Article : {}", id);
+        Optional<ArticleDTO> article = articleService.findOne(id).map(article1 -> new ArticleDTO(article1));
+        return ResponseUtil.wrapOrNotFound(article);
+    }
+
+    @GET
+    @Path("/{id}")
+    public Response getArticleByCateg(@PathParam("id") Long id) {
         log.debug("REST request to get Article : {}", id);
         Optional<ArticleDTO> article = articleService.findOne(id).map(article1 -> new ArticleDTO(article1));
         return ResponseUtil.wrapOrNotFound(article);

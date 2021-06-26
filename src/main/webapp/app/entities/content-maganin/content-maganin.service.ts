@@ -70,7 +70,6 @@ export class ContentMaganinService {
 
   protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
     if (res.body) {
-      console.log(res.body);
       res.body['content'].forEach((content: IContentMaganin) => {
         content.dateAdded = content.dateAdded ? moment(content.dateAdded) : undefined;
         content.expire = content.expire ? moment(content.expire) : undefined;

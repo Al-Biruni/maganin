@@ -38,17 +38,29 @@ export class ConsultancyMaganinComponent implements OnInit, OnDestroy {
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     const pageToLoad: number = page || this.page || 1;
-
-    this.consultancyService
-      .query({
-        page: pageToLoad - 1,
-        size: this.itemsPerPage,
-        sort: this.sort(),
-      })
-      .subscribe(
-        (res: HttpResponse<IConsultancySummery[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
-        () => this.onError()
-      );
+    if (this.isAdmin()) {
+      this.consultancyService
+        .query({
+          page: pageToLoad - 1,
+          size: this.itemsPerPage,
+          sort: this.sort(),
+        })
+        .subscribe(
+          (res: HttpResponse<IConsultancySummery[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
+          () => this.onError()
+        );
+    } else {
+      this.consultancyService
+        .queryPublished({
+          page: pageToLoad - 1,
+          size: this.itemsPerPage,
+          sort: this.sort(),
+        })
+        .subscribe(
+          (res: HttpResponse<IConsultancySummery[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
+          () => this.onError()
+        );
+    }
   }
 
   ngOnInit(): void {

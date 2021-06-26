@@ -236,9 +236,6 @@ public class Consultancy extends PanacheEntityBase implements Serializable {
             return update(consultancy);
         }
     }
-    public void setDate(){
-        this.date = Instant.now();
-    }
 
     public static Consultancy persistOrUpdate(ConsultancyDTO consultancyDTO) {
         if (consultancyDTO == null) {
@@ -289,7 +286,7 @@ public class Consultancy extends PanacheEntityBase implements Serializable {
     }
     public static PanacheQuery<Consultancy> getPublishedPanacheQuery(Sort sort ){
         if(sort==null)
-       return Consultancy.find("show",Sort.by("date"),true);
+       return Consultancy.find("show",Sort.by("date" , Sort.Direction.Descending));
 
        return Consultancy.find("show",sort,true);
     }

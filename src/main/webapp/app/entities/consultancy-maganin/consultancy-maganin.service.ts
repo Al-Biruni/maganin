@@ -47,6 +47,12 @@ export class ConsultancyMaganinService {
       .get<IConsultancySummery[]>(this.resourceUrl, { params: options, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
+  queryPublished(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http
+      .get<IConsultancySummery[]>(this.resourceUrl + '/published', { params: options, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
 
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
@@ -79,6 +85,6 @@ export class ConsultancyMaganinService {
     return this.http.get<IDoctorDTO[]>(this.doctorSummeryResourceUrl, { observe: 'response' });
   }
   getLatestConsultancies(): Observable<EntityArrayResponseType> {
-    return this.http.get<IConsultancySummery[]>(`${this.resourceUrl}`, { observe: 'response' });
+    return this.http.get<IConsultancySummery[]>(`${this.resourceUrl + '/latest'}`, { observe: 'response' });
   }
 }
