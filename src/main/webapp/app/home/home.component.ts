@@ -9,6 +9,8 @@ import { ConsultancySummery, IConsultancySummery } from 'app/shared/model/consul
 import { ArticleMaganinService } from 'app/entities/article-maganin/article-maganin.service';
 import { ConsultancyMaganinService } from 'app/entities/consultancy-maganin/consultancy-maganin.service';
 import { IArticleMaganin } from 'app/shared/model/article-maganin.model';
+import { DoctorService } from 'app/entities/doctor-maganin/doctor-maganin.service';
+import { Doctor } from 'app/shared/model/doctor.model';
 
 @Component({
   selector: 'jhi-home',
@@ -28,17 +30,28 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   latestConsultancies: ConsultancySummery[] = [];
 
+  topDoctors: Doctor[] = [];
   constructor(
     private accountService: AccountService,
     private loginModalService: LoginModalService,
     private articleService: ArticleMaganinService,
-    private consultancyService: ConsultancyMaganinService
+    private consultancyService: ConsultancyMaganinService,
+    private doctorService: DoctorService
   ) {}
   ngOnInit(): void {
     this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account));
     this.articleService.getLatestArticles(1).subscribe((res: HttpResponse<IArticleMaganin[]>) => {
       this.latestArticlesSummary = res.body || [];
     });
+    this.doctorService
+      .query({
+        page: 1,
+        size: 10,
+        sort: ['impressions,desc'],
+      })
+      .subscribe((res: HttpResponse<Doctor[]>) => {
+        this.topDoctors = res.body || [];
+      });
 
     this.consultancyService.getLatestConsultancies().subscribe((res: HttpResponse<IConsultancySummery[]>) => {
       this.latestConsultancies = res.body || [];

@@ -32,11 +32,18 @@
           </div>
 
     <div id="home-latest-consultancy-container" class = "col-lg-6 col-sm-12" >
-      <jhi-consultancy-summery-list [listTitle]="arConTitle" [consultancies]="latestConsultancies.slice(0,6)">
+      <jhi-consultancy-summery-list [listTitle]="arConTitle" [consultancies]="latestConsultancies.slice(0,3)">
 
       </jhi-consultancy-summery-list>
 
     </div>
+
+</div>
+
+<div>
+    <jhi-doctor-list [doctors]="topDoctors">
+
+    </jhi-doctor-list>
 </div>
 
 
