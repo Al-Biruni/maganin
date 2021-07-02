@@ -8,8 +8,13 @@ import { IArticleMaganin } from 'app/shared/model/article-maganin.model';
 })
 export class ArticleSummeryComponent implements OnInit {
   @Input() articleSummery?: IArticleMaganin;
+  isShortDescLong?: boolean;
 
-  constructor() {}
+  constructor() {
+    if (this.articleSummery?.shortDesc !== undefined) {
+      this.isShortDescLong = this.articleSummery.shortDesc.length > 50;
+    }
+  }
 
   ngOnInit(): void {}
 }

@@ -16,7 +16,12 @@
             </div>
         </div>
         <mat-card-content>
-            <p [innerHTML] = "articleSummery.shortDesc"></p>
+<!--            <p [innerHTML] = "articleSummery.shortDesc">-->
+<!--            </p>-->
+            <jhi-read-more [text]="articleSummery.shortDesc" [maxLength]="250">
+
+            </jhi-read-more>
+
         </mat-card-content>
     </div>
 

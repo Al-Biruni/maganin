@@ -6,17 +6,14 @@
   margin-top: 20px;
   background-color: #f0f0f0;
 }
-.doctor-summery-list {
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
+
 jhi-doctor-card-summery {
   display: inline-block;
   text-align: center;
   padding: 14px;
   font-size: 1.5em;
   border: #00000029 1px solid;
+  width: 200px;
 }
 
 jhi-doctor-card-summery:hover {

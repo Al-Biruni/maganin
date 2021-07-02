@@ -10,6 +10,7 @@ export interface IDoctorMaganin {
   impressions?: number;
   avgRating?: number;
   thumbnail?: string;
+  speciality?: string;
 }
 
 export class Doctor implements IDoctorMaganin {
@@ -22,6 +23,7 @@ export class Doctor implements IDoctorMaganin {
     public longDesc?: string,
     public impressions?: number,
     public avgRating?: number,
-    public thumbnail?: string
+    public thumbnail?: string,
+    public speciality?: string
   ) {}
 }

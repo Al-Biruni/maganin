@@ -8,8 +8,9 @@ import { ArticleMaganinUpdateComponent } from './article-maganin-update.componen
 import { ArticleMaganinDeleteDialogComponent } from './article-maganin-delete-dialog.component';
 import { articleRoute } from './article-maganin.route';
 import { MaganinEditorModule } from '../../shared/htmlEditor/editor-maganin.module';
+import { ArticleSummeryListModule } from '../../layouts/article-list/article-summery-list.module';
 @NgModule({
-  imports: [MaganinSharedModule, MaganinEditorModule, RouterModule.forChild(articleRoute)],
+  imports: [MaganinSharedModule, MaganinEditorModule, RouterModule.forChild(articleRoute), ArticleSummeryListModule],
   declarations: [
     ArticleMaganinComponent,
     ArticleMaganinDetailComponent,

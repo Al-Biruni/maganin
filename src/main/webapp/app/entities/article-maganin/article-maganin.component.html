@@ -26,7 +26,7 @@
                                         </div>
                                     </div>
                                     <mat-card-content>
-                                        <p [innerHTML] = "article.shortDesc"></p>
+                                        <jhi-read-more [text]= "article.shortDesc" [maxLength]=250></jhi-read-more>
                                     </mat-card-content>
                                 </div>
 
@@ -62,7 +62,7 @@
             </ngb-carousel>
         </div>
 
-
+<!--   ----------------------------------------user articles list ------------------------------------------------------------->
   <div id="articles-grid" class="row card-group ">
 <div *ngFor="let article of articles?.slice(0,6)" class="col-sm-12 col-md-6 col-lg-4">
 <mat-card >
@@ -70,8 +70,10 @@
     <mat-card-title>
         <a [routerLink]="['/article-maganin', article.id, 'view']">{{ article.title }}</a>
     </mat-card-title>
-    <mat-card-content [innerHTML]="article.shortDesc">
+    <mat-card-content >
+<jhi-read-more [text]="article.shortDesc" [maxLength]="250">
 
+</jhi-read-more>
     </mat-card-content>
     <hr style="background-color: #02598C; margin: 0">
     <mat-card-footer>

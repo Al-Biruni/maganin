@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
     this.doctorService
       .query({
-        page: 1,
+        page: 0,
         size: 10,
         sort: ['impressions,desc'],
       })
