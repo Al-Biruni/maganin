@@ -7,6 +7,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import javax.json.bind.annotation.JsonbTransient;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import io.quarkus.panache.common.Parameters;
 import io.quarkus.panache.common.Sort;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.hibernate.annotations.Cache;
@@ -284,11 +285,16 @@ public class Consultancy extends PanacheEntityBase implements Serializable {
         return Consultancy.list("show",sort,true);
 
     }
-    public static PanacheQuery<Consultancy> getPublishedPanacheQuery(Sort sort ){
-        if(sort==null)
-       return Consultancy.find("show",Sort.by("date" , Sort.Direction.Descending));
+    public static PanacheQuery<Consultancy> getPublishedPanacheQuery(List<Integer> consultancyTypesIds,Sort sort ){
+        PanacheQuery<Consultancy> publishedConsultancies;
+        if(sort==null) {
+            publishedConsultancies = Consultancy.find("show", Sort.by("date", Sort.Direction.Descending),true);
+        }else {
+            publishedConsultancies = Consultancy.find("show ", sort,true);
+        }
 
-       return Consultancy.find("show",sort,true);
+
+       return publishedConsultancies;
     }
     public static List<ConsultancySummery> getLatest(){
         return Consultancy.getPublished(null).subList(0,5).stream().

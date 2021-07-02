@@ -48,7 +48,7 @@ public interface ConsultancyService {
 
 
 
-    Paged<Consultancy> findPublished(Page page , Sort sort);
+    Paged<Consultancy> findPublished(Page page , Sort sort ,List<Integer> consultancyTypeIds);
 
     List<ConsultancySummery> findLatestConsultancies();
 

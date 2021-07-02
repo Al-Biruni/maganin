@@ -75,9 +75,9 @@ public class ConsultancyServiceImpl implements ConsultancyService {
 
     @Override
 
-    public Paged<Consultancy> findPublished(Page page , Sort sort){
+    public Paged<Consultancy> findPublished(Page page , Sort sort, List<Integer> consultancyTypeIds){
         return new Paged<>(
-            Consultancy.getPublishedPanacheQuery(sort).page(page)
+            Consultancy.getPublishedPanacheQuery(consultancyTypeIds,sort).page(page)
         );
 
     }

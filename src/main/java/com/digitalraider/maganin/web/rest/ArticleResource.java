@@ -141,11 +141,5 @@ public class ArticleResource {
         return ResponseUtil.wrapOrNotFound(article);
     }
 
-    @GET
-    @Path("/{id}")
-    public Response getArticleByCateg(@PathParam("id") Long id) {
-        log.debug("REST request to get Article : {}", id);
-        Optional<ArticleDTO> article = articleService.findOne(id).map(article1 -> new ArticleDTO(article1));
-        return ResponseUtil.wrapOrNotFound(article);
-    }
+
 }

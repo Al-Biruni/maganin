@@ -13,6 +13,8 @@ import com.digitalraider.maganin.web.rest.errors.BadRequestAlertException;
 import com.digitalraider.maganin.web.util.HeaderUtil;
 import com.digitalraider.maganin.web.util.ResponseUtil;
 
+import io.quarkus.panache.common.Page;
+import io.quarkus.panache.common.Sort;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -143,12 +145,15 @@ public class ConsultancyResource {
     }
     @GET
     @Path("/published")
-    public Response getPublishedConsultancies(@BeanParam PageRequestVM pageRequest, @BeanParam SortRequestVM sortRequest, @Context UriInfo uriInfo) {
+    public Response getPublishedConsultancies(@BeanParam PageRequestVM pageRequest,
+                                              @BeanParam SortRequestVM sortRequest,
+                                              @Context UriInfo uriInfo,
+                                              @QueryParam("consultancyTypes") List<Integer> consultancyTypes  ) {
         log.debug("REST request to get a page of published Consultancies");
         var page = pageRequest.toPage();
         var sort = sortRequest.toSort();
 
-        Paged<Consultancy> result = consultancyService.findPublished(page,sort);
+        Paged<Consultancy> result = consultancyService.findPublished(page,sort,consultancyTypes);
 
         Paged<ConsultancySummery>resultSummery = result.map(consultancy -> new ConsultancySummery(consultancy));
 
@@ -161,7 +166,10 @@ public class ConsultancyResource {
     @Path("/latest")
     public Response getLatestConsultancies() {
         log.debug("REST request to get latest Consultancies");
-        List<ConsultancySummery> result = consultancyService.findLatestConsultancies();
+        List<ConsultancySummery> result = consultancyService.
+            findPublished(new Page(1,10),
+                Sort.by("date", Sort.Direction.Descending)
+                ,null).map(c -> new ConsultancySummery(c)).content;
 
         var response = Response.ok().entity(result);
         return response.build();
