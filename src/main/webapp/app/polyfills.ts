@@ -1,3 +1,3 @@
-import 'zone.js/dist/zone';
+import 'zone.js';
 import '@angular/localize/init';
 require('../manifest.webapp');
